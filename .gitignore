@@ -1,2 +1,8 @@
 .idea
 node_modules/
+core/server/views/sample-production.ejs
+core/server/views/sample-development.ejs
+app/server/views/main-production.ejs
+app/server/views/main-development.ejs
+app/server/views/admin-production.ejs
+app/server/views/admin-development.ejs
