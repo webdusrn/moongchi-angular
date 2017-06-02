@@ -4,11 +4,10 @@ var logger = new Logger(__filename);
 
 top.hasAuthorization = function() {
     return function (req, res, next) {
-        var userId = req.user.id;
         if (req.user.role >= req.meta.std.user.roleAdmin) {
-            userId = null;
+            return next();
         }
-        req.models.Activity.findDataByAuthenticatedId(req.params.id, 'authorId', userId, function(status, data) {
+        req.models.Test.findDataByAuthenticatedId(req.params.id, 'userId', req.user.id, function(status, data) {
             if (status == 200) {
                 req.data = data;
                 next();

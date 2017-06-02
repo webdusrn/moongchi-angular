@@ -1,6 +1,10 @@
 module.exports = {
     app: {
-        secret: 'test',
-        port: 9001
+        port: 8080
+    },
+    db: {
+        mysql: 'mysql://localhost:3306/core',
+        logging: false,
+        force: false
     }
 };

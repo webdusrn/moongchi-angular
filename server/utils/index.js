@@ -1,1 +1,3 @@
-module.exports.common = require('./common');
+module.exports = {
+    initialization: require('./initialization.js')
+};

@@ -19,6 +19,8 @@ var errorHandler = require('sg-sequelize-error-handler');
 var STD = require('../../../../bridge/metadata/standards');
 module.exports = {
     'fields': {
-
+    },
+    'options': {
+        'classMethods': Sequelize.Utils._.extend(mixin.options.classMethods, {})
     }
 };

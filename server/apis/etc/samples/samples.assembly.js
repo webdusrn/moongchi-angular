@@ -14,7 +14,7 @@ var router = new express.Router();
 var HAPICreator = require('sg-api-creator');
 
 
-const META = require('../../../../../bridge/metadata/index');
+const META = require('../../../../../bridge/metadata');
 const STD = META.std;
 
 var api = {
@@ -47,7 +47,7 @@ var api = {
                 apiCreator.add(get.supplement());
                 apiCreator.run();
 
-                delete apiCreator;
+                
             }
             else {
                 return params;
@@ -84,7 +84,7 @@ var api = {
                 apiCreator.add(gets.supplement());
                 apiCreator.run();
 
-                delete apiCreator;
+                
             }
             else {
                 return params;
@@ -122,7 +122,7 @@ var api = {
                 apiCreator.add(post.supplement());
                 apiCreator.run();
 
-                delete apiCreator;
+                
             }
             else {
                 return params;
@@ -160,7 +160,7 @@ var api = {
                 apiCreator.add(put.supplement());
                 apiCreator.run();
 
-                delete apiCreator;
+                
             }
             else {
                 return params;
@@ -196,7 +196,7 @@ var api = {
                 apiCreator.add(del.supplement());
                 apiCreator.run();
 
-                delete apiCreator;
+                
             }
             else {
                 return params;

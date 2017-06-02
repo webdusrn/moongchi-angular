@@ -2,19 +2,28 @@
 <html xmlns:ng="http://angularjs.org" class="ng-app:app" lang="<%= params.language %>">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <link rel="icon" type="image/png" href="/pages/main/assets/images/favicon_32x32.png" sizes="32x32"/>
+    <link rel="icon" type="image/png" href="/pages/main/assets/images/favicon_16x16.png" sizes="16x16"/>
     <base href="/">
-    <title>Main App</title>
+    <title></title>
     <script type="text/javascript">
         window.meta = <%- JSON.stringify(params.meta || {}) %>;
         window.session = <%- JSON.stringify(params.session|| {}) %>;
         window.oauth = <%- JSON.stringify(params.oauth || {}) %>;
     </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- inject:css -->
+    <!-- endinject -->
 </head>
-<body>
-<div ui-view="header"></div>
-<div ui-view="contents"></div>
-<div ui-view="footer"></div>
+<body data-ng-controller="MainCtrl">
+<ng-include src="'modules/common/base/loading-handler/views/core.loading-handler.html'"></ng-include>
+<ng-include src="'modules/common/base/alert-dialog/views/core.alert-dialog.html'"></ng-include>
+<div id="sg-main-wrap">
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 <!-- inject:js -->
 <!-- endinject -->

@@ -10,7 +10,6 @@ gets.validate = function(){
         req.check('size', '400_5').isInt();
         if (req.query.userId !== undefined) req.check('userId', '400_12').isInt();
         req.utils.common.checkError(req, res, next);
-        next();
     };
 };
 
@@ -21,14 +20,21 @@ gets.setParam = function() {
         var where = {};
         if (req.query.userId !== undefined) where.userId = req.query.userId;
         req.models.Test.findAllDataForPage(where, size, last, function(status, data) {
-            req.data = data;
-            next();
+            if (status == 200) {
+                req.data = data;
+                next();
+            } else {
+                res.hjson(req, next, status, data);
+            }
         });
     };
 };
 
 gets.supplement = function(){
     return function(req, res, next){
+        var ret = {
+            rows: req.data
+        };
         res.hjson(req, next, 200, req.data);
     };
 };

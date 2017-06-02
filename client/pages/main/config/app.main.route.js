@@ -1,18 +1,15 @@
-routes.$inject = ['$stateProvider'];
+routes.$inject = ['$stateProvider', '$urlRouterProvider'];
 
-export default function routes($stateProvider) {
-    $stateProvider.state('index', {
-        url: '/',
-        views: {
-            'header': {
-                templateUrl: 'pages/main/views/layouts/header.html'
-            },
-            'footer': {
-                templateUrl: 'pages/main/views/layouts/footer.html'
-            },
-            'contents': {
-                templateUrl: 'pages/main/views/layouts/main-contents.html'
+export default function routes($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise('/');
+
+    $stateProvider
+        .state('index', {
+            url: '/',
+            views: {
+                contents: {
+                    templateUrl: 'pages/main/views/contents/index.html'
+                }
             }
-        }
-    });
+        });
 }

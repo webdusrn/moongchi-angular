@@ -1,8 +1,8 @@
 var localization = {
-    "defaultCountry": "KR",
+    "defaultCountry": "kr",
     "defaultLanguage": "ko",
     "countries": {
-        "KR": {
+        "kr": {
             "name": "대한민국",
             "enName": "Korea",
             "code": "+82",
