@@ -1,6 +1,7 @@
 .idea
 node_modules/
+lib/
 npm-debug.log
+*.css.map
 server/views/*-production.ejs
 server/views/*-development.ejs
-*.css.map

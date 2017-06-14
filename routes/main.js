@@ -25,7 +25,7 @@ module.exports = function (app) {
                 if (status == 200) {
 
                     if (req.isOldBrowser) {
-                        res.render('old-browser');
+                        res.render('old-browser', req.preparedParam);
                     } else {
                         var fileName = path.basename(__filename).split('.')[0];
                         if (data == fileName) {

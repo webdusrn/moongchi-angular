@@ -2,10 +2,7 @@
 <html xmlns:ng="http://angularjs.org" class="ng-app:app" lang="<%= params.language %>">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
-    <meta name="viewport" content="width=device-width, user-scalable=no">
-    <link rel="icon" type="image/png" href="/pages/main/assets/images/favicon_32x32.png" sizes="32x32"/>
-    <link rel="icon" type="image/png" href="/pages/main/assets/images/favicon_16x16.png" sizes="16x16"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1"/>
     <base href="/">
     <title>MOONGCHI</title>
     <script type="text/javascript">
@@ -14,21 +11,15 @@
         window.oauth = <%- JSON.stringify(params.oauth || {}) %>;
     </script>
     <!-- inject:css -->
-    <link rel="stylesheet" href="/sg-main-core.css?v=1497458888438228">
     <!-- endinject -->
 </head>
-<body data-ng-controller="MainCtrl">
+<body data-ng-controller="AdminCtrl">
 <ng-include src="'modules/common/base/loading-handler/views/core.loading-handler.html'"></ng-include>
 <ng-include src="'modules/common/base/alert-dialog/views/core.alert-dialog.html'"></ng-include>
-<ng-include src="'<%- params.meta.std.templatePath %>main/views/layouts/header.html'"></ng-include>
 <div id="sg-main-wrap" ui-view="contents"></div>
-<ng-include src="'<%- params.meta.std.templatePath %>main/views/layouts/footer.html'"></ng-include>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 <!-- inject:js -->
-<script src="/sg-main-template.js?v=1497458888438228"></script>
-<script src="/sg-main-core.js?v=1497458888438228"></script>
-<script src="/sg-main.js?v=1497458888438228"></script>
 <!-- endinject -->
 </body>
 </html>
