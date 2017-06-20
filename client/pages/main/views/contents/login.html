@@ -1,3 +1,13 @@
 <section id="login-wrap" data-ng-controller="LoginCtrl">
-    login
+    <div id="login-window">
+        <form data-ng-submit="login()">
+            <div class="login-input-wrap">
+                <input type="email" class="login-input" data-ng-model="form.id" placeholder="{{ 'id' | translate }}">
+            </div>
+            <div class="login-input-wrap">
+                <input type="password" class="login-input" data-ng-model="form.pw" placeholder="{{ 'pw' | translate }}">
+            </div>
+            <button id="login-button" type="submit">{{ 'login' | translate }}</button>
+        </form>
+    </div>
 </section>

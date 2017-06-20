@@ -5,6 +5,10 @@ var standards = {
     "flag": {
         "isMoreSocialInfo": false, // 소셜가입할때 추가정보가 필요할경우.\
         "isResponsive": false
+    },
+    "pet": {
+        "enumPetTypes": ["petTypeCat", "petTypeDog", "petTypeEtc"],
+        "defaultPetType": "petTypeCat"
     }
 };
 

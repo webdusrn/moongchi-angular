@@ -1,3 +1,4 @@
 <header id="header-wrap" data-ng-controller="HeaderCtrl">
-    header
+    <div class="sg-logo" data-ng-click="goToIndex()"></div>
+    <button type="button" data-ng-if="vm.isLoggedIn()" data-ng-click="logout()">{{ 'logout' | translate }}</button>
 </header>

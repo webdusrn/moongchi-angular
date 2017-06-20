@@ -1,0 +1,14 @@
+$g-color-header-background: #2e314d;
+$g-color-header: white;
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: $g-header-size;
+  box-shadow: 0 1px 5px 0 rgba(0,0,0,.1);
+  color: $g-color-header;
+  background-color: $g-color-header-background;
+  z-index: 1;
+}

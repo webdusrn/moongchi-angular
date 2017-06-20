@@ -7,6 +7,7 @@
 
 @import "common";
 
+@import "components";
 @import "layouts";
 @import "contents";
 
@@ -23,6 +24,7 @@ body {
 }
 
 body {
+  padding-top: $g-header-size;
   font-family: 'Noto Sans KR', sans-serif;
   background-color: #f4f5f8;
   color: #535e6d;
