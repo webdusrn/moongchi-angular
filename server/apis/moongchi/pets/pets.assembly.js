@@ -58,24 +58,28 @@ var api = {
 
             var params = {
                 acceptable: [
-                    "searchField",
-                    "searchItem",
-                    "orderBy",
-                    "sort",
-                    "last",
-                    "size",
-                    "offset"
+                    'searchField',
+                    'searchItem',
+                    'orderBy',
+                    'sort',
+                    'last',
+                    'size',
+                    'offset',
+                    'petType',
+                    'petGender'
                 ],
                 essential: [],
                 resettable: [],
                 explains : {
-                    "searchField": "검색 필드",
-                    "searchItem": "검색어",
-                    "orderBy": "정렬 기준",
-                    "sort": "정렬 방식 " + STD.common.enumSortTypes.join(', '),
-                    "last": "마지막 데이터",
-                    "size": "가져올 데이터수",
-                    "offset": "offset"
+                    'searchField': '검색 필드 ' + STD.pet.enumSearchFields.join(', '),
+                    'searchItem': '검색어',
+                    'orderBy': '정렬기준',
+                    'sort': '정렬방식 ' + STD.common.enumSortTypes.join(', '),
+                    'last': '마지막 데이터',
+                    'size': '가져올 데이터수',
+                    'offset': 'offset',
+                    'petType': '펫 종류 ' + STD.pet.enumPetTypes.join(', '),
+                    'petGender': '펫 성별 ' + STD.pet.enumPetGenders.join(', ')
                 },
                 title: '조회',
                 state: 'design'
@@ -106,14 +110,23 @@ var api = {
         return function(req, res, next) {
 
             var params = {
-                acceptable: [],
-                essential: [],
+                acceptable: [
+                    'petType',
+                    'petName',
+                    'petGender',
+                    'petBirthDate',
+                    'imageId'
+                ],
+                essential: [
+                    'petName'
+                ],
                 resettable: [],
                 explains : {
-
-                },
-                defaults: {
-
+                    'petType': '펫 종류 ' + STD.pet.enumPetTypes.join(', '),
+                    'petName': '펫 이름',
+                    'petGender': '펫 성별 ' + STD.pet.enumPetGenders.join(', '),
+                    'petBirthDate': '펫 출생일',
+                    'imageId': '대표이미지 ID'
                 },
                 title: '생성',
                 state: 'design'
@@ -144,11 +157,24 @@ var api = {
         return function(req, res, next) {
 
             var params = {
-                acceptable: [],
+                acceptable: [
+                    'petType',
+                    'petName',
+                    'petGender',
+                    'petBirthDate',
+                    'imageId'
+                ],
                 essential: [],
-                resettable: [],
+                resettable: [
+                    'petBirthDate',
+                    'imageId'
+                ],
                 explains : {
-
+                    'petType': '펫 종류 ' + STD.pet.enumPetTypes.join(', '),
+                    'petName': '펫 이름',
+                    'petGender': '펫 성별 ' + STD.pet.enumPetGenders.join(', '),
+                    'petBirthDate': '펫 출생일',
+                    'imageId': '대표이미지 ID'
                 },
                 title: '수정',
                 param: 'id',

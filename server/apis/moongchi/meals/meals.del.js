@@ -11,7 +11,13 @@ del.validate = function () {
 
 del.destroy = function () {
     return function (req, res, next) {
-
+        req.models.AppMeal.deleteMealById(req.params.id, req.user, function (status, data) {
+            if (status == 204) {
+                next();
+            } else {
+                return res.hjson(req, next, status, data);
+            }
+        });
     };
 };
 

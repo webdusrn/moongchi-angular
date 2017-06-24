@@ -4,7 +4,6 @@ var resource = filePath[filePath.length - 1];
 
 var gets = require('./' + resource + '.gets.js');
 var get = require('./' + resource + '.get.js');
-var put = require('./' + resource + '.put.js');
 var post = require('./' + resource + '.post.js');
 var del = require('./' + resource + '.del.js');
 
@@ -58,24 +57,22 @@ var api = {
 
             var params = {
                 acceptable: [
-                    "searchField",
-                    "searchItem",
                     "orderBy",
                     "sort",
                     "last",
                     "size",
-                    "offset"
+                    "offset",
+                    "petId"
                 ],
                 essential: [],
                 resettable: [],
                 explains : {
-                    "searchField": "검색 필드",
-                    "searchItem": "검색어",
-                    "orderBy": "정렬 기준",
+                    "orderBy": "정렬 기준 " + STD.petImage.enumOrderBys.join(', '),
                     "sort": "정렬 방식 " + STD.common.enumSortTypes.join(', '),
                     "last": "마지막 데이터",
                     "size": "가져올 데이터수",
-                    "offset": "offset"
+                    "offset": "offset",
+                    "petId": "펫 ID"
                 },
                 title: '조회',
                 state: 'design'
@@ -91,6 +88,7 @@ var api = {
                     params.resettable
                 ));
                 apiCreator.add(gets.validate());
+                apiCreator.add(gets.hasAuthorization());
                 apiCreator.add(gets.setParam());
                 apiCreator.add(gets.supplement());
                 apiCreator.run();
@@ -106,14 +104,18 @@ var api = {
         return function(req, res, next) {
 
             var params = {
-                acceptable: [],
-                essential: [],
+                acceptable: [
+                    "petId",
+                    "imageIds"
+                ],
+                essential: [
+                    "petId",
+                    "imageIds"
+                ],
                 resettable: [],
                 explains : {
-
-                },
-                defaults: {
-
+                    "petId": "펫 ID",
+                    "imageIds": "이미지 ID (,)로 구분"
                 },
                 title: '생성',
                 state: 'design'
@@ -129,44 +131,9 @@ var api = {
                     params.resettable
                 ));
                 apiCreator.add(post.validate());
+                apiCreator.add(post.hasAuthorization());
                 apiCreator.add(post.setParam());
                 apiCreator.add(post.supplement());
-                apiCreator.run();
-
-                
-            }
-            else {
-                return params;
-            }
-        };
-    },
-    put : function(isOnlyParams) {
-        return function(req, res, next) {
-
-            var params = {
-                acceptable: [],
-                essential: [],
-                resettable: [],
-                explains : {
-
-                },
-                title: '수정',
-                param: 'id',
-                state: 'design'
-            };
-
-            if (!isOnlyParams) {
-                var apiCreator = new HAPICreator(req, res, next);
-
-                apiCreator.add(req.middles.session.loggedIn());
-                apiCreator.add(req.middles.validator(
-                    params.acceptable,
-                    params.essential,
-                    params.resettable
-                ));
-                apiCreator.add(put.validate());
-                apiCreator.add(put.setParam());
-                apiCreator.add(put.supplement());
                 apiCreator.run();
 
                 
@@ -200,6 +167,7 @@ var api = {
                     params.resettable
                 ));
                 apiCreator.add(del.validate());
+                apiCreator.add(del.hasAuthorization());
                 apiCreator.add(del.destroy());
                 apiCreator.add(del.supplement());
                 apiCreator.run();
@@ -216,7 +184,6 @@ var api = {
 router.get('/' + resource + '/:id', api.get());
 router.get('/' + resource, api.gets());
 router.post('/' + resource, api.post());
-router.put('/' + resource + '/:id', api.put());
 router.delete('/' + resource + '/:id', api.delete());
 
 module.exports.router = router;

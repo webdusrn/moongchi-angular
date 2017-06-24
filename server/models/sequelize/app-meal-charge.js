@@ -18,26 +18,19 @@ var CONFIG = require('../../../../bridge/config/env');
 var getDBStringLength = require('../../../../core/server/utils').initialization.getDBStringLength;
 module.exports = {
     fields: {
-        'authorId': {
-            'reference': 'User',
+        'mealId': {
+            'reference': 'AppMeal',
             'referenceKey': 'id',
-            'as': 'author',
-            'asReverse': 'pets',
+            'as': 'meal',
+            'asReverse': 'mealCharges',
             'allowNull': false
         },
-        'petType': {
-            'type': Sequelize.ENUM,
-            'values': STD.pet.enumPetTypes,
-            'defaultValue': STD.pet.defaultPetType,
+        'chargeId': {
+            'reference': 'AppCharge',
+            'referenceKey': 'id',
+            'as': 'charge',
+            'asReverse': 'mealCharges',
             'allowNull': false
-        },
-        'petName': {
-            'type': Sequelize.STRING(getDBStringLength()),
-            'allowNull': false
-        },
-        'petBirthDay': {
-            'type': Sequelize.DATE,
-            'allowNull': true
         },
         'createdAt': {
             'type': Sequelize.BIGINT,
@@ -46,33 +39,25 @@ module.exports = {
         'updatedAt': {
             'type': Sequelize.BIGINT,
             'allowNull': true
-        },
-        'deletedAt': {
-            'type': Sequelize.DATE,
-            'allowNull': true
         }
     },
     options: {
         'indexes': [{
-            name: 'authorId',
-            fields: ['authorId']
+            name: 'mealId_chargeId',
+            fields: ['mealId', 'chargeId'],
+            unique: true
         }, {
-            name: 'petType',
-            fields: ['petType']
+            name: 'mealId',
+            fields: ['mealId']
         }, {
-            name: 'petName',
-            fields: ['petName']
-        }, {
-            name: 'petBirthDay',
-            fields: ['petBirthDay']
+            name: 'chargeId',
+            fields: ['chargeId']
         }, {
             name: 'createdAt',
             fields: ['createdAt']
         }],
-        'timestamps': true,
         'createdAt': false,
         'updatedAt': false,
-        'paranoid': true,
         'charset': CONFIG.db.charset,
         'collate': CONFIG.db.collate,
         'hooks': {
@@ -82,7 +67,12 @@ module.exports = {
         },
         'instanceMethods': Sequelize.Utils._.extend(mixin.options.instanceMethods, {}),
         'classMethods': Sequelize.Utils._.extend(mixin.options.classMethods, {
-
+            'getIncludePetImage': function () {
+                return [{
+                    model: sequelize.models.Image,
+                    as: 'image'
+                }];
+            }
         })
     }
 };

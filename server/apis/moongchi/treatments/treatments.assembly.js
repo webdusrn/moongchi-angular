@@ -69,9 +69,9 @@ var api = {
                 essential: [],
                 resettable: [],
                 explains : {
-                    "searchField": "검색 필드",
+                    "searchField": "검색 필드 " + STD.treatment.enumSearchFields.join(', '),
                     "searchItem": "검색어",
-                    "orderBy": "정렬 기준",
+                    "orderBy": "정렬 기준 " + STD.treatment.enumOrderBys.join(', '),
                     "sort": "정렬 방식 " + STD.common.enumSortTypes.join(', '),
                     "last": "마지막 데이터",
                     "size": "가져올 데이터수",
@@ -106,14 +106,26 @@ var api = {
         return function(req, res, next) {
 
             var params = {
-                acceptable: [],
-                essential: [],
+                acceptable: [
+                    "treatmentTitle",
+                    "hospitalName",
+                    "treatmentContent",
+                    "treatmentDate",
+                    "petIds",
+                    "chargeObject"
+                ],
+                essential: [
+                    "treatmentTitle",
+                    "treatmentDate"
+                ],
                 resettable: [],
                 explains : {
-
-                },
-                defaults: {
-
+                    "treatmentTitle": "진료제목",
+                    "hospitalName": "병원이름",
+                    "treatmentContent": "진료내용",
+                    "treatmentDate": "진료날짜",
+                    "petIds": "애완동물 ID (,)로 구분",
+                    "chargeObject": "요금 객체"
                 },
                 title: '생성',
                 state: 'design'
@@ -144,11 +156,22 @@ var api = {
         return function(req, res, next) {
 
             var params = {
-                acceptable: [],
+                acceptable: [
+                    "treatmentTitle",
+                    "hospitalName",
+                    "treatmentContent",
+                    "treatmentDate"
+                ],
                 essential: [],
-                resettable: [],
+                resettable: [
+                    "hospitalName",
+                    "treatmentContent",
+                ],
                 explains : {
-
+                    "treatmentTitle": "진료제목",
+                    "hospitalName": "병원이름",
+                    "treatmentContent": "진료내용",
+                    "treatmentDate": "진료날짜"
                 },
                 title: '수정',
                 param: 'id',

@@ -1,7 +1,7 @@
 module.exports = {
     app: {
         port: 80,
-        uploadStore: "localBucket"
+        uploadStore: "local"
         // httpsPort: 443,
         // keyFile: "key.pem",
         // crtFile: "cert.pem"

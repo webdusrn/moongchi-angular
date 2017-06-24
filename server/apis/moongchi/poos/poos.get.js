@@ -11,7 +11,14 @@ get.validate = function () {
 
 get.setParam = function () {
     return function (req, res, next) {
-
+        req.models.AppPoo.findDataById(req.params.id, function (status, data) {
+            if (status == 200) {
+                req.data = data;
+                next();
+            } else {
+                return res.hjson(req, next, status, data);
+            }
+        });
     };
 };
 

@@ -69,9 +69,9 @@ var api = {
                 essential: [],
                 resettable: [],
                 explains : {
-                    "searchField": "검색 필드",
+                    "searchField": "검색 필드 " + STD.meal.enumSearchFields.join(', '),
                     "searchItem": "검색어",
-                    "orderBy": "정렬 기준",
+                    "orderBy": "정렬 기준 " + STD.meal.enumOrderBys.join(', '),
                     "sort": "정렬 방식 " + STD.common.enumSortTypes.join(', '),
                     "last": "마지막 데이터",
                     "size": "가져올 데이터수",
@@ -106,14 +106,22 @@ var api = {
         return function(req, res, next) {
 
             var params = {
-                acceptable: [],
-                essential: [],
+                acceptable: [
+                    'mealName',
+                    'mealStartDate',
+                    'petIds',
+                    'chargeObject'
+                ],
+                essential: [
+                    'mealName',
+                    'mealStartDate',
+                ],
                 resettable: [],
                 explains : {
-
-                },
-                defaults: {
-
+                    'mealName': '사료 이름',
+                    'mealStartDate': '사료 먹이기 시작한 날짜',
+                    'petIds': '펫 ID (,)로 구분',
+                    'chargeObject': '비용 객체'
                 },
                 title: '생성',
                 state: 'design'
@@ -144,11 +152,15 @@ var api = {
         return function(req, res, next) {
 
             var params = {
-                acceptable: [],
+                acceptable: [
+                    'mealName',
+                    'mealStartDate',
+                ],
                 essential: [],
                 resettable: [],
                 explains : {
-
+                    'mealName': '사료 이름',
+                    'mealStartDate': '사료 먹이기 시작한 날짜',
                 },
                 title: '수정',
                 param: 'id',

@@ -11,7 +11,21 @@ get.validate = function () {
 
 get.setParam = function () {
     return function (req, res, next) {
-
+        var include = req.models.AppMeal.getIncludeMeal();
+        req.models.AppMeal.findDataWithQuery({
+            include: include,
+            where: {
+                authorId: req.user.id,
+                id: req.params.id
+            }
+        }, function (status, data) {
+            if (status == 200) {
+                req.data = data;
+                next();
+            } else {
+                return res.hjson(req, next, status, data);
+            }
+        });
     };
 };
 

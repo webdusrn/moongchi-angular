@@ -69,7 +69,7 @@ var api = {
                 essential: [],
                 resettable: [],
                 explains : {
-                    "searchField": "검색 필드",
+                    "searchField": "검색 필드 " + STD.charge.enumSearchFields.join(', '),
                     "searchItem": "검색어",
                     "orderBy": "정렬 기준",
                     "sort": "정렬 방식 " + STD.common.enumSortTypes.join(', '),
@@ -106,14 +106,20 @@ var api = {
         return function(req, res, next) {
 
             var params = {
-                acceptable: [],
-                essential: [],
+                acceptable: [
+                    "chargeTitle",
+                    "chargeContent",
+                    "chargeDate"
+                ],
+                essential: [
+                    "chargeTitle",
+                    "chargeDate"
+                ],
                 resettable: [],
                 explains : {
-
-                },
-                defaults: {
-
+                    "chargeTitle": "비용명",
+                    "chargeContent": "비용내용",
+                    "chargeDate": "날짜"
                 },
                 title: '생성',
                 state: 'design'
@@ -144,11 +150,19 @@ var api = {
         return function(req, res, next) {
 
             var params = {
-                acceptable: [],
+                acceptable: [
+                    "chargeTitle",
+                    "chargeContent",
+                    "chargeDate"
+                ],
                 essential: [],
-                resettable: [],
+                resettable: [
+                    "chargeContent"
+                ],
                 explains : {
-
+                    "chargeTitle": "비용명",
+                    "chargeContent": "비용내용",
+                    "chargeDate": "날짜"
                 },
                 title: '수정',
                 param: 'id',
