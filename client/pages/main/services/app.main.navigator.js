@@ -12,6 +12,8 @@ export default function navigator ($state, metaManager) {
 
     this.goToIndex = goToIndex;
     this.goToLogin = goToLogin;
+    this.goToSignUp = goToSignUp;
+    this.goToFindPass = goToFindPass;
     this.goTo = goTo;
 
     function setParams (key, value) {
@@ -37,5 +39,13 @@ export default function navigator ($state, metaManager) {
 
     function goToLogin () {
         goTo("login");
+    }
+
+    function goToSignUp () {
+        goTo("signUp");
+    }
+
+    function goToFindPass () {
+        goTo("findPass");
     }
 }

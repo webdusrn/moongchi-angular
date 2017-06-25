@@ -28,6 +28,10 @@ module.exports = {
             'type': Sequelize.STRING(getDBStringLength()),
             'allowNull': false
         },
+        'petSeries': {
+            'type': Sequelize.STRING(getDBStringLength()),
+            'allowNull': true
+        },
         'petGender': {
             'type': Sequelize.ENUM,
             'values': STD.pet.enumPetGenders,
@@ -65,6 +69,9 @@ module.exports = {
         }, {
             name: 'petName',
             fields: ['petName']
+        }, {
+            name: 'petSeries',
+            fields: ['petSeries']
         }, {
             name: 'petGender',
             fields: ['petGender']

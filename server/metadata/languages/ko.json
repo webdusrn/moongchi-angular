@@ -1,3 +1,10 @@
 {
-
+  "isNotUser": "아직 회원이 아니신가요?",
+  "doSignUp": "회원가입하기",
+  "signUpExplainHeader1": "회원가입을 누르시면 ",
+  "signUpExplainHeader2": "과 ",
+  "signUpExplainHeader3": "에 ",
+  "signUpExplainTail": "동의하는 것으로 간주합니다.",
+  "team1": "개인정보처리방침",
+  "team2": "이용약관"
 }

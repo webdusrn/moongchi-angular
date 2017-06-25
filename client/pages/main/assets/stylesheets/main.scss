@@ -26,8 +26,9 @@ body {
 body {
   padding-top: $g-header-size;
   font-family: 'Noto Sans KR', sans-serif;
-  background-color: #f4f5f8;
+  background-color: #f7f7f7;
   color: #535e6d;
+  overflow-y: auto;
 }
 
 h1, h2, h3, h4, h5, ul, li, p {

@@ -1,15 +1,25 @@
-export default function LoginCtrl ($scope, $rootScope, $cookies, sessionManager, dialogHandler) {
+export default function LoginCtrl ($scope, $rootScope, $cookies, sessionManager, dialogHandler, navigator) {
     "ngInject";
     var vm = $scope.vm;
 
     vm.currentPage("login");
 
     $scope.login = login;
+    $scope.inputFocus = inputFocus;
+    $scope.inputBlur = inputBlur;
+    $scope.findPass = findPass;
+    $scope.signUp = signUp;
 
     $scope.storeText = vm.translate('storeId');
 
     $scope.form = {
-        store: false
+        store: false,
+        id: '',
+        pw: ''
+    };
+    $scope.focus = {
+        id: false,
+        pw: false
     };
 
     var temp = $cookies.get("store-id");
@@ -37,7 +47,31 @@ export default function LoginCtrl ($scope, $rootScope, $cookies, sessionManager,
                 }
             });
         } else {
-
+            if (!$scope.form.id) {
+                var $loginInputId = $('#login-input-id');
+                $loginInputId.focus();
+                $loginInputId.focusin();
+            } else if (!$scope.form.pw) {
+                var $loginInputPw = $('#login-input-pw');
+                $loginInputPw.focus();
+                $loginInputPw.focusin();
+            }
         }
+    }
+
+    function inputFocus (key) {
+        $scope.focus[key] = true;
+    }
+
+    function inputBlur (key) {
+        $scope.focus[key] = false;
+    }
+
+    function findPass () {
+        navigator.goToFindPass();
+    }
+
+    function signUp () {
+        navigator.goToSignUp();
     }
 }

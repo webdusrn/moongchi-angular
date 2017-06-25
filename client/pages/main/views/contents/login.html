@@ -1,13 +1,32 @@
 <section id="login-wrap" data-ng-controller="LoginCtrl">
-    <div id="login-window">
-        <form data-ng-submit="login()">
-            <div class="login-input-wrap">
-                <input type="email" class="login-input" data-ng-model="form.id" placeholder="{{ 'id' | translate }}">
+    <div id="login-icon"></div>
+    <div id="login-window" data-ng-class="{'focus': focus.id || focus.pw || form.id || form.pw}">
+        <h2>{{ 'login' | translate }}</h2>
+        <form data-ng-submit="login()" autocomplete="off">
+            <div class="login-input-wrap" data-ng-class="{'focus': focus.id}">
+                <input type="text"
+                       id="login-input-id"
+                       class="login-input"
+                       data-ng-focus="inputFocus('id')"
+                       data-ng-blur="inputBlur('id')"
+                       data-ng-model="form.id"/>
+                <span data-ng-class="{'focus': focus.id || form.id}">{{ 'email' | translate }}</span>
             </div>
-            <div class="login-input-wrap">
-                <input type="password" class="login-input" data-ng-model="form.pw" placeholder="{{ 'pw' | translate }}">
+            <div class="login-input-wrap" data-ng-class="{'focus': focus.pw}">
+                <input type="password"
+                       id="login-input-pw"
+                       class="login-input"
+                       data-ng-focus="inputFocus('pw')"
+                       data-ng-blur="inputBlur('pw')"
+                       data-ng-model="form.pw"/>
+                <span data-ng-class="{'focus': focus.pw || form.pw}">{{ 'password' | translate }}</span>
             </div>
-            <button id="login-button" type="submit">{{ 'login' | translate }}</button>
+            <div id="login-button-wrap">
+                <button id="login-find-pass-button" type="button" data-ng-click="findPass()">{{ 'findPass' | translate }}</button>
+                <button id="login-button" type="submit">{{ 'login' | translate }}</button>
+                <span id="login-sign-up-explain">{{ 'isNotUser' | translate }}</span>
+                <button id="login-sign-up-button" type="button" data-ng-click="signUp()">{{ 'doSignUp' | translate }}</button>
+            </div>
         </form>
     </div>
 </section>

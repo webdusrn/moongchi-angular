@@ -11,6 +11,8 @@ import FooterCtrl from './controllers/app.main.footer.controller';
 import IndexCtrl from './controllers/app.main.index.controller';
 import LoginCtrl from './controllers/app.main.login.controller';
 import SignUpCtrl from './controllers/app.main.sign-up.controller';
+import FindPassCtrl from './controllers/app.main.find-pass.controller';
+import NavigationCtrl from './controllers/app.main.navigation.controller';
 
 import navigator from './services/app.main.navigator';
 import modalHandler from './services/app.main.modal.handler';
@@ -29,6 +31,8 @@ angular.module(APP_NAME, ['app.main-core'])
     .controller("IndexCtrl", IndexCtrl)
     .controller("LoginCtrl", LoginCtrl)
     .controller("SignUpCtrl", SignUpCtrl)
+    .controller("FindPassCtrl", FindPassCtrl)
+    .controller("NavigationCtrl", NavigationCtrl)
     .service("navigator", navigator)
     .service("modalHandler", modalHandler)
     .service("statusHandler", statusHandler);

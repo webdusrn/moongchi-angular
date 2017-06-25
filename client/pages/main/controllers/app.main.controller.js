@@ -1,8 +1,10 @@
-export default function MainCtrl($rootScope, $scope, $location, $filter, metaManager, sessionManager, statusHandler, navigator) {
+export default function MainCtrl($rootScope, $scope, $location, $filter, metaManager, sessionManager, statusHandler, loadingHandler, dialogHandler, navigator) {
     'ngInject';
 
     var vm = $scope.vm = {};
     statusHandler.init(vm);
+    loadingHandler.init(vm);
+    dialogHandler.init(vm);
     vm.translate = $filter('translate');
     vm.session = sessionManager.session;
     vm.COMMON = metaManager.std.common;
@@ -13,6 +15,7 @@ export default function MainCtrl($rootScope, $scope, $location, $filter, metaMan
     vm.logout = logout;
 
     vm.currentNav = {};
+    vm.isNavOpen = false;
 
     function currentPage (page) {
         vm.currentNav = {};
@@ -55,7 +58,9 @@ export default function MainCtrl($rootScope, $scope, $location, $filter, metaMan
     }, true);
 
     $scope.$on("$locationChangeSuccess", function (e, next, current) {
-        if (!vm.session || !vm.session.id) {
+        if ((!vm.session || !vm.session.id) &&
+            next.indexOf("sign-up") == -1 &&
+            next.indexOf("find-pass") == -1) {
             navigator.goToLogin();
         }
     });

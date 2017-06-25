@@ -1,1 +1,37 @@
-<section id="sign-up-wrap" data-ng-controller="SignUpCtrl"></section>
+<section id="sign-up-wrap" data-ng-controller="SignUpCtrl">
+    <div id="sign-up-icon"></div>
+    <div id="sign-up-window" data-ng-class="{'focus': focus.id || focus.pw || form.id || form.pw}">
+        <h2>{{ 'signUp' | translate }}</h2>
+        <form data-ng-submit="signUp()" autocomplete="off">
+            <div class="sign-up-input-wrap" data-ng-class="{'focus': focus.id}">
+                <input type="text"
+                       id="sign-up-input-id"
+                       class="sign-up-input"
+                       data-ng-focus="inputFocus('id')"
+                       data-ng-blur="inputBlur('id')"
+                       data-ng-model="form.id">
+                <span data-ng-class="{'focus': focus.id || form.id}">{{ 'email' | translate }}</span>
+            </div>
+            <div class="sign-up-input-wrap" data-ng-class="{'focus': focus.pw}">
+                <input type="password"
+                       id="sign-up-input-pw"
+                       class="sign-up-input"
+                       data-ng-focus="inputFocus('pw')"
+                       data-ng-blur="inputBlur('pw')"
+                       data-ng-model="form.pw"/>
+                <span data-ng-class="{'focus': focus.pw || form.pw}">{{ 'password' | translate }}</span>
+            </div>
+            <div id="sign-up-button-wrap">
+                <p id="sign-up-explain-1">
+                    <span>{{ 'signUpExplainHeader1' | translate }}</span>
+                    <span class="sign-up-term-button">{{ 'team1' | translate }}</span>
+                    <span>{{ 'signUpExplainHeader2' | translate }}</span>
+                    <span class="sign-up-term-button">{{ 'team2' | translate }}</span>
+                    <span>{{ 'signUpExplainHeader3' | translate }}</span>
+                </p>
+                <p id="sign-up-explain-2">{{ 'signUpExplainTail' | translate }}</p>
+                <button id="sign-up-button" type="submit">{{ 'signUp' | translate }}</button>
+            </div>
+        </form>
+    </div>
+</section>

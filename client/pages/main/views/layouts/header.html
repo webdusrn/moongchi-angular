@@ -1,4 +1,9 @@
 <header id="header-wrap" data-ng-controller="HeaderCtrl">
-    <div class="sg-logo" data-ng-click="goToIndex()"></div>
-    <button type="button" data-ng-if="vm.isLoggedIn()" data-ng-click="logout()">{{ 'logout' | translate }}</button>
+    <button id="nav-toggle-button" data-ng-class="{'open': vm.isNavOpen}" type="button" data-ng-click="toggle()">
+        <i></i>
+        <i></i>
+        <i></i>
+    </button>
+    <!--<div class="sg-logo" data-ng-click="goToIndex()"></div>-->
+    <!--<button type="button" data-ng-if="vm.isLoggedIn()" data-ng-click="logout()">{{ 'logout' | translate }}</button>-->
 </header>

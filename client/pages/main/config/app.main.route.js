@@ -29,5 +29,13 @@ export default function routes($stateProvider, $urlRouterProvider) {
                     templateUrl: templatePath + 'main/views/contents/sign-up.html'
                 }
             }
+        })
+        .state('findPass', {
+            url: '/find-pass',
+            views: {
+                contents: {
+                    templateUrl: templatePath + 'main/views/contents/find-pass.html'
+                }
+            }
         });
 }

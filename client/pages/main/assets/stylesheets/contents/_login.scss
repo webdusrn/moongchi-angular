@@ -1,6 +1,8 @@
 $g-color-login-background: #f4f5f8;
-$g-color-login-window-background: white;
-$g-color-login-input-border: #eee;
+$g-color-login-window-background: rgba(255, 255, 255, .7);
+$g-color-login-input-border: #ccc;
+$g-color-login-input-border-focus: #d2b76d;
+
 
 #login-wrap {
   position: fixed;
@@ -12,36 +14,158 @@ $g-color-login-input-border: #eee;
   background-color: $g-color-login-background;
 }
 
+#login-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -295px;
+  margin-left: -70px;
+  border: 3px solid #979797;
+  border-radius: 50%;
+  width: 140px;
+  height: 140px;
+  z-index: 1;
+  @include background();
+  background-color: black;
+}
+
 #login-window {
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-top: -200px;
-  margin-left: -200px;
-  padding: 40px;
-  width: 400px;
-  height: 400px;
+  margin-top: -225px;
+  margin-left: -220px;
+  border-radius: 5px;
+  padding: 90px 28px 0 28px;
+  width: 450px;
+  height: 440px;
   background-color: $g-color-login-window-background;
+  box-shadow: 0 2px 4px 0 #4a3600;
+  &.focus {
+    background-color: white;
+  }
+  h2 {
+    position: relative;
+    margin-bottom: 15px;
+    font-weight: normal;
+    font-size: 28px;
+    color: #2e2e2e;
+  }
 }
 
 div.login-input-wrap {
   position: relative;
   margin-bottom: 10px;
-  border: 1px solid $g-color-login-input-border;
-  border-radius: 5px;
+  border-bottom: 1px solid $g-color-login-input-border;
   width: 100%;
-  height: 40px;
+  height: 60px;
   overflow: hidden;
+  &.focus {
+    border-color: $g-color-login-input-border-focus;
+  }
   input.login-input {
-    position: relative;
-    padding-left: 8px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
     width: 100%;
-    height: 100%;
-    font-size: 20px;
+    height: 40px;
+    font-size: 18px;
+    background-color: transparent;
+  }
+  span {
+    position: absolute;
+    top: 26px;
+    left: 0;
+    height: 28px;
+    line-height: 28px;
+    font-size: 18px;
+    color: #a4a4a4;
+    z-index: 1;
+    pointer-events: none;
+    -webkit-transform-origin: left;
+    -moz-transform-origin: left;
+    -ms-transform-origin: left;
+    -o-transform-origin: left;
+    transform-origin: left;
+    -webkit-transition: transform .3s, color .3s;
+    -moz-transition: transform .3s, color .3s;
+    -ms-transition: transform .3s, color .3s;
+    -o-transition: transform .3s, color .3s;
+    transition: transform .3s, color .3s;
+    -webkit-transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+    -moz-transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+    -ms-transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+    -o-transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+    &.focus {
+      -webkit-transform: translate3d(0, -26px, 0) scale3d(.7, .7, 1);
+      -moz-transform: translate3d(0, -26px, 0) scale3d(.7, .7, 1);
+      -ms-transform: translate3d(0, -26px, 0) scale3d(.7, .7, 1);
+      -o-transform: translate3d(0, -26px, 0) scale3d(.7, .7, 1);
+      transform: translate3d(0, -26px, 0) scale3d(.7, .7, 1);
+      color: #a78c41;
+    }
   }
 }
 
-#login-button {
+#login-button-wrap {
   position: relative;
-  width: 100%;
+  height: 150px;
+}
+
+#login-button {
+  position: absolute;
+  top: 4px;
+  right: 0;
+  border-radius: 5px;
+  width: 150px;
+  height: 40px;
+  font-size: 18px;
+  background-color: #d2b46d;
+  color: white;
+  cursor: pointer;
+  &:hover {
+    background-color: #ba994d;
+  }
+}
+
+#login-find-pass-button {
+  position: absolute;
+  top: 13.5px;
+  left: 0;
+  border-bottom: 1px solid transparent;
+  height: 21px;
+  font-size: 16px;
+  color: #4ba8f8;
+  cursor: pointer;
+  &:hover {
+    color: #2899fb;
+    border-color: #2899fb;
+  }
+}
+
+#login-sign-up-explain {
+  position: absolute;
+  top: 80px;
+  left: 60px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #707070;
+}
+
+#login-sign-up-button {
+  position: absolute;
+  top: 81px;
+  right: 68px;
+  border-bottom: 1px solid transparent;
+  height: 24px;
+  line-height: 24px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #4ba8f8;
+  cursor: pointer;
+  &:hover {
+    color: #2899fb;
+    border-color: #2899fb;
+  }
 }

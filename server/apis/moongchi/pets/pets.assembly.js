@@ -113,17 +113,21 @@ var api = {
                 acceptable: [
                     'petType',
                     'petName',
+                    'petSeries',
                     'petGender',
                     'petBirthDate',
                     'imageId'
                 ],
                 essential: [
-                    'petName'
+                    'petName',
+                    'petGender',
+                    'petBirthDate'
                 ],
                 resettable: [],
                 explains : {
                     'petType': '펫 종류 ' + STD.pet.enumPetTypes.join(', '),
                     'petName': '펫 이름',
+                    'petSeries': '펫 품종 ' + STD.pet.enumCatSeries.join(', '),
                     'petGender': '펫 성별 ' + STD.pet.enumPetGenders.join(', '),
                     'petBirthDate': '펫 출생일',
                     'imageId': '대표이미지 ID'
@@ -160,18 +164,20 @@ var api = {
                 acceptable: [
                     'petType',
                     'petName',
+                    'petSeries',
                     'petGender',
                     'petBirthDate',
                     'imageId'
                 ],
                 essential: [],
                 resettable: [
-                    'petBirthDate',
+                    'petSeries',
                     'imageId'
                 ],
                 explains : {
                     'petType': '펫 종류 ' + STD.pet.enumPetTypes.join(', '),
                     'petName': '펫 이름',
+                    'petSeries': '펫 품종 ' + STD.pet.enumCatSeries.join(', '),
                     'petGender': '펫 성별 ' + STD.pet.enumPetGenders.join(', '),
                     'petBirthDate': '펫 출생일',
                     'imageId': '대표이미지 ID'

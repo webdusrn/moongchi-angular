@@ -1,5 +1,6 @@
 // header & footer
-$g-header-size: 70px;
+$g-header-size: 64px;
+$g-without-header-size: calc(100% - 64px);
 $g-footer-size: 50px;
 $g-without-footer-size: calc(100% - 50px);
 

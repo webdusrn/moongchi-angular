@@ -9,9 +9,10 @@ put.validate = function () {
         var PET = req.meta.std.pet;
         req.check('id', '400_12').isInt();
         if (req.body.petName !== undefined) req.check("petName", "400_8").len(COMMON.minLength, COMMON.maxLength);
+        if (req.body.petSeries !== undefined && req.body.petSeries !== MAGIC.reset) req.check("petSeries", "400_3").isEnum(PET.enumCatSeries);
         if (req.body.petType !== undefined) req.check("petType", "400_3").isEnum(PET.enumPetTypes);
         if (req.body.petGender !== undefined) req.check("petGender", "400_3").isEnum(PET.enumPetGenders);
-        if (req.body.petBirthDate !== undefined && req.body.petBirthDate !== MAGIC.reset) req.check("petBirthDate", "400_18").isDate();
+        if (req.body.petBirthDate !== undefined) req.check("petBirthDate", "400_18").isDate();
         if (req.body.imageId !== undefined && req.body.imageId !== MAGIC.reset) req.check("imageId", "400_12").isInt();
         if (!Object.keys(req.body).length) {
             return res.hjson(req, next, 204);
