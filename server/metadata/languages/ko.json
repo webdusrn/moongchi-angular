@@ -6,5 +6,21 @@
   "signUpExplainHeader3": "에 ",
   "signUpExplainTail": "동의하는 것으로 간주합니다.",
   "team1": "개인정보처리방침",
-  "team2": "이용약관"
+  "team2": "이용약관",
+  "doLogin": "로그인하기",
+  "petManageTitle": "집에 누가 있냥?",
+  "doAddPet": "고양이 등록하기",
+  "petGenderM": "남작",
+  "petGenderF": "부인",
+  "petSeries": "묘종",
+  "petBirthDate": "생년월일",
+  "isVaccination": "접종여부",
+  "inputPetName": "고양이 이름 입력",
+  "inputPetNamePlaceholder": "이름을 입력하세요",
+  "next": "다음",
+  "inputPetSeries": "고양이 종류",
+  "inputPetSeriesPlaceholder": "고양이 종류 선택",
+  "inputPetGender": "고양이 성별",
+  "inputPetBirthDate": "고양이 탄신일",
+  "inputPetTreatments": "접종 여부"
 }

@@ -12,7 +12,7 @@ export default function statusHandler (navigator, dialogHandler) {
     function active (data, callback) {
         if (data.status == 401) {
             navigator.goToLogin();
-            vm.session = null;
+            vm.session = {};
         }
         callback(data.status, data.data);
     }

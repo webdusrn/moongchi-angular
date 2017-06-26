@@ -90,7 +90,9 @@ var standards = {
     "treatment": {
         "enumSearchFields": ["treatmentTitle", "hospitalName"],
         "enumOrderBys": ["createdAt"],
-        "defaultOrderBy": "createdAt"
+        "defaultOrderBy": "createdAt",
+        "enumTreatmentTypes": ["treatmentTypeVaccination", "treatmentTypeEtc"],
+        "defaultTreatmentType": "treatmentTypeEtc"
     },
     "meal": {
         "enumSearchFields": ["mealName"],

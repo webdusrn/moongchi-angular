@@ -6,7 +6,9 @@ put.validate = function () {
     return function (req, res, next) {
         var MAGIC = req.meta.std.magic;
         var COMMON = req.meta.std.common;
+        var TREATMENT = req.meta.std.treatment;
         req.check('id', '400_12').isInt();
+        if (req.body.treatmentType !== undefined) req.check("treatmentType", "400_3").isEnum(TREATMENT.enumTreatmentTypes);
         if (req.body.treatmentTitle !== undefined) req.check("treatmentTitle", "400_8").len(COMMON.minLength, COMMON.maxLength);
         if (req.body.hospitalName !== undefined && req.body.hospitalName !== MAGIC.reset) req.check("hospitalName", "400_8").len(COMMON.minLength, COMMON.maxLength);
         if (req.body.treatmentDate !== undefined) req.check("treatmentDate", "400_18").isDate();

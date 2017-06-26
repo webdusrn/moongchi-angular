@@ -1,17 +1,16 @@
 #navigation-wrap {
   position: fixed;
-  padding-right: calc(100% - 300px);
-  width: 100%;
+  width: 300px;
   z-index: 50;
   text-align: left;
   top: $g-header-size;
-  left: -100%;
+  left: -300px;
   height: $g-without-header-size;
   background-color: transparent;
   -webkit-overflow-scrolling: touch;
-  -webkit-transform: translate3d(-100%, 0, 0);
-  -ms-transform: translate(-100%, 0);
-  transform: translate3d(-100%, 0, 0);
+  -webkit-transform: translate3d(-300px, 0, 0);
+  -ms-transform: translate(-300px, 0);
+  transform: translate3d(-300px, 0, 0);
   transition: left 0s 0.3s,-webkit-transform 0.3s;
   transition: transform 0.3s,left 0s 0.3s;
   transition: transform 0.3s,left 0s 0.3s,-webkit-transform 0.3s;
@@ -26,13 +25,11 @@
   }
 }
 
-#navigation-toggle {
-  position: absolute;
-  top: 0;
-  left: initial;
-  right: 0;
-  width: calc(100% - 300px);
+#navigation-window {
+  position: relative;
+  width: 100%;
   height: 100%;
+  background-color: white;
 }
 
 #navigation-overlay {

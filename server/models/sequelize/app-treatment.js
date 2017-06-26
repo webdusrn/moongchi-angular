@@ -25,6 +25,12 @@ module.exports = {
             'asReverse': 'treatments',
             'allowNull': false
         },
+        'treatmentType': {
+            'type': Sequelize.ENUM,
+            'values': STD.treatment.enumTreatmentTypes,
+            'defaultValue': STD.treatment.defaultTreatmentType,
+            'allowNull': false
+        },
         'treatmentTitle': {
             'type': Sequelize.STRING(getDBStringLength()),
             'allowNull': false
@@ -58,6 +64,9 @@ module.exports = {
         'indexes': [{
             name: 'authorId',
             fields: ['authorId']
+        }, {
+            name: 'treatmentType',
+            fields: ['treatmentType']
         }, {
             name: 'treatmentTitle',
             fields: ['treatmentTitle']
@@ -234,6 +243,11 @@ module.exports = {
                 if (options.authorId !== undefined) {
                     countWhere.authorId = options.authorId;
                     where.authorId = options.authorId;
+                }
+
+                if (options.treatmentType !== undefined) {
+                    countWhere.treatmentType = options.treatmentType;
+                    where.treatmentType = options.treatmentType;
                 }
 
                 sequelize.models.AppTreatment.count({

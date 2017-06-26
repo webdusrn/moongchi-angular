@@ -37,5 +37,13 @@ export default function routes($stateProvider, $urlRouterProvider) {
                     templateUrl: templatePath + 'main/views/contents/find-pass.html'
                 }
             }
+        })
+        .state('petManage', {
+            url: '/pet-manage',
+            views: {
+                contents: {
+                    templateUrl: templatePath + 'main/views/contents/pet-manage.html'
+                }
+            }
         });
 }

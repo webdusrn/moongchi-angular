@@ -9,7 +9,7 @@ header {
   height: $g-header-size;
   box-shadow: 0 1px 5px 0 rgba(0,0,0,.1);
   background-color: $g-color-header-background;
-  z-index: 1;
+  z-index: 60;
 }
 
 #nav-toggle-button {
@@ -19,6 +19,9 @@ header {
   width: $g-header-size;
   height: $g-header-size;
   cursor: pointer;
+  &:hover {
+    background-color: rgba(#d2b46d, .1);
+  }
   &.open {
     i {
       &:nth-of-type(1) {
@@ -37,9 +40,9 @@ header {
     top: 50%;
     margin-top: -2px;
     left: 50%;
-    margin-left: -20px;
+    margin-left: -17px;
     border-radius: 2px;
-    width: 40px;
+    width: 34px;
     height: 4px;
     background-color: #71581c;
     -webkit-transition: transform .3s, opacity .2s;

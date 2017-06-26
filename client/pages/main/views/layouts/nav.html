@@ -1,3 +1,5 @@
-<section id="navigation-wrap" data-ng-controller="NavigationCtrl" data-ng-class="{'open': vm.isNavOpen}">
-    <div id="navigation-toggle" data-ng-click="toggleClose()"></div>
+<section id="navigation-wrap" data-ng-controller="NavigationCtrl" data-ng-class="{'open': vm.isNavOpen}" data-ng-click="$event.preventDefault();">
+    <div id="navigation-window">
+
+    </div>
 </section>

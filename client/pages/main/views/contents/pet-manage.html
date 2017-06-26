@@ -1,0 +1,29 @@
+<section id="pet-manage-wrap" data-ng-controller="PetManageCtrl">
+    <div id="pet-manage-title-wrap">
+        <h2>{{ 'petManageTitle' | translate }}</h2>
+        <button type="button" id="add-pet-button" data-ng-click="openModal('add')">{{ 'doAddPet' | translate }}</button>
+    </div>
+    <ul id="pet-manage-list">
+        <li data-ng-repeat="pet in pets.rows">
+            <div class="pet-image-wrap">
+                <img data-ng-if="pet.image" data-ng-src="{{ pet.image | imageUrl: 'l' }}">
+            </div>
+            <div class="pet-info-wrap">
+                <h4>{{ pet.petName }} <span data-ng-if="pet.petGender">({{ pet.petGender | translate }})</span></h4>
+                <p class="pet-info">
+                    <span class="pet-info-title">{{ 'petSeries' | translate }}</span>
+                    <span class="pet-info-content">{{ pet.petSeries }}</span>
+                </p>
+                <p class="pet-info">
+                    <span class="pet-info-title">{{ 'petBirthDate' | translate }}</span>
+                    <span class="pet-info-content">{{ pet.petBirthDate | date: 'yyyy.MM.dd' }}</span>
+                </p>
+                <p class="pet-info">
+                    <span class="pet-info-title">{{ 'isVaccination' | translate }}</span>
+                    <span class="pet-info-content"></span>
+                </p>
+            </div>
+        </li>
+    </ul>
+    <ng-include src="'/pages/main/views/modals/add-pet.html'"></ng-include>
+</section>

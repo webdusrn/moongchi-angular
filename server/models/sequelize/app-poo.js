@@ -196,7 +196,7 @@ module.exports = {
                     }
                 }).catch(errorHandler.catchCallback(callback)).done(function (isSuccess) {
                     if (isSuccess) {
-                        callback({
+                        callback(200, {
                             count: count,
                             rows: loadedData
                         });

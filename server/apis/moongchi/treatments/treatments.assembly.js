@@ -64,7 +64,8 @@ var api = {
                     "sort",
                     "last",
                     "size",
-                    "offset"
+                    "offset",
+                    "treatmentType"
                 ],
                 essential: [],
                 resettable: [],
@@ -75,7 +76,8 @@ var api = {
                     "sort": "정렬 방식 " + STD.common.enumSortTypes.join(', '),
                     "last": "마지막 데이터",
                     "size": "가져올 데이터수",
-                    "offset": "offset"
+                    "offset": "offset",
+                    "treatmentType": "진료유형 " + STD.treatment.enumTreatmentTypes.join(', ')
                 },
                 title: '조회',
                 state: 'design'
@@ -107,6 +109,7 @@ var api = {
 
             var params = {
                 acceptable: [
+                    "treatmentType",
                     "treatmentTitle",
                     "hospitalName",
                     "treatmentContent",
@@ -120,6 +123,7 @@ var api = {
                 ],
                 resettable: [],
                 explains : {
+                    "treatmentType": "진료유형 " + STD.treatment.enumTreatmentTypes.join(', '),
                     "treatmentTitle": "진료제목",
                     "hospitalName": "병원이름",
                     "treatmentContent": "진료내용",
@@ -157,6 +161,7 @@ var api = {
 
             var params = {
                 acceptable: [
+                    "treatmentType",
                     "treatmentTitle",
                     "hospitalName",
                     "treatmentContent",
@@ -168,6 +173,7 @@ var api = {
                     "treatmentContent",
                 ],
                 explains : {
+                    "treatmentType": "진료유형 " + STD.treatment.enumTreatmentTypes.join(', '),
                     "treatmentTitle": "진료제목",
                     "hospitalName": "병원이름",
                     "treatmentContent": "진료내용",

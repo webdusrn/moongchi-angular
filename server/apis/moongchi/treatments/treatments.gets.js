@@ -20,6 +20,7 @@ gets.validate = function(){
         });
         if (req.query.searchItem !== undefined) req.check("searchItem", "400_8").len(COMMON.minLength, COMMON.maxLength);
         if (req.query.searchField !== undefined) req.check("searchField", "400_3").isEnum(TREATMENT.enumSearchFields);
+        if (req.query.treatmentType !== undefined) req.check("treatmentType", "400_3").isEnum(TREATMENT.enumTreatmentTypes);
         req.utils.common.checkError(req, res, next);
     };
 };

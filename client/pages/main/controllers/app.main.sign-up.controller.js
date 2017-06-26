@@ -1,4 +1,4 @@
-export default function SignUpCtrl ($scope) {
+export default function SignUpCtrl ($scope, navigator) {
     'ngInject';
     var vm = $scope.vm;
 
@@ -7,6 +7,7 @@ export default function SignUpCtrl ($scope) {
     $scope.signUp = signUp;
     $scope.inputFocus = inputFocus;
     $scope.inputBlur = inputBlur;
+    $scope.login = login;
 
     $scope.form = {
         id: '',
@@ -39,5 +40,9 @@ export default function SignUpCtrl ($scope) {
 
     function inputBlur (key) {
         $scope.focus[key] = false;
+    }
+
+    function login () {
+        navigator.goToLogin();
     }
 }

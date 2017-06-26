@@ -8,11 +8,13 @@ export default function MainCtrl($rootScope, $scope, $location, $filter, metaMan
     vm.translate = $filter('translate');
     vm.session = sessionManager.session;
     vm.COMMON = metaManager.std.common;
+    vm.templatePath = metaManager.std.templatePath;
     vm.defaultLoadingLength = vm.COMMON.defaultLoadingLength;
 
     vm.currentPage = currentPage;
     vm.isLoggedIn = isLoggedIn;
     vm.logout = logout;
+    vm.toggleClose = toggleClose;
 
     vm.currentNav = {};
     vm.isNavOpen = false;
@@ -35,6 +37,10 @@ export default function MainCtrl($rootScope, $scope, $location, $filter, metaMan
         });
     }
 
+    function toggleClose () {
+        vm.isNavOpen = false;
+    }
+
     $scope.$on("core.session.callback", function (event, args) {
         if (args.type == 'signup') {
             vm.session = sessionManager.session;
@@ -48,14 +54,6 @@ export default function MainCtrl($rootScope, $scope, $location, $filter, metaMan
 
         }
     });
-
-    $scope.$watch('vm.session', function (newVal, oldVal) {
-        if (newVal != oldVal) {
-            if (!vm.session || !vm.session.id) {
-                navigator.goToLogin();
-            }
-        }
-    }, true);
 
     $scope.$on("$locationChangeSuccess", function (e, next, current) {
         if ((!vm.session || !vm.session.id) &&

@@ -132,6 +132,21 @@ div.sign-up-input-wrap {
   }
 }
 
+#sign-up-login {
+  position: absolute;
+  bottom: 38px;
+  left: 0;
+  border-bottom: 1px solid transparent;
+  height: 21px;
+  font-size: 16px;
+  color: #4ba8f8;
+  cursor: pointer;
+  &:hover {
+    color: #2899fb;
+    border-color: #2899fb;
+  }
+}
+
 #sign-up-button {
   position: absolute;
   bottom: 28px;

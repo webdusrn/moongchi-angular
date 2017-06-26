@@ -1,0 +1,103 @@
+#pet-manage-wrap {
+  position: relative;
+  margin: 0 auto;
+  padding-top: 70px;
+  max-width: 560px;
+  #pet-manage-title-wrap {
+    position: relative;
+    height: 47px;
+    h2 {
+      height: 47px;
+      font-size: 32px;
+      font-weight: 500;
+    }
+    #add-pet-button {
+      position: absolute;
+      top: 3.5px;
+      right: 0;
+      border-radius: 100px;
+      padding-left: 32px;
+      width: 200px;
+      height: 40px;
+      line-height: 40px;
+      font-size: 20px;
+      background-color: #926c2d;
+      color: white;
+      cursor: pointer;
+      background-image: url(/pages/main/assets/images/icons/ic-neko-add-32@2x.png);
+      background-position: left center;
+      background-repeat: no-repeat;
+      background-size: 30px;
+      background-position-x: 17px;
+      &:hover {
+        background-color: #7d591c;
+      }
+    }
+  }
+}
+
+#pet-manage-list {
+  position: relative;
+  margin-top: 40px;
+  li {
+    position: relative;
+    margin-bottom: 12px;
+    border: solid 1px #eaeaea;
+    border-radius: 10px;
+    padding: 20px 20px 20px 130px;
+    width: 100%;
+    height: 190px;
+    background-color: white;
+    cursor: pointer;
+    div.pet-image-wrap {
+      position: absolute;
+      top: 20px;
+      left: 30px;
+      border: solid 2px #979797;
+      border-radius: 50%;
+      width: 70px;
+      height: 70px;
+      overflow: hidden;
+      img {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    div.pet-info-wrap {
+      position: relative;
+      h4 {
+        position: relative;
+        margin-bottom: 8px;
+        width: 100%;
+        font-size: 24px;
+        font-weight: 500;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      p.pet-info {
+        position: relative;
+        margin-bottom: 10px;
+        font-size: 20px;
+        @include after-clear();
+        &:last-child {
+          margin-bottom: 0;
+        }
+        span {
+          position: relative;
+          display: block;
+          float: left;
+          &.pet-info-title {
+            width: 90px;
+            color: #818181;
+          }
+          &.pet-info-content {
+            width: calc(100% - 90px);
+          }
+        }
+      }
+    }
+  }
+}
