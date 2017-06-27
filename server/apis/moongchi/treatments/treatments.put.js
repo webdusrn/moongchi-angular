@@ -11,7 +11,7 @@ put.validate = function () {
         if (req.body.treatmentType !== undefined) req.check("treatmentType", "400_3").isEnum(TREATMENT.enumTreatmentTypes);
         if (req.body.treatmentTitle !== undefined) req.check("treatmentTitle", "400_8").len(COMMON.minLength, COMMON.maxLength);
         if (req.body.hospitalName !== undefined && req.body.hospitalName !== MAGIC.reset) req.check("hospitalName", "400_8").len(COMMON.minLength, COMMON.maxLength);
-        if (req.body.treatmentDate !== undefined) req.check("treatmentDate", "400_18").isDate();
+        if (req.body.treatmentDate !== undefined && req.body.treatmentDate !== MAGIC.reset) req.check("treatmentDate", "400_18").isDate();
         if (!Object.keys(req.body).length) {
             return res.hjson(req, next, 204);
         }

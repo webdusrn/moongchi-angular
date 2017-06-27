@@ -43,6 +43,9 @@ gets.setParam = function() {
 
 gets.supplement = function(){
     return function(req, res, next){
+        for (var i=0; i<req.data.rows.length; i++) {
+            delete req.data.rows[i].dataValues.userPets;
+        }
         res.hjson(req, next, 200, req.data);
     };
 };

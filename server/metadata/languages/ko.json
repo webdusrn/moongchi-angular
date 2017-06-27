@@ -22,5 +22,10 @@
   "inputPetSeriesPlaceholder": "고양이 종류 선택",
   "inputPetGender": "고양이 성별",
   "inputPetBirthDate": "고양이 탄신일",
-  "inputPetTreatments": "접종 여부"
+  "inputPetTreatments": "접종 여부",
+  "vaccination1": "1차",
+  "vaccination2": "2차",
+  "vaccination3": "3차",
+  "noVaccination": "접종안함",
+  "addPetButton": "등록완료"
 }

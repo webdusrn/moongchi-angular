@@ -11,9 +11,10 @@
                            data-ng-focus="inputFocus('petName')"
                            data-ng-blur="inputBlur('petName')"
                            data-ng-model="form.petName"
-                           placeholder="{{ 'inputPetNamePlaceholder' | translate }}"/>
+                           placeholder="{{ 'inputPetNamePlaceholder' | translate }}"
+                           auto-focus/>
                 </div>
-                <button type="submit">{{ 'next' | translate }}</button>
+                <button id="add-pet-name-button" type="submit" data-ng-click="next(1)">{{ 'next' | translate }}</button>
             </form>
         </div>
         <div class="add-pet-item" data-ng-if="canNext.petSeries" active="goToInputPetSeries()">
@@ -65,6 +66,30 @@
         </div>
         <div class="add-pet-item" data-ng-if="canNext.petTreatments" active="goToInputPetTreatments()">
             <h4 class="add-pet-title">{{ 'inputPetTreatments' | translate }}</h4>
+            <div id="add-pet-vaccination-wrap">
+                <button type="button"
+                        class="add-pet-vaccination"
+                        data-ng-class="{'selected': form.vaccinations['1']}"
+                        data-ng-if="canAddVaccination(1)"
+                        data-ng-click="addVaccination('1')">{{ 'vaccination1' | translate }}</button>
+                <button type="button"
+                        class="add-pet-vaccination"
+                        data-ng-class="{'selected': form.vaccinations['2']}"
+                        data-ng-if="canAddVaccination(2)"
+                        data-ng-click="addVaccination('2')">{{ 'vaccination2' | translate }}</button>
+                <button type="button"
+                        class="add-pet-vaccination"
+                        data-ng-class="{'selected': form.vaccinations['3']}"
+                        data-ng-if="canAddVaccination(3)"
+                        data-ng-click="addVaccination('3')">{{ 'vaccination3' | translate }}</button>
+                <button type="button"
+                        class="add-pet-vaccination"
+                        data-ng-class="{'selected': !form.vaccinations['1'] && !form.vaccinations['2'] && !form.vaccinations['3']}"
+                        data-ng-click="noVaccination()">{{ 'noVaccination' | translate }}</button>
+            </div>
+            <button id="add-pet-button-complete" type="button" data-ng-click="addPet()">
+                {{ 'addPetButton' | translate }}
+            </button>
         </div>
     </div>
     <button type="button" id="add-pet-close-button" data-ng-click="modal.add = false"></button>

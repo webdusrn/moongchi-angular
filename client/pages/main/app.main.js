@@ -17,6 +17,7 @@ import PetManageCtrl from './controllers/app.main.pet-manage.controller';
 import AddPetCtrl from './controllers/app.main.add-pet.controller';
 
 import active from './directives/active/app.main.active';
+import autoFocus from './directives/auto-focus/app.main.auto-focus';
 
 import appResources from './services/app.main.constant';
 
@@ -46,6 +47,7 @@ angular.module(APP_NAME, ['app.main-core'])
     .controller("PetManageCtrl", PetManageCtrl)
     .controller("AddPetCtrl", AddPetCtrl)
     .directive("active", active)
+    .directive("autoFocus", autoFocus)
     .constant("appResources", appResources)
     .factory("Pet", Pet)
     .service("petsManager", petsManager)

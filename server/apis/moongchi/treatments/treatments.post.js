@@ -8,7 +8,7 @@ post.validate = function () {
         var TREATMENT = req.meta.std.treatment;
         if (req.body.treatmentType !== undefined) req.check("treatmentType", "400_3").isEnum(TREATMENT.enumTreatmentTypes);
         req.check("treatmentTitle", "400_8").len(COMMON.minLength, COMMON.maxLength);
-        req.check("treatmentDate", "400_18").isDate();
+        if (req.body.treatmentDate !== undefined) req.check("treatmentDate", "400_18").isDate();
         if (req.body.hospitalName !== undefined) req.check("hospitalName", "400_8").len(COMMON.minLength, COMMON.maxLength);
         if (req.body.petIds !== undefined) {
             req.utils.common.toArray(req.body, "petIds");

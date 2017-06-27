@@ -118,8 +118,7 @@ var api = {
                     "chargeObject"
                 ],
                 essential: [
-                    "treatmentTitle",
-                    "treatmentDate"
+                    "treatmentTitle"
                 ],
                 resettable: [],
                 explains : {
@@ -171,6 +170,7 @@ var api = {
                 resettable: [
                     "hospitalName",
                     "treatmentContent",
+                    "treatmentDate"
                 ],
                 explains : {
                     "treatmentType": "진료유형 " + STD.treatment.enumTreatmentTypes.join(', '),

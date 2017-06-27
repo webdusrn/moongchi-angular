@@ -2,13 +2,15 @@ export default function MainCtrl($rootScope, $scope, $location, $filter, metaMan
     'ngInject';
 
     var vm = $scope.vm = {};
+    var STD = metaManager.std;
     statusHandler.init(vm);
     loadingHandler.init(vm);
     dialogHandler.init(vm);
     vm.translate = $filter('translate');
     vm.session = sessionManager.session;
-    vm.COMMON = metaManager.std.common;
-    vm.templatePath = metaManager.std.templatePath;
+    vm.COMMON = STD.common;
+    vm.TREATMENT = STD.treatment;
+    vm.templatePath = STD.templatePath;
     vm.defaultLoadingLength = vm.COMMON.defaultLoadingLength;
 
     vm.currentPage = currentPage;

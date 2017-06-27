@@ -92,7 +92,11 @@ var standards = {
         "enumOrderBys": ["createdAt"],
         "defaultOrderBy": "createdAt",
         "enumTreatmentTypes": ["treatmentTypeVaccination", "treatmentTypeEtc"],
-        "defaultTreatmentType": "treatmentTypeEtc"
+        "defaultTreatmentType": "treatmentTypeEtc",
+        "treatmentTypeVaccination": "treatmentTypeVaccination",
+        "vaccination1": "1차 예방접종",
+        "vaccination2": "2차 예방접종",
+        "vaccination3": "3차 예방접종"
     },
     "meal": {
         "enumSearchFields": ["mealName"],

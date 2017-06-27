@@ -45,7 +45,7 @@ module.exports = {
         },
         'treatmentDate': {
             'type': Sequelize.DATE,
-            'allowNull': false
+            'allowNull': true
         },
         'createdAt': {
             'type': Sequelize.BIGINT,

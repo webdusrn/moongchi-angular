@@ -116,7 +116,8 @@ var api = {
                     'petSeries',
                     'petGender',
                     'petBirthDate',
-                    'imageId'
+                    'imageId',
+                    'treatmentArray'
                 ],
                 essential: [
                     'petName',
@@ -130,7 +131,8 @@ var api = {
                     'petSeries': '펫 품종 ' + STD.pet.enumCatSeries.join(', '),
                     'petGender': '펫 성별 ' + STD.pet.enumPetGenders.join(', '),
                     'petBirthDate': '펫 출생일',
-                    'imageId': '대표이미지 ID'
+                    'imageId': '대표이미지 ID',
+                    'treatmentArray': '진료 배열 객체'
                 },
                 title: '생성',
                 state: 'design'

@@ -1,13 +1,18 @@
-export default function AddPetCtrl ($scope, $timeout, metaManager) {
+export default function AddPetCtrl ($scope, $timeout, metaManager, petsManager, dialogHandler) {
     'ngInject';
     var vm = $scope.vm;
     var now = new Date();
+    var nowTime = new Date(now.getFullYear() + '-' + attachZero(now.getMonth() + 1) + '-' + now.getDate()).getTime();
     var nowYear = now.getFullYear();
     var prevYear = null;
     var prevMonth = null;
+    var init = null;
 
     $scope.inputPetName = inputPetName;
     $scope.selectPetGender = selectPetGender;
+    $scope.addVaccination = addVaccination;
+    $scope.noVaccination = noVaccination;
+    $scope.canAddVaccination = canAddVaccination;
     $scope.inputFocus = inputFocus;
     $scope.inputBlur = inputBlur;
     $scope.goToInputPetSeries = goToInputPetSeries;
@@ -15,8 +20,16 @@ export default function AddPetCtrl ($scope, $timeout, metaManager) {
     $scope.goToInputPetBirthDate = goToInputPetBirthDate;
     $scope.goToInputPetTreatments = goToInputPetTreatments;
     $scope.goToBack = goToBack;
+    $scope.next = next;
+    $scope.addPet = addPet;
 
-    $scope.form = {};
+    $scope.form = {
+        vaccinations: {
+            "1": false,
+            "2": false,
+            "3": false
+        }
+    };
     $scope.focus = {
         petName: false,
         petSeries: false,
@@ -61,9 +74,19 @@ export default function AddPetCtrl ($scope, $timeout, metaManager) {
             $scope.focus.petBirthDateDay = !!$scope.form.petBirthDateDay;
             if ($scope.form.petBirthDateDay) {
                 $scope.canNext.petTreatments = true;
+                var birthDate = $scope.form.petBirthDateYear + '-' + attachZero($scope.form.petBirthDateMonth) + '-' + $scope.form.petBirthDateDay;
+                $scope.petBirthDate = new Date(birthDate).getTime();
             }
         }
     }, true);
+
+    function attachZero (value) {
+        if (value && value < 10 && value > 0) {
+            return '0' + value;
+        } else {
+            return value;
+        }
+    }
 
     function generateEnumDates () {
         if (prevYear != $scope.form.petBirthDateYear || prevMonth != $scope.form.petBirthDateMonth) {
@@ -75,10 +98,15 @@ export default function AddPetCtrl ($scope, $timeout, metaManager) {
                 $scope.enumPetBirthDateDays.push(i);
             }
             $scope.form.petBirthDateDay = '';
+            $scope.petBirthDate = null;
         }
     }
 
     function inputPetName () {
+        if (!init) {
+            init = true;
+            backButtonEvent();
+        }
         if ($scope.form.petName) {
             $scope.canNext.petSeries = true;
             var $addPetNameButton = $('#add-pet-name-button');
@@ -91,9 +119,44 @@ export default function AddPetCtrl ($scope, $timeout, metaManager) {
         }
     }
 
+    function backButtonEvent () {
+        var $window = $('#add-pet-window');
+        var windowHeight = $window.height();
+        var $backButton = $('#add-pet-back-button');
+        $window.scroll(function () {
+            if ($window.scrollTop() > windowHeight * 4 - 60) {
+                if (!$backButton.hasClass('translate')) {
+                    $backButton.addClass('translate');
+                }
+            } else {
+                if ($backButton.hasClass('translate')) {
+                    $backButton.removeClass('translate');
+                }
+            }
+        });
+    }
+
     function selectPetGender (index) {
         $scope.form.petGender = $scope.enumPetGenders[index];
         $scope.canNext.petBirthDate = true;
+    }
+
+    function addVaccination (key) {
+        $scope.form.vaccinations[key] = !$scope.form.vaccinations[key];
+    }
+
+    function noVaccination () {
+        if ($scope.form.vaccinations['1'] || $scope.form.vaccinations['2'] || $scope.form.vaccinations['3']) {
+            $scope.form.vaccinations = {
+                "1": false,
+                "2": false,
+                "3": false
+            };
+        }
+    }
+
+    function canAddVaccination (key) {
+        return (nowTime - $scope.petBirthDate) > 3628800000 + (1814400000 * key);
     }
 
     function inputFocus (key) {
@@ -111,10 +174,18 @@ export default function AddPetCtrl ($scope, $timeout, metaManager) {
 
     function goToInputPetSeries () {
         goToBottom(1);
+        $timeout(function () {
+            var $selectPetSeries = $('#add-pet-series-select');
+            $selectPetSeries.focus();
+            $selectPetSeries.focusin();
+        }, 300);
         $scope.goToInputPetSeries = null;
     }
 
     function goToInputPetGender () {
+        var $selectPetSeries = $('#add-pet-series-select');
+        $selectPetSeries.blur();
+        $selectPetSeries.focusout();
         goToBottom(2);
         $scope.goToInputPetGender = null;
     }
@@ -141,6 +212,59 @@ export default function AddPetCtrl ($scope, $timeout, metaManager) {
             $window.animate({scrollTop: windowHeight * 2}, 300);
         } else if (scrollTop <= windowHeight * 4) {
             $window.animate({scrollTop: windowHeight * 3}, 300);
+        }
+    }
+
+    function next(index) {
+        var $window = $('#add-pet-window');
+        var windowHeight = $window.height();
+        if (index == 1) {
+            if ($scope.canNext.petSeries) {
+                $window.animate({scrollTop: windowHeight * index}, 300);
+            }
+        }
+    }
+
+    function addPet () {
+        var body = angular.copy($scope.form);
+        if (!body.petName) {
+            var $inputPetName = $('#add-pet-name');
+            $inputPetName.focus();
+            $inputPetName.focusin();
+            $('#add-pet-window').animate({scrollTop: 0}, 300);
+        } else {
+            body.petBirthDate = new Date($scope.petBirthDate);
+            if (body.vaccinations['1'] ||
+                body.vaccinations['2'] ||
+                body.vaccinations['3']) {
+                body.treatmentArray = [];
+                if (body.vaccinations['1']) {
+                    body.treatmentArray.push({
+                        treatmentType: vm.TREATMENT.treatmentTypeVaccination,
+                        treatmentTitle: vm.TREATMENT.vaccination1
+                    })
+                }
+                if (body.vaccinations['2']) {
+                    body.treatmentArray.push({
+                        treatmentType: vm.TREATMENT.treatmentTypeVaccination,
+                        treatmentTitle: vm.TREATMENT.vaccination2
+                    })
+                }
+                if (body.vaccinations['3']) {
+                    body.treatmentArray.push({
+                        treatmentType: vm.TREATMENT.treatmentTypeVaccination,
+                        treatmentTitle: vm.TREATMENT.vaccination3
+                    })
+                }
+                body.treatmentArray = JSON.stringify(body.treatmentArray);
+            }
+            petsManager.createPet(body, function (status, data) {
+                if (status == 201) {
+                    $scope.addPetSuccess(data);
+                } else {
+                    dialogHandler.alertError(status, data);
+                }
+            });
         }
     }
 }

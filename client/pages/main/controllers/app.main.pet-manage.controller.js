@@ -5,6 +5,7 @@ export default function PetManageCtrl ($scope, petsManager, dialogHandler) {
     vm.currentPage('pet-manage');
 
     $scope.openModal = openModal;
+    $scope.addPetSuccess = addPetSuccess;
 
     $scope.more = false;
     $scope.pets = {
@@ -53,5 +54,15 @@ export default function PetManageCtrl ($scope, petsManager, dialogHandler) {
     
     function openModal (key) {
         $scope.modal[key] = true;
+    }
+
+    function closeModal (key) {
+        $scope.modal[key] = false;
+    }
+
+    function addPetSuccess (pet) {
+        $scope.pets.count++;
+        $scope.pets.rows.push(pet);
+        closeModal('add');
     }
 }

@@ -3,7 +3,9 @@
   "themeName": "cloudy",
   "description": "sg-app",
   "version": "0.0.1",
-  "dependencies": {},
+  "dependencies": {
+    "promise-waterfall": "^0.1.0"
+  },
   "devDependencies": {},
   "scripts": {}
 }
