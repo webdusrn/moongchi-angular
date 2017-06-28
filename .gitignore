@@ -3,5 +3,5 @@ node_modules/
 lib/
 npm-debug.log
 *.css.map
-server/views/*-production.ejs
-server/views/*-development.ejs
+server/views/main-production.ejs
+server/views/main-development.ejs
