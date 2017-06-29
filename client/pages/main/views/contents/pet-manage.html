@@ -1,8 +1,9 @@
 <section id="pet-manage-wrap" data-ng-controller="PetManageCtrl">
     <div id="pet-manage-title-wrap">
         <h2>{{ 'petManageTitle' | translate }}</h2>
-        <button type="button" id="add-pet-button" data-ng-click="openModal('add')">{{ 'doAddPet' | translate }}</button>
+        <button type="button" id="add-pet-button" data-ng-if="ready && pets.count" data-ng-click="openModal('add')">{{ 'doAddPet' | translate }}</button>
     </div>
+    <button type="button" id="add-pet-button-card" data-ng-if="ready && !pets.count" data-ng-click="openModal('add')">{{ 'doAddPet' | translate }}</button>
     <ul id="pet-manage-list">
         <li data-ng-repeat="pet in pets.rows">
             <div class="pet-image-wrap">
@@ -20,7 +21,7 @@
                 </p>
                 <p class="pet-info">
                     <span class="pet-info-title">{{ 'isVaccination' | translate }}</span>
-                    <span class="pet-info-content"></span>
+                    <span class="pet-info-content">{{ pet | vaccination }}</span>
                 </p>
             </div>
         </li>

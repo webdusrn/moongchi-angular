@@ -36,6 +36,22 @@
   }
 }
 
+#add-pet-button-card {
+  position: relative;
+  margin-top: 40px;
+  border-radius: 10px;
+  width: 100%;
+  height: 190px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #a2a2a2;
+  background-color: #ededed;
+  cursor: pointer;
+  &:hover {
+    background-color: #e4e4e4;
+  }
+}
+
 #pet-manage-list {
   position: relative;
   margin-top: 40px;

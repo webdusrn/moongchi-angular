@@ -4,7 +4,6 @@ header {
   position: fixed;
   top: 0;
   left: 0;
-  border-bottom: 1px solid #979797;
   width: 100%;
   height: $g-header-size;
   box-shadow: 0 1px 5px 0 rgba(0,0,0,.1);
@@ -19,9 +18,9 @@ header {
   width: $g-header-size;
   height: $g-header-size;
   cursor: pointer;
-  &:hover {
-    background-color: rgba(#d2b46d, .1);
-  }
+  //&:hover {
+  //  background-color: rgba(#d2b46d, .1);
+  //}
   &.open {
     i {
       &:nth-of-type(1) {
@@ -61,4 +60,14 @@ header {
       transform: translate3d(0, 0, 0) rotate(0deg);
     }
   }
+}
+
+#header-logo {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  margin-left: -36px;
+  width: 72px;
+  height: 44px;
+  cursor: pointer;
 }

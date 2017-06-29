@@ -13,7 +13,7 @@ post.validate = function () {
         req.check("petBirthDate", "400_18").isDate();
         if (req.body.imageId !== undefined) req.check("imageId", "400_12").isInt();
         if (req.body.treatmentArray !== undefined) {
-            req.treatments = JSON.parse(req.body.treatmentArray);
+            req.body.treatments = JSON.parse(req.body.treatmentArray);
             delete req.body.treatmentArray;
         }
         req.utils.common.checkError(req, res, next);
@@ -22,20 +22,17 @@ post.validate = function () {
 
 post.setParam = function () {
     return function (req, res, next) {
+        var include = req.models.AppPet.getIncludePet().concat([{
+            model: req.models.AppUserPet,
+            as: "userPets"
+        }]);
         req.body.userPets = [{
             userId: req.user.id
         }];
-        if (req.treatments && req.treatments.length) {
-            for (var i=0; i<req.treatments.length; i++) {
-                req.treatments[i].authorId = req.user.id;
-            }
-        }
-        req.models.AppPet.createPet(req.body, req.treatments, function (status, data) {
+        req.models.AppTreatment.createDataIncluding(req.body, include, function (status, data) {
             if (status == 201) {
-                data.reload().then(function (data) {
-                    req.data = data;
-                    next();
-                });
+                req.data = data;
+                next();
             } else {
                 return res.hjson(req, next, status, data);
             }

@@ -105,80 +105,9 @@ module.exports = {
                     as: "petImages",
                     include: sequelize.models.AppPetImage.getIncludePetImage()
                 }, {
-                    model: sequelize.models.AppPetTreatment,
-                    as: "petTreatments",
-                    include: [{
-                        model: sequelize.models.AppTreatment,
-                        as: "treatment"
-                    }]
+                    model: sequelize.models.AppTreatment,
+                    as: "treatments"
                 }];
-            },
-            'createPet': function (body, treatments, callback) {
-                var createdData = null;
-                var include = [{
-                    model: sequelize.models.AppUserPet,
-                    as: "userPets"
-                }, {
-                    model: sequelize.models.AppPetTreatment,
-                    as: "petTreatments",
-                    include: [{
-                        model: sequelize.models.AppTreatment,
-                        as: "treatment"
-                    }]
-                }, {
-                    model: sequelize.models.Image,
-                    as: "image"
-                }];
-
-                function createPet (t) {
-                    return sequelize.models.AppPet.create(body, {
-                        include: include,
-                        transaction: t
-                    }).then(function (data) {
-                        createdData = data;
-                        return true;
-                    });
-                }
-
-                function createTreatments (t) {
-                    if (treatments && treatments.length) {
-                        body.petTreatments = [];
-
-                        function createTreatment (index) {
-                            if (!index) index = 0;
-                            return sequelize.models.AppTreatment.create(treatments[index], {
-                                transaction: t
-                            }).then(function (data) {
-                                body.petTreatments.push({
-                                    treatmentId: data.id
-                                });
-                                index++;
-                                return index;
-                            });
-                        }
-
-                        var promises = [];
-
-                        treatments.forEach(function () {
-                            promises.push(createTreatment);
-                        });
-
-                        return waterfall(promises).then(function () {
-                            return createPet(t);
-                        });
-
-                    } else {
-                        return createPet(t);
-                    }
-                }
-
-                sequelize.transaction(function (t) {
-                    return createTreatments(t);
-                }).catch(errorHandler.catchCallback(callback)).done(function (isSuccess) {
-                    if (isSuccess) {
-                        callback(201, createdData);
-                    }
-                });
             },
             'updatePetById': function (reqId, body, reqUser, callback) {
                 function updatePet (t) {
@@ -262,13 +191,6 @@ module.exports = {
                             transaction: t
                         });
                     }).then(function () {
-                        return sequelize.models.AppPetTreatment.destroy({
-                            where: {
-                                petId: reqId
-                            },
-                            transaction: t
-                        });
-                    }).then(function () {
                         return sequelize.models.AppPoo.destroy({
                             where: {
                                 petId: reqId
@@ -316,6 +238,10 @@ module.exports = {
                 };
                 var countQuery = {
                     where: countWhere
+                };
+
+                query.include[1].where = {
+                    treatmentType: [STD.treatment.treatmentTypeVaccination, STD.treatment.treatmentTypeNoVaccination]
                 };
 
                 if (options.searchItem && options.searchField) {

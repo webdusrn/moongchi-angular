@@ -8,10 +8,9 @@ var AppMealCharge = require('./app-meal-charge');
 var AppPet = require('./app-pet');
 var AppPetImage = require('./app-pet-image');
 var AppPetMeal = require('./app-pet-meal');
-var AppPetTreatment = require('./app-pet-treatment');
 var AppPoo = require('./app-poo');
+var AppTreatmentGroup = require('./app-treatment-group');
 var AppTreatment = require('./app-treatment');
-var AppTreatmentCharge = require('./app-treatment-charge');
 var AppUserPet = require('./app-user-pet');
 
 var models = {
@@ -22,10 +21,9 @@ var models = {
     AppPet: AppPet,
     AppPetImage: AppPetImage,
     AppPetMeal: AppPetMeal,
-    AppPetTreatment: AppPetTreatment,
     AppPoo: AppPoo,
+    AppTreatmentGroup: AppTreatmentGroup,
     AppTreatment: AppTreatment,
-    AppTreatmentCharge: AppTreatmentCharge,
     AppUserPet: AppUserPet
 };
 

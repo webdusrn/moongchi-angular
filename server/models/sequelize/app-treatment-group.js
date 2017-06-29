@@ -18,18 +18,19 @@ var CONFIG = require('../../../../bridge/config/env');
 var getDBStringLength = require('../../../../core/server/utils').initialization.getDBStringLength;
 module.exports = {
     fields: {
-        'treatmentId': {
-            'reference': 'AppTreatment',
+        'authorId': {
+            'reference': 'User',
             'referenceKey': 'id',
-            'as': 'treatment',
-            'asReverse': 'treatmentCharges',
+            'as': 'author',
+            'asReverse': 'treatmentGroups',
             'allowNull': false
         },
-        'chargeId': {
-            'reference': 'AppCharge',
-            'referenceKey': 'id',
-            'as': 'charge',
-            'asReverse': 'treatmentCharges',
+        'hospitalName': {
+            'type': Sequelize.STRING(getDBStringLength()),
+            'allowNull': true
+        },
+        'treatmentDate': {
+            'type': Sequelize.DATE,
             'allowNull': false
         },
         'createdAt': {
@@ -39,25 +40,30 @@ module.exports = {
         'updatedAt': {
             'type': Sequelize.BIGINT,
             'allowNull': true
+        },
+        'deletedAt': {
+            'type': Sequelize.DATE,
+            'allowNull': true
         }
     },
     options: {
         'indexes': [{
-            name: 'treatmentId_chargeId',
-            fields: ['treatmentId', 'chargeId'],
-            unique: true
+            name: 'authorId',
+            fields: ['authorId']
         }, {
-            name: 'treatmentId',
-            fields: ['treatmentId']
+            name: 'hospitalName',
+            fields: ['hospitalName']
         }, {
-            name: 'chargeId',
-            fields: ['chargeId']
+            name: 'treatmentDate',
+            fields: ['treatmentDate']
         }, {
             name: 'createdAt',
             fields: ['createdAt']
         }],
+        'timestamps': true,
         'createdAt': false,
         'updatedAt': false,
+        'paranoid': true,
         'charset': CONFIG.db.charset,
         'collate': CONFIG.db.collate,
         'hooks': {
@@ -67,10 +73,14 @@ module.exports = {
         },
         'instanceMethods': Sequelize.Utils._.extend(mixin.options.instanceMethods, {}),
         'classMethods': Sequelize.Utils._.extend(mixin.options.classMethods, {
-            'getIncludePetImage': function () {
+            'getIncludeTreatmentGroup': function () {
                 return [{
-                    model: sequelize.models.Image,
-                    as: 'image'
+                    model: sequelize.models.AppTreatment,
+                    as: "treatments",
+                    include: [{
+                        model: sequelize.models.AppPet,
+                        as: "pet"
+                    }]
                 }];
             }
         })

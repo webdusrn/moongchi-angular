@@ -7,6 +7,7 @@ export default function PetManageCtrl ($scope, petsManager, dialogHandler) {
     $scope.openModal = openModal;
     $scope.addPetSuccess = addPetSuccess;
 
+    $scope.ready = false;
     $scope.more = false;
     $scope.pets = {
         count: 0,
@@ -49,6 +50,7 @@ export default function PetManageCtrl ($scope, petsManager, dialogHandler) {
             } else {
                 dialogHandler.alertError(status, data);
             }
+            $scope.ready = true;
         });
     }
     
@@ -62,7 +64,7 @@ export default function PetManageCtrl ($scope, petsManager, dialogHandler) {
 
     function addPetSuccess (pet) {
         $scope.pets.count++;
-        $scope.pets.rows.push(pet);
+        $scope.pets.rows.unshift(pet);
         closeModal('add');
     }
 }

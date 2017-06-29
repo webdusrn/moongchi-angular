@@ -26,6 +26,7 @@
   "vaccination1": "1차",
   "vaccination2": "2차",
   "vaccination3": "3차",
+  "vaccination": "접종",
   "noVaccination": "접종안함",
   "addPetButton": "등록완료"
 }

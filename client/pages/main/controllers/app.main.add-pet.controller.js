@@ -66,6 +66,18 @@ export default function AddPetCtrl ($scope, $timeout, metaManager, petsManager, 
         }
     }, true);
 
+    $scope.$watch('form.petBirthDateYear', function (newVal, oldVal) {
+        if (newVal != oldVal) {
+            focus($('#add-pet-birth-date-month'));
+        }
+    }, true);
+
+    $scope.$watch('form.petBirthDateMonth', function (newVal, oldVal) {
+        if (newVal != oldVal) {
+            focus($('#add-pet-birth-date-day'));
+        }
+    }, true);
+
     $scope.$watch('form', function (newVal, oldVal) {
         if ($scope.form.petBirthDateYear && $scope.form.petBirthDateMonth) {
             $scope.focus.petBirthDateYear = !!$scope.form.petBirthDateYear;
@@ -142,7 +154,12 @@ export default function AddPetCtrl ($scope, $timeout, metaManager, petsManager, 
     }
 
     function addVaccination (key) {
-        $scope.form.vaccinations[key] = !$scope.form.vaccinations[key];
+        $scope.form.vaccinations = {
+            "1": false,
+            "2": false,
+            "3": false
+        };
+        $scope.form.vaccinations[key] = true;
     }
 
     function noVaccination () {
@@ -175,27 +192,33 @@ export default function AddPetCtrl ($scope, $timeout, metaManager, petsManager, 
     function goToInputPetSeries () {
         goToBottom(1);
         $timeout(function () {
-            var $selectPetSeries = $('#add-pet-series-select');
-            $selectPetSeries.focus();
-            $selectPetSeries.focusin();
+            focus($('#add-pet-series-select'));
         }, 300);
         $scope.goToInputPetSeries = null;
     }
 
     function goToInputPetGender () {
-        var $selectPetSeries = $('#add-pet-series-select');
-        $selectPetSeries.blur();
-        $selectPetSeries.focusout();
+        blur($('#add-pet-series-select'));
         goToBottom(2);
+        $timeout(function () {
+            focus($('#add-pet-gender-m-button'));
+        }, 300);
         $scope.goToInputPetGender = null;
     }
 
     function goToInputPetBirthDate () {
+        blur($('#add-pet-gender-m-button'));
         goToBottom(3);
+        $timeout(function () {
+            focus($('#add-pet-birth-date-year'));
+        }, 300);
         $scope.goToInputPetBirthDate = null;
     }
 
     function goToInputPetTreatments () {
+        blur($('#add-pet-birth-date-year'));
+        blur($('#add-pet-birth-date-month'));
+        blur($('#add-pet-birth-date-day'));
         goToBottom(4);
         $scope.goToInputPetTreatments = null;
     }
@@ -242,19 +265,31 @@ export default function AddPetCtrl ($scope, $timeout, metaManager, petsManager, 
                     body.treatmentArray.push({
                         treatmentType: vm.TREATMENT.treatmentTypeVaccination,
                         treatmentTitle: vm.TREATMENT.vaccination1
-                    })
+                    });
                 }
                 if (body.vaccinations['2']) {
                     body.treatmentArray.push({
                         treatmentType: vm.TREATMENT.treatmentTypeVaccination,
+                        treatmentTitle: vm.TREATMENT.vaccination1
+                    });
+                    body.treatmentArray.push({
+                        treatmentType: vm.TREATMENT.treatmentTypeVaccination,
                         treatmentTitle: vm.TREATMENT.vaccination2
-                    })
+                    });
                 }
                 if (body.vaccinations['3']) {
                     body.treatmentArray.push({
                         treatmentType: vm.TREATMENT.treatmentTypeVaccination,
+                        treatmentTitle: vm.TREATMENT.vaccination1
+                    });
+                    body.treatmentArray.push({
+                        treatmentType: vm.TREATMENT.treatmentTypeVaccination,
+                        treatmentTitle: vm.TREATMENT.vaccination2
+                    });
+                    body.treatmentArray.push({
+                        treatmentType: vm.TREATMENT.treatmentTypeVaccination,
                         treatmentTitle: vm.TREATMENT.vaccination3
-                    })
+                    });
                 }
                 body.treatmentArray = JSON.stringify(body.treatmentArray);
             }
@@ -266,5 +301,15 @@ export default function AddPetCtrl ($scope, $timeout, metaManager, petsManager, 
                 }
             });
         }
+    }
+
+    function blur ($object) {
+        $object.blur();
+        $object.focusout();
+    }
+
+    function focus ($object) {
+        $object.focus();
+        $object.focusin();
     }
 }

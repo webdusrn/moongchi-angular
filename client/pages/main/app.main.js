@@ -15,6 +15,11 @@ import FindPassCtrl from './controllers/app.main.find-pass.controller';
 import NavigationCtrl from './controllers/app.main.navigation.controller';
 import PetManageCtrl from './controllers/app.main.pet-manage.controller';
 import AddPetCtrl from './controllers/app.main.add-pet.controller';
+import TreatmentManageCtrl from './controllers/app.main.treatment-manage.controller';
+import MealManageCtrl from './controllers/app.main.meal-manage.controller';
+import ChargeManageCtrl from './controllers/app.main.charge-manage.controller';
+import PooManageCtrl from './controllers/app.main.pet-manage.controller';
+import ReportManageCtrl from './controllers/app.main.report-manage.controller';
 
 import active from './directives/active/app.main.active';
 import autoFocus from './directives/auto-focus/app.main.auto-focus';
@@ -28,6 +33,8 @@ import petsManager from './services/app.main.pets.manager';
 import navigator from './services/app.main.navigator';
 import modalHandler from './services/app.main.modal.handler';
 import statusHandler from './services/app.main.status.handler';
+
+import vaccination from './filters/app.main.vaccination.filter';
 
 const APP_NAME = "app.main";
 
@@ -46,6 +53,11 @@ angular.module(APP_NAME, ['app.main-core'])
     .controller("NavigationCtrl", NavigationCtrl)
     .controller("PetManageCtrl", PetManageCtrl)
     .controller("AddPetCtrl", AddPetCtrl)
+    .controller("TreatmentManageCtrl", TreatmentManageCtrl)
+    .controller("MealManageCtrl", MealManageCtrl)
+    .controller("ChargeManageCtrl", ChargeManageCtrl)
+    .controller("PooManageCtrl", PooManageCtrl)
+    .controller("ReportManageCtrl", ReportManageCtrl)
     .directive("active", active)
     .directive("autoFocus", autoFocus)
     .constant("appResources", appResources)
@@ -53,7 +65,8 @@ angular.module(APP_NAME, ['app.main-core'])
     .service("petsManager", petsManager)
     .service("navigator", navigator)
     .service("modalHandler", modalHandler)
-    .service("statusHandler", statusHandler);
+    .service("statusHandler", statusHandler)
+    .filter("vaccination", vaccination);
 
 if (window.location.hash === '#_=_') window.location.hash = '/';
 

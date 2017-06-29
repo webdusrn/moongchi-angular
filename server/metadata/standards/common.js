@@ -91,9 +91,10 @@ var standards = {
         "enumSearchFields": ["treatmentTitle", "hospitalName"],
         "enumOrderBys": ["createdAt"],
         "defaultOrderBy": "createdAt",
-        "enumTreatmentTypes": ["treatmentTypeVaccination", "treatmentTypeEtc"],
+        "enumTreatmentTypes": ["treatmentTypeVaccination", "treatmentTypeNoVaccination", "treatmentTypeEtc"],
         "defaultTreatmentType": "treatmentTypeEtc",
         "treatmentTypeVaccination": "treatmentTypeVaccination",
+        "treatmentTypeNoVaccination": "treatmentTypeNoVaccination",
         "vaccination1": "1차 예방접종",
         "vaccination2": "2차 예방접종",
         "vaccination3": "3차 예방접종"

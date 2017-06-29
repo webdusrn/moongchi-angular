@@ -95,7 +95,7 @@ module.exports = {
                 }];
             },
             'createTreatment': function (body, charge, callback) {
-                var include = req.models.AppTreatment.getIncludeTreatment();
+                var include = sequelize.models.AppTreatment.getIncludeTreatment();
                 var createdData = null;
 
                 function createTreatment (t) {
