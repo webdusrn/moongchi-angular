@@ -77,10 +77,7 @@ module.exports = {
                 return [{
                     model: sequelize.models.AppTreatment,
                     as: "treatments",
-                    include: [{
-                        model: sequelize.models.AppPet,
-                        as: "pet"
-                    }]
+                    include: sequelize.models.AppTreatment.getIncludeTreatment()
                 }];
             }
         })

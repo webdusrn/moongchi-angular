@@ -18,32 +18,23 @@ var CONFIG = require('../../../../bridge/config/env');
 var getDBStringLength = require('../../../../core/server/utils').initialization.getDBStringLength;
 module.exports = {
     fields: {
-        'treatmentGroupId': {
-            'reference': 'AppTreatmentGroup',
+        'treatmentId': {
+            'reference': 'AppTreatment',
             'referenceKey': 'id',
-            'as': 'treatmentGroup',
-            'asReverse': 'treatments',
+            'as': 'treatment',
+            'asReverse': 'medicines',
+            'allowNull': false
+        },
+        'medicinePeriod': {
+            'type': Sequelize.INTEGER,
             'allowNull': true
         },
-        'petId': {
-            'reference': 'AppPet',
-            'referenceKey': 'id',
-            'as': 'pet',
-            'asReverse': 'treatments',
-            'allowNull': false
+        'medicineTime': {
+            'type': Sequelize.INTEGER,
+            'allowNull': true
         },
-        'treatmentType': {
-            'type': Sequelize.ENUM,
-            'values': STD.treatment.enumTreatmentTypes,
-            'defaultValue': STD.treatment.defaultTreatmentType,
-            'allowNull': false
-        },
-        'treatmentTitle': {
+        'medicineMemo': {
             'type': Sequelize.STRING(getDBStringLength()),
-            'allowNull': false
-        },
-        'treatmentContent': {
-            'type': Sequelize.TEXT('long'),
             'allowNull': true
         },
         'createdAt': {
@@ -61,17 +52,17 @@ module.exports = {
     },
     options: {
         'indexes': [{
-            name: 'treatmentGroupId',
-            fields: ['treatmentGroupId']
+            name: 'treatmentId',
+            fields: ['treatmentId']
         }, {
-            name: 'petId',
-            fields: ['petId']
+            name: 'medicinePeriod',
+            fields: ['medicinePeriod']
         }, {
-            name: 'treatmentType',
-            fields: ['treatmentType']
+            name: 'medicineTime',
+            fields: ['medicineTime']
         }, {
-            name: 'treatmentTitle',
-            fields: ['treatmentTitle']
+            name: 'medicineMemo',
+            fields: ['medicineMemo']
         }, {
             name: 'createdAt',
             fields: ['createdAt']
@@ -89,15 +80,7 @@ module.exports = {
         },
         'instanceMethods': Sequelize.Utils._.extend(mixin.options.instanceMethods, {}),
         'classMethods': Sequelize.Utils._.extend(mixin.options.classMethods, {
-            'getIncludeTreatment': function () {
-                return [{
-                    model: sequelize.models.AppPet,
-                    as: "pet"
-                }, {
-                    model: sequelize.models.AppMedicine,
-                    as: "medicine"
-                }];
-            }
+
         })
     }
 };

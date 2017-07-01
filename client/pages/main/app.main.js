@@ -15,6 +15,7 @@ import FindPassCtrl from './controllers/app.main.find-pass.controller';
 import NavigationCtrl from './controllers/app.main.navigation.controller';
 import PetManageCtrl from './controllers/app.main.pet-manage.controller';
 import AddPetCtrl from './controllers/app.main.add-pet.controller';
+import DetailPetCtrl from './controllers/app.main.detail-pet.controller';
 import TreatmentManageCtrl from './controllers/app.main.treatment-manage.controller';
 import MealManageCtrl from './controllers/app.main.meal-manage.controller';
 import ChargeManageCtrl from './controllers/app.main.charge-manage.controller';
@@ -53,6 +54,7 @@ angular.module(APP_NAME, ['app.main-core'])
     .controller("NavigationCtrl", NavigationCtrl)
     .controller("PetManageCtrl", PetManageCtrl)
     .controller("AddPetCtrl", AddPetCtrl)
+    .controller("DetailPetCtrl", DetailPetCtrl)
     .controller("TreatmentManageCtrl", TreatmentManageCtrl)
     .controller("MealManageCtrl", MealManageCtrl)
     .controller("ChargeManageCtrl", ChargeManageCtrl)

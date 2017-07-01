@@ -11,6 +11,7 @@ var AppPetMeal = require('./app-pet-meal');
 var AppPoo = require('./app-poo');
 var AppTreatmentGroup = require('./app-treatment-group');
 var AppTreatment = require('./app-treatment');
+var AppMedicine = require('./app-medicine');
 var AppUserPet = require('./app-user-pet');
 
 var models = {
@@ -24,6 +25,7 @@ var models = {
     AppPoo: AppPoo,
     AppTreatmentGroup: AppTreatmentGroup,
     AppTreatment: AppTreatment,
+    AppMedicine: AppMedicine,
     AppUserPet: AppUserPet
 };
 

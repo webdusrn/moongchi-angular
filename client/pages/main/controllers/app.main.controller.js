@@ -9,6 +9,7 @@ export default function MainCtrl($rootScope, $scope, $location, $filter, metaMan
     vm.translate = $filter('translate');
     vm.session = sessionManager.session;
     vm.COMMON = STD.common;
+    vm.USER = STD.user;
     vm.TREATMENT = STD.treatment;
     vm.templatePath = STD.templatePath;
     vm.defaultLoadingLength = vm.COMMON.defaultLoadingLength;
@@ -46,7 +47,7 @@ export default function MainCtrl($rootScope, $scope, $location, $filter, metaMan
     $scope.$on("core.session.callback", function (event, args) {
         if (args.type == 'signup') {
             vm.session = sessionManager.session;
-
+            navigator.goToIndex();
         } else if (args.type == 'login') {
             vm.session = sessionManager.session;
             navigator.goToIndex();

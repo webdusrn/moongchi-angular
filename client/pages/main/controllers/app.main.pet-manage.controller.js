@@ -54,8 +54,12 @@ export default function PetManageCtrl ($scope, petsManager, dialogHandler) {
         });
     }
     
-    function openModal (key) {
-        $scope.modal[key] = true;
+    function openModal (key, index) {
+        if (index !== undefined) {
+            $scope.modal[key] = $scope.pets.rows[index];
+        } else {
+            $scope.modal[key] = true;
+        }
     }
 
     function closeModal (key) {

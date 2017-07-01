@@ -28,5 +28,7 @@
   "vaccination3": "3차",
   "vaccination": "접종",
   "noVaccination": "접종안함",
-  "addPetButton": "등록완료"
+  "addPetButton": "등록완료",
+  "wrongSignUpId": "잘못된 이메일 형식입니다.",
+  "wrongSignUpPw": "비밀번호는 6~12자이며 문자와 숫자는 필수입니다."
 }

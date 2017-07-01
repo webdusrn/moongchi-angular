@@ -5,7 +5,7 @@
     </div>
     <button type="button" id="add-pet-button-card" data-ng-if="ready && !pets.count" data-ng-click="openModal('add')">{{ 'doAddPet' | translate }}</button>
     <ul id="pet-manage-list">
-        <li data-ng-repeat="pet in pets.rows">
+        <li data-ng-repeat="pet in pets.rows" data-ng-click="openModal('detail', $index)">
             <div class="pet-image-wrap">
                 <img data-ng-if="pet.image" data-ng-src="{{ pet.image | imageUrl: 'l' }}">
             </div>
@@ -27,4 +27,5 @@
         </li>
     </ul>
     <ng-include src="'/pages/main/views/modals/add-pet.html'"></ng-include>
+    <ng-include src="'/pages/main/views/modals/detail-pet.html'"></ng-include>
 </section>

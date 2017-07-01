@@ -23,7 +23,7 @@ module.exports = {
         "isUseRedis": false,
         "isUseCluster": false,
         "isDuplicatedLogin": true,
-        "isAutoVerifiedEmail": false,
+        "isAutoVerifiedEmail": true,
         "isUseChat": false,
         "isUseBrowserCount": true
     },
