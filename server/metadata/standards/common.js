@@ -97,7 +97,8 @@ var standards = {
         "treatmentTypeNoVaccination": "treatmentTypeNoVaccination",
         "vaccination1": "1차 예방접종",
         "vaccination2": "2차 예방접종",
-        "vaccination3": "3차 예방접종"
+        "vaccination3": "3차 예방접종",
+        "noVaccination": "접종 안함"
     },
     "meal": {
         "enumSearchFields": ["mealName"],

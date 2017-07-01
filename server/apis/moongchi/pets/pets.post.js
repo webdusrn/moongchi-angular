@@ -29,7 +29,7 @@ post.setParam = function () {
         req.body.userPets = [{
             userId: req.user.id
         }];
-        req.models.AppTreatment.createDataIncluding(req.body, include, function (status, data) {
+        req.models.AppPet.createDataIncluding(req.body, include, function (status, data) {
             if (status == 201) {
                 req.data = data;
                 next();

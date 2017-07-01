@@ -93,7 +93,7 @@ module.exports = {
                 return [{
                     model: sequelize.models.AppPet,
                     as: "pet"
-                }]
+                }];
             }
         })
     }

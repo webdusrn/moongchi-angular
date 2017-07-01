@@ -161,6 +161,7 @@ module.exports = {
                 });
             },
             'deletePetById': function (reqId, reqUser, callback) {
+                var deleteTreatmentGroupIdArray = [];
                 var petInclude = [{
                     model: sequelize.models.AppUserPet,
                     as: "userPets",
@@ -197,8 +198,47 @@ module.exports = {
                             },
                             transaction: t
                         });
+                    }).then(function() {
+                        return sequelize.models.AppTreatment.destroy({
+                            where: {
+                                petId: reqId
+                            },
+                            transaction: t
+                        });
                     }).then(function () {
                         return true;
+                    });
+                }
+
+                function deleteTreatmentGroups (t) {
+                    return sequelize.models.AppTreatmentGroup.destroy({
+                        where: {
+                            id: deleteTreatmentGroupIdArray
+                        },
+                        transaction: t
+                    }).then(function () {
+                        return destroy(t);
+                    });
+                }
+
+                function findDeleteTreatmentGroups (t) {
+                    var query = 'SELECT treatmentGroup.id FROM AppTreatments AS treatment';
+                    query += ' INNER JOIN AppPets AS pet ON treatment.petId = pet.id';
+                    query += ' LEFT JOIN AppTreatmentGroups AS treatmentGroup ON treatment.treatmentGroupId = treatmentGroup.id';
+                    query += ' WHERE treatment.deletedAt IS NULL AND treatmentGroup.deletedAt IS NULL AND pet.deletedAt IS NULL AND treatmentGroup.id IS NOT NULL';
+                    query += ' GROUP BY treatmentGroup.id HAVING COUNT(treatmentGroup.id) < 2';
+                    return sequelize.query(query, {
+                        type: Sequelize.QueryTypes.SELECT,
+                        transaction: t
+                    }).then(function (data) {
+                        if (data && data.length) {
+                            data.forEach(function (treatmentGroup) {
+                                deleteTreatmentGroupIdArray.push(treatmentGroup.id);
+                            });
+                            return deleteTreatmentGroups(t);
+                        } else {
+                            return destroy(t);
+                        }
                     });
                 }
 
@@ -208,7 +248,7 @@ module.exports = {
                         transaction: t
                     }).then(function (data) {
                         if (data) {
-                            return destroy(t);
+                            return findDeleteTreatmentGroups(t);
                         } else {
                             throw new errorHandler.CustomSequelizeError(404, {
                                 code: ""

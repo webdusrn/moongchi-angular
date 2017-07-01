@@ -291,8 +291,13 @@ export default function AddPetCtrl ($scope, $timeout, metaManager, petsManager, 
                         treatmentTitle: vm.TREATMENT.vaccination3
                     });
                 }
-                body.treatmentArray = JSON.stringify(body.treatmentArray);
+            } else {
+                body.treatmentArray = [{
+                    treatmentType: vm.TREATMENT.treatmentTypeNoVaccination,
+                    treatmentTitle: vm.TREATMENT.noVaccination
+                }];
             }
+            body.treatmentArray = JSON.stringify(body.treatmentArray);
             petsManager.createPet(body, function (status, data) {
                 if (status == 201) {
                     $scope.addPetSuccess(data);

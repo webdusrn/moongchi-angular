@@ -67,12 +67,7 @@ module.exports = {
         },
         'instanceMethods': Sequelize.Utils._.extend(mixin.options.instanceMethods, {}),
         'classMethods': Sequelize.Utils._.extend(mixin.options.classMethods, {
-            'getIncludePetImage': function () {
-                return [{
-                    model: sequelize.models.Image,
-                    as: 'image'
-                }];
-            }
+
         })
     }
 };
