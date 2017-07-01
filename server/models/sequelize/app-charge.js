@@ -252,20 +252,6 @@ module.exports = {
                         },
                         transaction: t
                     }).then(function () {
-                        return sequelize.models.AppMealCharge.destroy({
-                            where: {
-                                chargeId: reqId
-                            },
-                            transaction: t
-                        });
-                    }).then(function () {
-                        return sequelize.models.AppTreatmentCharge.destroy({
-                            where: {
-                                chargeId: reqId
-                            },
-                            transaction: t
-                        });
-                    }).then(function () {
                         return true;
                     });
                 }
