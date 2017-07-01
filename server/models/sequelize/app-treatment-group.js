@@ -25,6 +25,14 @@ module.exports = {
             'asReverse': 'treatmentGroups',
             'allowNull': false
         },
+        'chargeId': {
+            'reference': 'AppCharge',
+            'referenceKey': 'id',
+            'referenceType': 'one',
+            'as': 'charge',
+            'asReverse': 'treatmentGroup',
+            'allowNull': true
+        },
         'hospitalName': {
             'type': Sequelize.STRING(getDBStringLength()),
             'allowNull': true

@@ -25,6 +25,14 @@ module.exports = {
             'asReverse': 'meals',
             'allowNull': false
         },
+        'chargeId': {
+            'reference': 'AppCharge',
+            'referenceKey': 'id',
+            'referenceType': 'one',
+            'as': 'charge',
+            'asReverse': 'meal',
+            'allowNull': true
+        },
         'mealName': {
             'type': Sequelize.STRING(getDBStringLength()),
             'allowNull': false

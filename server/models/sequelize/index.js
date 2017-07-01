@@ -4,7 +4,6 @@ var sequelize = require('../../../../core/server/config/sequelize');
 var Profile = require('./profile');
 var AppCharge = require('./app-charge');
 var AppMeal = require('./app-meal');
-var AppMealCharge = require('./app-meal-charge');
 var AppPet = require('./app-pet');
 var AppPetImage = require('./app-pet-image');
 var AppPetMeal = require('./app-pet-meal');
@@ -18,7 +17,6 @@ var models = {
     Profile: Profile,
     AppCharge: AppCharge,
     AppMeal: AppMeal,
-    AppMealCharge: AppMealCharge,
     AppPet: AppPet,
     AppPetImage: AppPetImage,
     AppPetMeal: AppPetMeal,
