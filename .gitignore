@@ -5,3 +5,5 @@ npm-debug.log
 *.css.map
 server/views/main-production.ejs
 server/views/main-development.ejs
+server/views/admin-production.ejs
+server/views/admin-development.ejs
