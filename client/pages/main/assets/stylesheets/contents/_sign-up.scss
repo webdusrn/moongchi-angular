@@ -51,6 +51,11 @@ $g-color-sign-up-input-border-focus: #d2b76d;
   background-color: $g-color-sign-up-window-background;
   box-shadow: 0 2px 4px 0 #4a3600;
   z-index: 3;
+  -webkit-transition: background-color .3s;
+  -moz-transition: background-color .3s;
+  -ms-transition: background-color .3s;
+  -o-transition: background-color .3s;
+  transition: background-color .3s;
   &.focus {
     background-color: white;
   }

@@ -35,5 +35,17 @@
   "petManage": "고양이관리",
   "pooManage": "배변관리",
   "mealManage": "사료관리",
-  "treatmentManage": "진료관리"
+  "treatmentManage": "진료관리",
+  "reportManageTitle": "무엇이 궁금하냥?",
+  "doAddReport": "문의하기",
+  "detailPetName": "이름",
+  "detailPetSeries": "묘종",
+  "detailPetGender": "성별",
+  "detailPetBirthDate": "생일",
+  "edit": "수정",
+  "wrongPetBirthDate": "생일을 입력해주세요.",
+  "wrongPetName": "이름을 입력해주세요.",
+  "wrongReportBody": "문의 내용을 입력해주세요.",
+  "addReportEmail": "답변 받을 이메일",
+  "addReportBody": "문의 내용"
 }

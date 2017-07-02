@@ -5,7 +5,9 @@ export default function PetManageCtrl ($scope, petsManager, dialogHandler) {
     vm.currentPage('petManage');
 
     $scope.openModal = openModal;
+    $scope.closeModal = closeModal;
     $scope.addPetSuccess = addPetSuccess;
+    $scope.updatePetSuccess = updatePetSuccess;
 
     $scope.ready = false;
     $scope.more = false;
@@ -56,7 +58,10 @@ export default function PetManageCtrl ($scope, petsManager, dialogHandler) {
     
     function openModal (key, index) {
         if (index !== undefined) {
-            $scope.modal[key] = $scope.pets.rows[index];
+            $scope.modal[key] = {
+                pet: $scope.pets.rows[index],
+                index: index
+            };
         } else {
             $scope.modal[key] = true;
         }
@@ -70,5 +75,10 @@ export default function PetManageCtrl ($scope, petsManager, dialogHandler) {
         $scope.pets.count++;
         $scope.pets.rows.unshift(pet);
         closeModal('add');
+    }
+
+    function updatePetSuccess (pet, index) {
+        $scope.pets.rows[index] = pet;
+        closeModal('detail');
     }
 }

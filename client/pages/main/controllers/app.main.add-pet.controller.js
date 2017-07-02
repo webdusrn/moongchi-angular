@@ -20,6 +20,7 @@ export default function AddPetCtrl ($scope, $timeout, metaManager, petsManager, 
     $scope.goToInputPetBirthDate = goToInputPetBirthDate;
     $scope.goToInputPetTreatments = goToInputPetTreatments;
     $scope.goToBack = goToBack;
+    $scope.goToNext = goToNext;
     $scope.next = next;
     $scope.addPet = addPet;
 
@@ -44,8 +45,8 @@ export default function AddPetCtrl ($scope, $timeout, metaManager, petsManager, 
         petTreatments: false
     };
 
-    $scope.enumPetSeries = vm.PET.enumCatSeries;
-    $scope.enumPetGenders = vm.PET.enumPetGenders;
+    $scope.enumPetSeries = vm.PET.enumCatSeries.slice();
+    $scope.enumPetGenders = vm.PET.enumPetGenders.slice();
 
     $scope.enumPetBirthDateYears = [];
     for (var i=0; i<20; i++) {
@@ -78,7 +79,7 @@ export default function AddPetCtrl ($scope, $timeout, metaManager, petsManager, 
         }
     }, true);
 
-    $scope.$watch('form', function (newVal, oldVal) {
+    $scope.$watch('form', function () {
         if ($scope.form.petBirthDateYear && $scope.form.petBirthDateMonth) {
             $scope.focus.petBirthDateYear = !!$scope.form.petBirthDateYear;
             $scope.focus.petBirthDateMonth = !!$scope.form.petBirthDateMonth;
@@ -221,6 +222,13 @@ export default function AddPetCtrl ($scope, $timeout, metaManager, petsManager, 
         blur($('#add-pet-birth-date-day'));
         goToBottom(4);
         $scope.goToInputPetTreatments = null;
+    }
+
+    function goToNext () {
+        var $window = $('#add-pet-window');
+        var windowHeight = $window.height();
+        var scrollTop = $window.scrollTop();
+
     }
 
     function goToBack () {

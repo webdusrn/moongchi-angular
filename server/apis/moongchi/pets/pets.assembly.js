@@ -173,7 +173,6 @@ var api = {
                 ],
                 essential: [],
                 resettable: [
-                    'petSeries',
                     'imageId'
                 ],
                 explains : {

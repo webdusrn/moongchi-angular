@@ -13,6 +13,7 @@ export default function MainCtrl($rootScope, $scope, $location, $filter, metaMan
     vm.BACKGROUND = STD.background;
     vm.PET = STD.pet;
     vm.TREATMENT = STD.treatment;
+    vm.REPORT = STD.report;
     vm.templatePath = STD.templatePath;
     vm.defaultLoadingLength = vm.COMMON.defaultLoadingLength;
 

@@ -1,0 +1,106 @@
+#add-report-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .3);
+  z-index: 200;
+}
+
+#add-report-window {
+  position: absolute;
+  top: 74px;
+  left: 50%;
+  margin-left: -280px;
+  border-radius: 5px;
+  width: 560px;
+  height: calc(100% - 228px);
+  background-color: white;
+  overflow-y: auto;
+}
+
+#add-report-scroll {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 560px;
+}
+
+#add-report-create-wrap {
+  position: absolute;
+  top: 50%;
+  left: 130px;
+  margin-top: -230px;
+  width: 300px;
+  height: 460px;
+  .add-report-label {
+    position: relative;
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 500;
+    color: #926c2d;
+    &.margin {
+      margin-bottom: 10px;
+    }
+  }
+  .add-report-input-wrap {
+    position: relative;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ccc;
+    width: 100%;
+    height: 40px;
+    overflow: hidden;
+    &.focus {
+      border-color: #d2b76d;
+    }
+    input.add-report-input {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      font-size: 18px;
+      &[disabled] {
+        cursor: not-allowed;
+      }
+    }
+  }
+  .add-report-text-wrap {
+    position: relative;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    &.focus {
+      border-color: #d2b76d;
+    }
+    textarea.add-report-text {
+      position: relative;
+      padding: 8px;
+      width: 100%;
+      height: 100%;
+      font-size: 18px;
+      resize: none;
+    }
+  }
+}
+
+#add-report-close-button {
+  position: absolute;
+  bottom: 43px;
+  left: 50%;
+  margin-left: -44px;
+  width: 88px;
+  height: 88px;
+  @include background();
+  background-image: url(/pages/main/assets/images/icons/ic-close-88@2x.png);
+  opacity: .7;
+  cursor: pointer;
+  -webkit-transition: opacity .1s;
+  -moz-transition: opacity .1s;
+  -ms-transition: opacity .1s;
+  -o-transition: opacity .1s;
+  transition: opacity .1s;
+  &:hover {
+    opacity: 1;
+  }
+}

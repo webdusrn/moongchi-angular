@@ -21,6 +21,7 @@ import MealManageCtrl from './controllers/app.main.meal-manage.controller';
 import ChargeManageCtrl from './controllers/app.main.charge-manage.controller';
 import PooManageCtrl from './controllers/app.main.poo-manage.controller';
 import ReportManageCtrl from './controllers/app.main.report-manage.controller';
+import AddReportCtrl from './controllers/app.main.add-report.controller';
 
 import active from './directives/active/app.main.active';
 import autoFocus from './directives/auto-focus/app.main.auto-focus';
@@ -29,9 +30,11 @@ import appResources from './services/app.main.constant';
 
 import Background from './services/app.main.background.model';
 import Pet from './services/app.main.pet.model';
+import Report from './services/app.main.report.model';
 
 import backgroundsManager from './services/app.main.backgrounds.manager';
 import petsManager from './services/app.main.pets.manager';
+import reportsManager from './services/app.main.reports.manager';
 
 import navigator from './services/app.main.navigator';
 import modalHandler from './services/app.main.modal.handler';
@@ -62,13 +65,16 @@ angular.module(APP_NAME, ['app.main-core'])
     .controller("ChargeManageCtrl", ChargeManageCtrl)
     .controller("PooManageCtrl", PooManageCtrl)
     .controller("ReportManageCtrl", ReportManageCtrl)
+    .controller("AddReportCtrl", AddReportCtrl)
     .directive("active", active)
     .directive("autoFocus", autoFocus)
     .constant("appResources", appResources)
     .factory("Background", Background)
     .factory("Pet", Pet)
+    .factory("Report", Report)
     .service("backgroundsManager", backgroundsManager)
     .service("petsManager", petsManager)
+    .service("reportsManager", reportsManager)
     .service("navigator", navigator)
     .service("modalHandler", modalHandler)
     .service("statusHandler", statusHandler)

@@ -71,3 +71,67 @@ header {
   height: 44px;
   cursor: pointer;
 }
+
+#header-logout-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 100%;
+  cursor: pointer;
+  i:nth-of-type(1) {
+    position: absolute;
+    top: 18.5px;
+    right: 30px;
+    width: 14px;
+    height: 27px;
+    @include background();
+    background-image: url(/pages/main/assets/images/icons/ic-header-logout-door-14-27@2x.png);
+  }
+  i:nth-of-type(2) {
+    position: absolute;
+    top: 23.5px;
+    right: 19px;
+    width: 20px;
+    height: 17px;
+    @include background();
+    background-image: url(/pages/main/assets/images/icons/ic-header-logout-arrow-20-17@2x.png);
+  }
+  &:hover {
+    i:nth-of-type(2) {
+      -webkit-animation: 1s ease logout infinite;
+      -o-animation: 1s ease logout infinite;
+      animation: 1s ease logout infinite;
+    }
+  }
+}
+
+@-webkit-keyframes logout {
+  0%    { -webkit-transform: translate3d(0, 0, 0) }
+  50%   { -webkit-transform: translate3d(3px, 0, 0) }
+  100%  { -webkit-transform: translate3d(0, 0, 0) }
+}
+
+@-moz-keyframes logout {
+  0%    { -moz-transform: translate3d(0, 0, 0) }
+  50%   { -moz-transform: translate3d(3px, 0, 0) }
+  100%  { -moz-transform: translate3d(0, 0, 0) }
+}
+
+@-ms-keyframes logout {
+  0%    { -ms-transform: translate3d(0, 0, 0) }
+  50%   { -ms-transform: translate3d(3px, 0, 0) }
+  100%  { -ms-transform: translate3d(0, 0, 0) }
+}
+
+@-o-keyframes logout {
+  0%    { -o-transform: translate3d(0, 0, 0) }
+  50%   { -o-transform: translate3d(3px, 0, 0) }
+  100%  { -o-transform: translate3d(0, 0, 0) }
+}
+
+@keyframes logout {
+  0%    { transform: translate3d(0, 0, 0) }
+  50%   { transform: translate3d(3px, 0, 0) }
+  100%  { transform: translate3d(0, 0, 0) }
+}

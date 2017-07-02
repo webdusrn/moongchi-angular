@@ -1,3 +1,7 @@
 <section id="report-manage-wrap" data-ng-controller="ReportManageCtrl">
-
+    <div class="manage-title-wrap">
+        <h2>{{ 'reportManageTitle' | translate }}</h2>
+    </div>
+    <button type="button" id="add-report-button-card" data-ng-if="ready && !reports.count" data-ng-click="openModal('add')">{{ 'doAddReport' | translate }}</button>
+    <ng-include src="'/pages/main/views/modals/add-report.html'"></ng-include>
 </section>

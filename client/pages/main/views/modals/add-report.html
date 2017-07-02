@@ -1,0 +1,21 @@
+<section id="add-report-wrap" data-ng-if="modal.add" data-ng-controller="AddReportCtrl">
+    <div id="add-report-window">
+        <div id="add-report-scroll">
+            <div id="add-report-create-wrap">
+                <label class="add-report-label">{{ 'addReportEmail' | translate }}</label>
+                <div class="add-report-input-wrap" data-ng-class="{'focus': form.email}">
+                    <input class="add-report-input" type="text" data-ng-model="form.email" disabled>
+                </div>
+                <label for="add-report-body" class="add-report-label margin">{{ 'addReportBody' | translate }}</label>
+                <div class="add-report-text-wrap" data-ng-class="{'focus': focus.body || form.body}">
+                    <textarea id="add-report-body" class="add-report-text" rows="10"
+                              data-ng-focus="inputFocus('body')"
+                              data-ng-blur="inputBlur('body')"
+                              data-ng-model="form.body"
+                              placeholder="{{ 'addReportBody' | translate }}"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="modal-close-button" data-ng-click="modal.add = false"></button>
+</section>

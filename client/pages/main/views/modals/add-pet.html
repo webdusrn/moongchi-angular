@@ -1,96 +1,107 @@
 <section id="add-pet-wrap" data-ng-if="modal.add" data-ng-controller="AddPetCtrl">
     <div id="add-pet-window">
         <button id="add-pet-back-button" type="button" data-ng-click="goToBack()"></button>
+        <button id="add-pet-next-button" type="button" data-ng-click="goToNext()"></button>
         <div class="add-pet-item">
-            <h4 class="add-pet-title">{{ 'inputPetName' | translate }}</h4>
-            <form class="add-pet-form" data-ng-submit="inputPetName()" autocomplete="off">
-                <div class="add-pet-input-wrap" data-ng-class="{'focus': focus.petName}">
-                    <input id="add-pet-name"
-                           type="text"
-                           class="add-pet-input"
-                           data-ng-focus="inputFocus('petName')"
-                           data-ng-blur="inputBlur('petName')"
-                           data-ng-model="form.petName"
-                           placeholder="{{ 'inputPetNamePlaceholder' | translate }}"
-                           auto-focus/>
-                </div>
-                <button id="add-pet-name-button" type="submit" data-ng-click="next(1)">{{ 'next' | translate }}</button>
-            </form>
+            <div id="add-pet-name-wrap">
+                <h4 class="add-pet-title">{{ 'inputPetName' | translate }}</h4>
+                <form class="add-pet-form" data-ng-submit="inputPetName()" autocomplete="off">
+                    <div class="add-pet-input-wrap" data-ng-class="{'focus': focus.petName}">
+                        <input id="add-pet-name"
+                               type="text"
+                               class="add-pet-input"
+                               data-ng-focus="inputFocus('petName')"
+                               data-ng-blur="inputBlur('petName')"
+                               data-ng-model="form.petName"
+                               placeholder="{{ 'inputPetNamePlaceholder' | translate }}"
+                               auto-focus/>
+                    </div>
+                    <button id="add-pet-name-button" type="submit" data-ng-click="next(1)">{{ 'next' | translate }}</button>
+                </form>
+            </div>
         </div>
         <div class="add-pet-item" data-ng-if="canNext.petSeries" active="goToInputPetSeries()">
-            <h4 class="add-pet-title">{{ 'inputPetSeries' | translate }}</h4>
-            <form class="add-pet-form" autocomplete="off">
-                <div class="add-pet-input-wrap select-wrap" data-ng-class="{'focus': focus.petSeries}">
-                    <select id="add-pet-series-select" class="select" data-ng-model="form.petSeries">
-                        <option value="" hidden selected disabled>{{ 'inputPetSeriesPlaceholder' | translate }}</option>
-                        <option data-ng-repeat="petSeries in enumPetSeries" value="{{ petSeries }}">{{ petSeries }}</option>
-                    </select>
-                </div>
-            </form>
+            <div id="add-pet-series-wrap">
+                <h4 class="add-pet-title">{{ 'inputPetSeries' | translate }}</h4>
+                <form class="add-pet-form" autocomplete="off">
+                    <div class="add-pet-input-wrap select-wrap" data-ng-class="{'focus': focus.petSeries}">
+                        <select id="add-pet-series-select" class="select" data-ng-model="form.petSeries">
+                            <option value="" hidden selected disabled>{{ 'inputPetSeriesPlaceholder' | translate }}</option>
+                            <option data-ng-repeat="petSeries in enumPetSeries" value="{{ petSeries }}">{{ petSeries }}</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
         </div>
         <div class="add-pet-item" data-ng-if="canNext.petGender" active="goToInputPetGender()">
-            <h4 class="add-pet-title">{{ 'inputPetGender' | translate }}</h4>
-            <div id="add-pet-gender-button-wrap">
-                <button id="add-pet-gender-m-button"
-                        type="button"
-                        data-ng-class="{'selected': form.petGender == enumPetGenders[0]}"
-                        data-ng-click="selectPetGender(0)">{{ 'petGenderM' | translate }}</button>
-                <button id="add-pet-gender-f-button"
-                        type="button"
-                        data-ng-class="{'selected': form.petGender == enumPetGenders[1]}"
-                        data-ng-click="selectPetGender(1)">{{ 'petGenderF' | translate }}</button>
+            <div id="add-pet-gender-wrap">
+                <h4 class="add-pet-title">{{ 'inputPetGender' | translate }}</h4>
+                <div id="add-pet-gender-button-wrap">
+                    <button id="add-pet-gender-m-button"
+                            type="button"
+                            data-ng-class="{'selected': form.petGender == enumPetGenders[0]}"
+                            data-ng-click="selectPetGender(0)">{{ 'petGenderM' | translate }}</button>
+                    <button id="add-pet-gender-f-button"
+                            type="button"
+                            data-ng-class="{'selected': form.petGender == enumPetGenders[1]}"
+                            data-ng-click="selectPetGender(1)">{{ 'petGenderF' | translate }}</button>
+                </div>
             </div>
         </div>
         <div class="add-pet-item" data-ng-if="canNext.petBirthDate" active="goToInputPetBirthDate()">
-            <h4 class="add-pet-title">{{ 'inputPetBirthDate' | translate }}</h4>
-            <div id="add-pet-birth-date">
-                <div class="select-wrap" data-ng-class="{'focus': focus.petBirthDateYear}">
-                    <select id="add-pet-birth-date-year" class="select" data-ng-model="form.petBirthDateYear">
-                        <option value="" disabled hidden selected>{{ 'year' | translate }}</option>
-                        <option data-ng-repeat="year in enumPetBirthDateYears" value="{{ year }}">{{ year }}</option>
-                    </select>
-                </div>
-                <div class="select-wrap" data-ng-class="{'focus': focus.petBirthDateMonth}">
-                    <select id="add-pet-birth-date-month" class="select" data-ng-model="form.petBirthDateMonth">
-                        <option value="" disabled hidden selected>{{ 'month' | translate }}</option>
-                        <option data-ng-repeat="month in enumPetBirthDateMonths" value="{{ month }}">{{ month }}</option>
-                    </select>
-                </div>
-                <div class="select-wrap" data-ng-class="{'focus': focus.petBirthDateDay}">
-                    <select id="add-pet-birth-date-day" class="select" data-ng-model="form.petBirthDateDay">
-                        <option value="" disabled hidden selected>{{ 'day' | translate }}</option>
-                        <option data-ng-repeat="day in enumPetBirthDateDays" value="{{ day }}">{{ day }}</option>
-                    </select>
+            <div id="add-pet-birth-date-wrap">
+                <h4 class="add-pet-title">{{ 'inputPetBirthDate' | translate }}</h4>
+                <div id="add-pet-birth-date">
+                    <div class="select-wrap" data-ng-class="{'focus': focus.petBirthDateYear}">
+                        <select id="add-pet-birth-date-year" class="select" data-ng-model="form.petBirthDateYear">
+                            <option value="" disabled hidden selected>{{ 'year' | translate }}</option>
+                            <option data-ng-repeat="year in enumPetBirthDateYears" value="{{ year }}">{{ year }}</option>
+                        </select>
+                    </div>
+                    <div class="select-wrap" data-ng-class="{'focus': focus.petBirthDateMonth}">
+                        <select id="add-pet-birth-date-month" class="select" data-ng-model="form.petBirthDateMonth">
+                            <option value="" disabled hidden selected>{{ 'month' | translate }}</option>
+                            <option data-ng-repeat="month in enumPetBirthDateMonths" value="{{ month }}">{{ month }}</option>
+                        </select>
+                    </div>
+                    <div class="select-wrap" data-ng-class="{'focus': focus.petBirthDateDay}">
+                        <select id="add-pet-birth-date-day" class="select" data-ng-model="form.petBirthDateDay">
+                            <option value="" disabled hidden selected>{{ 'day' | translate }}</option>
+                            <option data-ng-repeat="day in enumPetBirthDateDays" value="{{ day }}">{{ day }}</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="add-pet-item" data-ng-if="canNext.petTreatments" active="goToInputPetTreatments()">
-            <h4 class="add-pet-title">{{ 'inputPetTreatments' | translate }}</h4>
-            <div id="add-pet-vaccination-wrap">
-                <button type="button"
-                        class="add-pet-vaccination"
-                        data-ng-class="{'selected': form.vaccinations['1']}"
-                        data-ng-if="canAddVaccination(0)"
-                        data-ng-click="addVaccination('1')">{{ 'vaccination1' | translate }}</button>
-                <button type="button"
-                        class="add-pet-vaccination"
-                        data-ng-class="{'selected': form.vaccinations['2']}"
-                        data-ng-if="canAddVaccination(1)"
-                        data-ng-click="addVaccination('2')">{{ 'vaccination2' | translate }}</button>
-                <button type="button"
-                        class="add-pet-vaccination"
-                        data-ng-class="{'selected': form.vaccinations['3']}"
-                        data-ng-if="canAddVaccination(2)"
-                        data-ng-click="addVaccination('3')">{{ 'vaccination3' | translate }}</button>
-                <button type="button"
-                        class="add-pet-vaccination"
-                        data-ng-class="{'selected': !form.vaccinations['1'] && !form.vaccinations['2'] && !form.vaccinations['3']}"
-                        data-ng-click="noVaccination()">{{ 'noVaccination' | translate }}</button>
+            <div id="add-pet-vaccinations-wrap">
+                <h4 class="add-pet-title">{{ 'inputPetTreatments' | translate }}</h4>
+                <div id="add-pet-vaccination-wrap">
+                    <button type="button"
+                            class="add-pet-vaccination"
+                            data-ng-class="{'selected': form.vaccinations['1']}"
+                            data-ng-if="canAddVaccination(0)"
+                            data-ng-click="addVaccination('1')">{{ 'vaccination1' | translate }}</button>
+                    <button type="button"
+                            class="add-pet-vaccination"
+                            data-ng-class="{'selected': form.vaccinations['2']}"
+                            data-ng-if="canAddVaccination(1)"
+                            data-ng-click="addVaccination('2')">{{ 'vaccination2' | translate }}</button>
+                    <button type="button"
+                            class="add-pet-vaccination"
+                            data-ng-class="{'selected': form.vaccinations['3']}"
+                            data-ng-if="canAddVaccination(2)"
+                            data-ng-click="addVaccination('3')">{{ 'vaccination3' | translate }}</button>
+                    <button type="button"
+                            class="add-pet-vaccination"
+                            data-ng-class="{'selected': !form.vaccinations['1'] && !form.vaccinations['2'] && !form.vaccinations['3']}"
+                            data-ng-click="noVaccination()">{{ 'noVaccination' | translate }}</button>
+                </div>
             </div>
             <button id="add-pet-button-complete" type="button" data-ng-click="addPet()">
                 {{ 'addPetButton' | translate }}
             </button>
         </div>
     </div>
-    <button type="button" id="add-pet-close-button" data-ng-click="modal.add = false"></button>
+    <button type="button" class="modal-close-button" data-ng-click="modal.add = false"></button>
 </section>
