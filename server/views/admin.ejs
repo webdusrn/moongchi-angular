@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1"/>
+    <link rel="icon" type="image/png" href="/pages/main/assets/images/favi-32.png" sizes="32x32"/>
+    <link rel="icon" type="image/png" href="/pages/main/assets/images/favi-16.png" sizes="16x16"/>
     <base href="/">
-    <title>MOONGCHI</title>
+    <title>MOONGCHI ADMIN</title>
     <script type="text/javascript">
         window.meta = <%- JSON.stringify(params.meta || {}) %>;
         window.session = <%- JSON.stringify(params.session|| {}) %>;
@@ -16,7 +18,7 @@
 <body data-ng-controller="AdminCtrl">
 <ng-include src="'modules/common/base/loading-handler/views/core.loading-handler.html'"></ng-include>
 <ng-include src="'modules/common/base/alert-dialog/views/core.alert-dialog.html'"></ng-include>
-<div id="sg-main-wrap" ui-view="contents"></div>
+<div id="sg-admin-wrap" ui-view="contents"></div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 <!-- inject:js -->

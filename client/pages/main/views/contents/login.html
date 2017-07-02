@@ -1,4 +1,7 @@
 <section id="login-wrap" data-ng-controller="LoginCtrl">
+    <div class="active-background" data-ng-class="{'background': active[0]}" data-ng-style="style[0]"></div>
+    <div class="active-background" data-ng-class="{'background': active[1]}" data-ng-style="style[1]"></div>
+    <div id="login-overlay"></div>
     <div id="login-icon"></div>
     <div id="login-window" data-ng-class="{'focus': focus.id || focus.pw || form.id || form.pw}">
         <h2>{{ 'login' | translate }}</h2>

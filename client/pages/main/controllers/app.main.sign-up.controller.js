@@ -1,6 +1,7 @@
-export default function SignUpCtrl ($scope, $rootScope, navigator, sessionManager, dialogHandler) {
+export default function SignUpCtrl ($scope, $rootScope, $filter, $interval, navigator, sessionManager, dialogHandler) {
     'ngInject';
     var vm = $scope.vm;
+    var backgroundIndex = 0;
     var passExp = new RegExp("^.*(?=.{" + 6 + "," + 12 +"})(?=.*[0-9])(?=.*[a-zA-Z]).*$");
     var emailExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 
@@ -11,6 +12,10 @@ export default function SignUpCtrl ($scope, $rootScope, navigator, sessionManage
     $scope.inputBlur = inputBlur;
     $scope.login = login;
 
+    $scope.active = [true, false];
+    $scope.style = [{}, {}];
+    $scope.backgrounds = [];
+
     $scope.form = {
         id: '',
         pw: ''
@@ -19,6 +24,18 @@ export default function SignUpCtrl ($scope, $rootScope, navigator, sessionManage
         id: false,
         pw: false
     };
+
+    if (vm.backgroundReady) {
+        $scope.backgrounds = vm.backgrounds.all.concat(vm.backgrounds.signUp);
+        background();
+    } else {
+        $scope.$watch('vm.backgroundReady', function (newVal, oldVal) {
+            if (newVal != oldVal) {
+                $scope.backgrounds = vm.backgrounds.all.concat(vm.backgrounds.signUp);
+                background();
+            }
+        }, true);
+    }
 
     function signUp () {
         if ($scope.form.id && $scope.form.pw) {
@@ -79,5 +96,39 @@ export default function SignUpCtrl ($scope, $rootScope, navigator, sessionManage
 
     function login () {
         navigator.goToLogin();
+    }
+
+    function background () {
+        if (vm.backgroundInstance.signUp) $interval.cancel(vm.backgroundInstance.signUp);
+        if ($scope.backgrounds.length) {
+            $scope.style[0] = {
+                "background-image": "url(" + $filter('imageUrl')($scope.backgrounds[backgroundIndex])
+            };
+        }
+        vm.backgroundInstance.signUp = $interval(function () {
+            if ($scope.backgrounds.length > 1) {
+
+                if (backgroundIndex < $scope.backgrounds.length - 1) {
+                    backgroundIndex++;
+                } else {
+                    backgroundIndex = 0;
+                }
+
+                if ($scope.active[0]) {
+                    $scope.style[1] = {
+                        "background-image": "url(" + $filter('imageUrl')($scope.backgrounds[backgroundIndex])
+                    };
+                    $scope.active[0] = false;
+                    $scope.active[1] = true;
+                } else {
+                    $scope.style[0] = {
+                        "background-image": "url(" + $filter('imageUrl')($scope.backgrounds[backgroundIndex])
+                    };
+                    $scope.active[0] = true;
+                    $scope.active[1] = false;
+                }
+
+            }
+        }, 5000);
     }
 }

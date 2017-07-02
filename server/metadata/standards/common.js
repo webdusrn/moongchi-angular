@@ -7,12 +7,27 @@ var standards = {
         "isResponsive": false
     },
     "file": {
-        "enumImageFolders": ["pet"],
-        "folderPet": "pet"
+        "enumImageFolders": ["pet", "background"],
+        "folderPet": "pet",
+        "folderBackground": "background"
     },
     "common": {
         "minLength": 1,
         "maxLength": 150
+    },
+    "background": {
+        "defaultOrderBy": "createdAt",
+        "defaultIsUse": true,
+        "enumTypes": ["login", "signUp", "pet", "meal", "treatment", "poo", "report", "all"],
+        "defaultType": "all",
+        "typeAll": "all",
+        "typeLogin": "login",
+        "typeSignUp": "signUp",
+        "typePet": "pet",
+        "typeMeal": "meal",
+        "typeTreatment": "treatment",
+        "typePoo": "poo",
+        "typeReport": "report"
     },
     "pet": {
         "enumCatSeries": [

@@ -1,4 +1,7 @@
 <section id="sign-up-wrap" data-ng-controller="SignUpCtrl">
+    <div class="active-background" data-ng-class="{'background': active[0]}" data-ng-style="style[0]"></div>
+    <div class="active-background" data-ng-class="{'background': active[1]}" data-ng-style="style[1]"></div>
+    <div id="sign-up-overlay"></div>
     <div id="sign-up-icon"></div>
     <div id="sign-up-window" data-ng-class="{'focus': focus.id || focus.pw || form.id || form.pw}">
         <h2>{{ 'signUp' | translate }}</h2>

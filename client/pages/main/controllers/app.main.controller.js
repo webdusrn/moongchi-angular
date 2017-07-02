@@ -1,4 +1,4 @@
-export default function MainCtrl($rootScope, $scope, $location, $filter, metaManager, sessionManager, statusHandler, loadingHandler, dialogHandler, navigator) {
+export default function MainCtrl($rootScope, $scope, $location, $filter, metaManager, sessionManager, statusHandler, loadingHandler, dialogHandler, navigator, backgroundsManager) {
     'ngInject';
 
     var vm = $scope.vm = {};
@@ -10,6 +10,7 @@ export default function MainCtrl($rootScope, $scope, $location, $filter, metaMan
     vm.session = sessionManager.session;
     vm.COMMON = STD.common;
     vm.USER = STD.user;
+    vm.BACKGROUND = STD.background;
     vm.PET = STD.pet;
     vm.TREATMENT = STD.treatment;
     vm.templatePath = STD.templatePath;
@@ -22,6 +23,28 @@ export default function MainCtrl($rootScope, $scope, $location, $filter, metaMan
 
     vm.currentNav = {};
     vm.isNavOpen = false;
+    vm.backgroundInstance = {
+        login: null,
+        signUp: null,
+        pet: null,
+        meal: null,
+        treatment: null,
+        poo: null,
+        report: null
+    };
+    vm.backgroundReady = false;
+    vm.backgrounds = {
+        all: [],
+        login: [],
+        signUp: [],
+        pet: [],
+        meal: [],
+        treatment: [],
+        poo: [],
+        report: []
+    };
+
+    init();
 
     function currentPage (page) {
         vm.currentNav = {};
@@ -43,6 +66,19 @@ export default function MainCtrl($rootScope, $scope, $location, $filter, metaMan
 
     function toggleClose () {
         vm.isNavOpen = false;
+    }
+
+    function init () {
+        backgroundsManager.findBackgrounds({
+            isUse: true
+        }, function (status, data) {
+            if (status == 200) {
+                data.rows.forEach(function (background) {
+                    vm.backgrounds[background.type].push(background.image);
+                });
+                vm.backgroundReady = true;
+            }
+        });
     }
 
     $scope.$on("core.session.callback", function (event, args) {

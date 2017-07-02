@@ -27,8 +27,10 @@ import autoFocus from './directives/auto-focus/app.main.auto-focus';
 
 import appResources from './services/app.main.constant';
 
+import Background from './services/app.main.background.model';
 import Pet from './services/app.main.pet.model';
 
+import backgroundsManager from './services/app.main.backgrounds.manager';
 import petsManager from './services/app.main.pets.manager';
 
 import navigator from './services/app.main.navigator';
@@ -63,7 +65,9 @@ angular.module(APP_NAME, ['app.main-core'])
     .directive("active", active)
     .directive("autoFocus", autoFocus)
     .constant("appResources", appResources)
+    .factory("Background", Background)
     .factory("Pet", Pet)
+    .service("backgroundsManager", backgroundsManager)
     .service("petsManager", petsManager)
     .service("navigator", navigator)
     .service("modalHandler", modalHandler)

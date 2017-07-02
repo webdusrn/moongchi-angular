@@ -11,7 +11,18 @@ $g-color-login-input-border-focus: #d2b76d;
   width: 100%;
   height: 100%;
   z-index: 100;
+  @include background();
   background-color: $g-color-login-background;
+}
+
+#login-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, .14);
 }
 
 #login-icon {
@@ -24,7 +35,7 @@ $g-color-login-input-border-focus: #d2b76d;
   border-radius: 50%;
   width: 140px;
   height: 140px;
-  z-index: 1;
+  z-index: 4;
   @include background();
   background-color: black;
 }
@@ -41,6 +52,7 @@ $g-color-login-input-border-focus: #d2b76d;
   height: 440px;
   background-color: $g-color-login-window-background;
   box-shadow: 0 2px 4px 0 #4a3600;
+  z-index: 3;
   &.focus {
     background-color: white;
   }
