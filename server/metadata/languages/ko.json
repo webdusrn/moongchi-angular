@@ -30,5 +30,10 @@
   "noVaccination": "접종안함",
   "addPetButton": "등록완료",
   "wrongSignUpId": "잘못된 이메일 형식입니다.",
-  "wrongSignUpPw": "비밀번호는 6~12자이며 문자와 숫자는 필수입니다."
+  "wrongSignUpPw": "비밀번호는 6~12자이며 문자와 숫자는 필수입니다.",
+  "userReportManage": "문의하기",
+  "petManage": "고양이관리",
+  "pooManage": "배변관리",
+  "mealManage": "사료관리",
+  "treatmentManage": "진료관리"
 }

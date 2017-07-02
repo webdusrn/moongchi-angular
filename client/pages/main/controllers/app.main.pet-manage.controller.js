@@ -2,7 +2,7 @@ export default function PetManageCtrl ($scope, petsManager, dialogHandler) {
     'ngInject';
     var vm = $scope.vm;
 
-    vm.currentPage('pet-manage');
+    vm.currentPage('petManage');
 
     $scope.openModal = openModal;
     $scope.addPetSuccess = addPetSuccess;

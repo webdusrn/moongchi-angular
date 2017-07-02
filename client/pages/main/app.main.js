@@ -19,7 +19,7 @@ import DetailPetCtrl from './controllers/app.main.detail-pet.controller';
 import TreatmentManageCtrl from './controllers/app.main.treatment-manage.controller';
 import MealManageCtrl from './controllers/app.main.meal-manage.controller';
 import ChargeManageCtrl from './controllers/app.main.charge-manage.controller';
-import PooManageCtrl from './controllers/app.main.pet-manage.controller';
+import PooManageCtrl from './controllers/app.main.poo-manage.controller';
 import ReportManageCtrl from './controllers/app.main.report-manage.controller';
 
 import active from './directives/active/app.main.active';
