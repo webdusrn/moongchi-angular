@@ -10,6 +10,7 @@ export default function MainCtrl($rootScope, $scope, $location, $filter, metaMan
     vm.session = sessionManager.session;
     vm.COMMON = STD.common;
     vm.USER = STD.user;
+    vm.PET = STD.pet;
     vm.TREATMENT = STD.treatment;
     vm.templatePath = STD.templatePath;
     vm.defaultLoadingLength = vm.COMMON.defaultLoadingLength;

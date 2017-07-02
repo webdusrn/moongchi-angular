@@ -108,7 +108,8 @@ var standards = {
     "charge": {
         "enumOrderBys": ["createdAt"],
         "defaultOrderBy": "createdAt",
-        "enumSearchFields": ["chargeTitle"]
+        "enumSearchFields": ["chargeTitle"],
+        "defaultCharge": 0
     }
 };
 

@@ -37,6 +37,11 @@ module.exports = {
             'type': Sequelize.DATE,
             'allowNull': false
         },
+        'charge': {
+            'type': Sequelize.INTEGER,
+            'defaultValue': STD.charge.defaultCharge,
+            'allowNull': false
+        },
         'createdAt': {
             'type': Sequelize.BIGINT,
             'allowNull': true
@@ -60,6 +65,9 @@ module.exports = {
         }, {
             name: 'chargeContent',
             fields: ['chargeContent']
+        }, {
+            name: 'charge',
+            fields: ['charge']
         }, {
             name: 'createdAt',
             fields: ['createdAt']

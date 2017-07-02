@@ -8,6 +8,7 @@ post.validate = function () {
         req.check("chargeTitle", "400_8").len(COMMON.minLength, COMMON.maxLength);
         if (req.body.chargeContent !== undefined) req.check("chargeContent", "400_8").len(COMMON.minLength, COMMON.maxLength);
         req.check("chargeDate", "400_18").isDate();
+        req.check("charge", "400_5").isInt();
         req.utils.common.checkError(req, res, next);
     };
 };

@@ -109,17 +109,20 @@ var api = {
                 acceptable: [
                     "chargeTitle",
                     "chargeContent",
-                    "chargeDate"
+                    "chargeDate",
+                    "charge"
                 ],
                 essential: [
                     "chargeTitle",
-                    "chargeDate"
+                    "chargeDate",
+                    "charge"
                 ],
                 resettable: [],
                 explains : {
                     "chargeTitle": "비용명",
                     "chargeContent": "비용내용",
-                    "chargeDate": "날짜"
+                    "chargeDate": "날짜",
+                    "charge": "비용"
                 },
                 title: '생성',
                 state: 'design'
@@ -153,7 +156,8 @@ var api = {
                 acceptable: [
                     "chargeTitle",
                     "chargeContent",
-                    "chargeDate"
+                    "chargeDate",
+                    "charge"
                 ],
                 essential: [],
                 resettable: [
@@ -162,7 +166,8 @@ var api = {
                 explains : {
                     "chargeTitle": "비용명",
                     "chargeContent": "비용내용",
-                    "chargeDate": "날짜"
+                    "chargeDate": "날짜",
+                    "charge": "비용"
                 },
                 title: '수정',
                 param: 'id',

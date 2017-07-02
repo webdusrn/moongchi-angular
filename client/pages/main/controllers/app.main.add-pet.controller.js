@@ -44,8 +44,8 @@ export default function AddPetCtrl ($scope, $timeout, metaManager, petsManager, 
         petTreatments: false
     };
 
-    $scope.enumPetSeries = metaManager.std.pet.enumCatSeries;
-    $scope.enumPetGenders = metaManager.std.pet.enumPetGenders;
+    $scope.enumPetSeries = vm.PET.enumCatSeries;
+    $scope.enumPetGenders = vm.PET.enumPetGenders;
 
     $scope.enumPetBirthDateYears = [];
     for (var i=0; i<20; i++) {

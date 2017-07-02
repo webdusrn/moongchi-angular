@@ -87,17 +87,13 @@ module.exports = {
                         as: "pet"
                     }]
                 }, {
-                    model: sequelize.models.AppMealCharge,
-                    as: "mealCharges",
-                    include: [{
-                        model: sequelize.models.AppCharge,
-                        as: "charge"
-                    }]
+                    model: sequelize.models.AppCharge,
+                    as: "charge"
                 }];
             },
             'createMeal': function (body, charge, callback) {
                 var createdData = null;
-                var include = req.models.AppMeal.getIncludeMeal();
+                var include = sequelize.models.AppMeal.getIncludeMeal();
 
                 function createMeal (t) {
                     return sequelize.models.AppMeal.create(body, {
@@ -114,9 +110,7 @@ module.exports = {
                         return sequelize.models.AppCharge.create(charge, {
                             transaction: t
                         }).then(function (data) {
-                            body.mealCharges = [{
-                                chargeId: data.id
-                            }];
+                            body.chargeId = data.id;
                             return createMeal(t);
                         })
                     } else {
@@ -132,7 +126,7 @@ module.exports = {
                     }
                 });
             },
-            'updateMealById': function (reqId, body, reqUser, callback) {
+            'updateMealById': function (reqId, body, reqUser, charge, petIds, callback) {
                 function updateMeal (t) {
                     return sequelize.models.AppMeal.update(body, {
                         where: {
@@ -150,6 +144,60 @@ module.exports = {
                     });
                 }
 
+                function updateBridges (t) {
+                    if (petIds !== undefined) {
+                        return sequelize.models.AppPetMeal.destroy({
+                            where: {
+                                petId: reqId
+                            },
+                            transaction: t
+                        }).then(function () {
+                            if (petIds) {
+                                return sequelize.models.AppPetMeal.bulkCreate(petIds, {
+                                    individualHooks: true,
+                                    transaction: t
+                                }).then(function () {
+                                    return updateMeal(t);
+                                });
+                            } else {
+                                return updateMeal(t);
+                            }
+                        });
+                    } else {
+                        return updateMeal(t);
+                    }
+                }
+
+                function upsertCharge (t, meal) {
+                    if (charge) {
+                        if (meal.chargeId) {
+                            return sequelize.models.AppCharge.update(charge, {
+                                where: {
+                                    id: meal.chargeId
+                                },
+                                transaction: t
+                            }).then(function (data) {
+                                if (data[0]) {
+                                    return updateBridges(t);
+                                } else {
+                                    throw new errorHandler.CustomSequelizeError(404, {
+                                        code: ''
+                                    });
+                                }
+                            });
+                        } else {
+                            return sequelize.models.AppCharge.create(charge, {
+                                transaction: t
+                            }).then(function (data) {
+                                meal.chargeId = data.id;
+                                return updateBridges(t);
+                            });
+                        }
+                    } else {
+                        updateBridges(t);
+                    }
+                }
+
                 function findMeal (t) {
                     return sequelize.models.AppMeal.findOne({
                         where: {
@@ -159,7 +207,7 @@ module.exports = {
                         transaction: t
                     }).then(function (data) {
                         if (data) {
-                            return updateMeal(t);
+                            return upsertCharge(t, data);
                         } else {
                             throw new errorHandler.CustomSequelizeError(404, {
                                 code: ""

@@ -10,6 +10,7 @@ put.validate = function () {
         if (req.body.chargeTitle !== undefined) req.check("chargeTitle", "400_8").len(COMMON.minLength, COMMON.maxLength);
         if (req.body.chargeContent !== undefined && req.body.chargeContent !== MAGIC.reset) req.check("chargeContent", "400_8").len(COMMON.minLength, COMMON.maxLength);
         if (req.body.chargeDate !== undefined) req.check("chargeDate", "400_18").isDate();
+        if (req.body.charge !== undefined) req.check("charge", "400_5").isInt();
         if (!Object.keys(req.body).length) {
             return res.hjson(req, next, 204);
         }

@@ -155,12 +155,18 @@ var api = {
                 acceptable: [
                     'mealName',
                     'mealStartDate',
+                    'petIds',
+                    'chargeObject'
                 ],
                 essential: [],
-                resettable: [],
+                resettable: [
+                    'petIds'
+                ],
                 explains : {
                     'mealName': '사료 이름',
                     'mealStartDate': '사료 먹이기 시작한 날짜',
+                    'petIds': '펫 ID (,)로 구분',
+                    'chargeObject': '비용 객체'
                 },
                 title: '수정',
                 param: 'id',
