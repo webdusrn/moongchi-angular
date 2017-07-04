@@ -2,6 +2,7 @@ export default function DetailPetCtrl ($scope, petsManager, dialogHandler) {
     "ngInject";
 
     var vm = $scope.vm;
+    var imageExp = new RegExp('image', 'i');
     var now = new Date();
     var nowTime = new Date(now.getFullYear() + '-' + attachZero(now.getMonth() + 1) + '-' + now.getDate()).getTime();
     var nowYear = now.getFullYear();
@@ -11,6 +12,7 @@ export default function DetailPetCtrl ($scope, petsManager, dialogHandler) {
     $scope.inputFocus = inputFocus;
     $scope.inputBlur = inputBlur;
     $scope.updatePet = updatePet;
+    $scope.clearImage = clearImage;
 
     $scope.focus = {};
     $scope.form = {};
@@ -18,6 +20,24 @@ export default function DetailPetCtrl ($scope, petsManager, dialogHandler) {
     $scope.pet = angular.copy($scope.modal.detail.pet);
     $scope.enumPetSeries = vm.PET.enumCatSeries.slice();
     $scope.enumPetGenders = vm.PET.enumPetGenders.slice();
+    $scope.imageUploader = new vm.FileUploader({
+        queueLimit: 1
+    });
+
+    $scope.imageUploader.onAfterAddingAll = function (items) {
+        var files = [];
+        for (var i=0; i<items.length; i++) {
+            if (imageExp.test(items[i]._file.type)) {
+                files.push(items[i]._file);
+            } else {
+                $scope.imageUploader.clearQueue();
+                return dialogHandler.show(false, vm.translate("wrongImageFile"), false, true);
+            }
+        }
+        if (files.length > 0) {
+            petsManager.uploadImages(files, vm.FILE.folderPet, progressCallback, successCallback);
+        }
+    };
 
     $scope.enumPetBirthDateYears = [];
     for (var i=0; i<20; i++) {
@@ -125,6 +145,24 @@ export default function DetailPetCtrl ($scope, petsManager, dialogHandler) {
                 dialogHandler.alertError(status, data);
             }
         });
+    }
+
+    function progressCallback (progressing) {
+        console.log("progressing", progressing);
+    }
+
+    function successCallback (status, data) {
+        if (status == 201) {
+            console.log(data);
+            $scope.form.imageId = data.images[0].id;
+            $scope.form.image = data.images[0];
+        } else {
+            dialogHandler.alertError(status, data);
+        }
+    }
+
+    function clearImage () {
+        $scope.form.imageId = null;
     }
 
     function inputFocus (key) {

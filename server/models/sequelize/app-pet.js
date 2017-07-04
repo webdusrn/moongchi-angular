@@ -101,6 +101,9 @@ module.exports = {
         'classMethods': Sequelize.Utils._.extend(mixin.options.classMethods, {
             'getIncludePet': function () {
                 return [{
+                    model: sequelize.models.Image,
+                    as: "image"
+                }, {
                     model: sequelize.models.AppPetImage,
                     as: "petImages",
                     include: sequelize.models.AppPetImage.getIncludePetImage()
@@ -280,7 +283,7 @@ module.exports = {
                     where: countWhere
                 };
 
-                query.include[1].where = {
+                query.include[2].where = {
                     treatmentType: [STD.treatment.treatmentTypeVaccination, STD.treatment.treatmentTypeNoVaccination]
                 };
 

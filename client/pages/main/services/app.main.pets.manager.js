@@ -1,12 +1,23 @@
-export default function petsManager (Pet, metaManager, dialogHandler, statusHandler) {
+export default function petsManager (appResources, Pet, metaManager, fileUploader, dialogHandler, statusHandler) {
     'ngInject';
 
     var MAGIC = metaManager.std.magic;
 
+    this.uploadImages = uploadImages;
     this.findPets = findPets;
     this.findPetById = findPetById;
     this.createPet = createPet;
     this.updatePetById = updatePetById;
+
+    function uploadImages (files, folder, processCallback, callback) {
+        fileUploader.upload('file', {
+            folder: folder
+        }, files, appResources.IMAGES, processCallback).then(function (data) {
+            callback(201, data.data);
+        }).catch(function (data) {
+            statusHandler.active(data, callback);
+        });
+    }
 
     function findPetById (petId, callback) {
         Pet.get({

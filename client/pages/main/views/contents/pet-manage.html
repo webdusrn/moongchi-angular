@@ -7,7 +7,10 @@
     <ul id="pet-manage-list">
         <li data-ng-repeat="pet in pets.rows" data-ng-click="openModal('detail', $index)">
             <div class="pet-image-wrap">
-                <img data-ng-if="pet.image" data-ng-src="{{ pet.image | imageUrl: 'l' }}">
+                <div class="pet-image"
+                     data-ng-if="pet.image"
+                     data-ng-style="{'background-image': 'url(' + (pet.image | imageUrl) + ')'}"></div>
+                <!--<img data-ng-if="pet.image" data-ng-src="{{ pet.image | imageUrl: 'l' }}">-->
             </div>
             <div class="pet-info-wrap">
                 <h4>{{ pet.petName }} <span data-ng-if="pet.petGender">({{ pet.petGender | translate }})</span></h4>

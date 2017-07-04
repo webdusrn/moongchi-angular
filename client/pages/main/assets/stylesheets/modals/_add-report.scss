@@ -31,9 +31,9 @@
   position: absolute;
   top: 50%;
   left: 130px;
-  margin-top: -230px;
+  margin-top: -212.5px;
   width: 300px;
-  height: 460px;
+  height: 425px;
   .add-report-label {
     position: relative;
     display: block;
@@ -61,7 +61,7 @@
       height: 100%;
       font-size: 18px;
       &[disabled] {
-        cursor: not-allowed;
+        cursor: default;
       }
     }
   }
@@ -80,6 +80,22 @@
       height: 100%;
       font-size: 18px;
       resize: none;
+    }
+  }
+  button.add-report-button {
+    position: relative;
+    margin-top: 40px;
+    margin-left: 160px;
+    border-radius: 3px;
+    width: 140px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 18px;
+    color: white;
+    background-color: #926c2d;
+    cursor: pointer;
+    &:hover {
+      background-color: #78551c;
     }
   }
 }

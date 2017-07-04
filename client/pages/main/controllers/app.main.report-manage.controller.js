@@ -7,6 +7,7 @@ export default function ReportManageCtrl ($scope, reportsManager, dialogHandler)
     $scope.openModal = openModal;
     $scope.closeModal = closeModal;
     $scope.addReportSuccess = addReportSuccess;
+    $scope.updateReportSuccess = updateReportSuccess;
 
     $scope.ready = false;
     $scope.more = false;
@@ -57,7 +58,10 @@ export default function ReportManageCtrl ($scope, reportsManager, dialogHandler)
 
     function openModal (key, index) {
         if (index !== undefined) {
-            $scope.modal[key] = $scope.reports.rows[index];
+            $scope.modal[key] = {
+                report: $scope.reports.rows[index],
+                index: index
+            };
         } else {
             $scope.modal[key] = true;
         }
@@ -67,9 +71,14 @@ export default function ReportManageCtrl ($scope, reportsManager, dialogHandler)
         $scope.modal[key] = false;
     }
 
-    function addReportSuccess (pet) {
+    function addReportSuccess (report) {
         $scope.reports.count++;
-        $scope.reports.rows.unshift(pet);
+        $scope.reports.rows.unshift(report);
         closeModal('add');
+    }
+
+    function updateReportSuccess (report, index) {
+        $scope.reports.rows[index] = report;
+        closeModal('report');
     }
 }

@@ -99,11 +99,12 @@
       width: 120px;
       height: 120px;
       overflow: hidden;
-      img {
+      div.pet-image {
         position: relative;
+        border-radius: 50%;
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        @include background();
       }
     }
     div.pet-info-wrap {

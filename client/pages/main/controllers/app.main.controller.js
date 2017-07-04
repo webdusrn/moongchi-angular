@@ -1,4 +1,4 @@
-export default function MainCtrl($rootScope, $scope, $location, $filter, metaManager, sessionManager, statusHandler, loadingHandler, dialogHandler, navigator, backgroundsManager) {
+export default function MainCtrl($rootScope, $scope, $location, $filter, metaManager, FileUploader, sessionManager, statusHandler, loadingHandler, dialogHandler, navigator, backgroundsManager) {
     'ngInject';
 
     var vm = $scope.vm = {};
@@ -8,6 +8,7 @@ export default function MainCtrl($rootScope, $scope, $location, $filter, metaMan
     dialogHandler.init(vm);
     vm.translate = $filter('translate');
     vm.session = sessionManager.session;
+    vm.FILE = STD.file;
     vm.COMMON = STD.common;
     vm.USER = STD.user;
     vm.BACKGROUND = STD.background;
@@ -16,6 +17,10 @@ export default function MainCtrl($rootScope, $scope, $location, $filter, metaMan
     vm.REPORT = STD.report;
     vm.templatePath = STD.templatePath;
     vm.defaultLoadingLength = vm.COMMON.defaultLoadingLength;
+    FileUploader.FileSelect.prototype.isEmptyAfterSelection = function () {
+        return true;
+    };
+    vm.FileUploader = FileUploader;
 
     vm.currentPage = currentPage;
     vm.isLoggedIn = isLoggedIn;

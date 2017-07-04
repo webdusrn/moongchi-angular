@@ -22,6 +22,7 @@ import ChargeManageCtrl from './controllers/app.main.charge-manage.controller';
 import PooManageCtrl from './controllers/app.main.poo-manage.controller';
 import ReportManageCtrl from './controllers/app.main.report-manage.controller';
 import AddReportCtrl from './controllers/app.main.add-report.controller';
+import DetailReportCtrl from './controllers/app.main.detail-report.controller';
 
 import active from './directives/active/app.main.active';
 import autoFocus from './directives/auto-focus/app.main.auto-focus';
@@ -66,6 +67,7 @@ angular.module(APP_NAME, ['app.main-core'])
     .controller("PooManageCtrl", PooManageCtrl)
     .controller("ReportManageCtrl", ReportManageCtrl)
     .controller("AddReportCtrl", AddReportCtrl)
+    .controller("DetailReportCtrl", DetailReportCtrl)
     .directive("active", active)
     .directive("autoFocus", autoFocus)
     .constant("appResources", appResources)

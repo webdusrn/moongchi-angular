@@ -1,7 +1,14 @@
 <section id="report-manage-wrap" data-ng-controller="ReportManageCtrl">
     <div class="manage-title-wrap">
         <h2>{{ 'reportManageTitle' | translate }}</h2>
+        <button type="button" id="add-report-button" data-ng-if="ready && reports.count" data-ng-click="openModal('add')">{{ 'doAddReport' | translate }}</button>
     </div>
     <button type="button" id="add-report-button-card" data-ng-if="ready && !reports.count" data-ng-click="openModal('add')">{{ 'doAddReport' | translate }}</button>
+    <ul id="report-manage-list">
+        <li data-ng-repeat="report in reports.rows" data-ng-click="openModal('detail', $index)">
+
+        </li>
+    </ul>
     <ng-include src="'/pages/main/views/modals/add-report.html'"></ng-include>
+    <ng-include src="'/pages/main/views/modals/detail-report.html'"></ng-include>
 </section>
