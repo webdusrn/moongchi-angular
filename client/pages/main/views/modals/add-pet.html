@@ -1,7 +1,7 @@
 <section id="add-pet-wrap" data-ng-if="modal.add" data-ng-controller="AddPetCtrl">
-    <div id="add-pet-window">
-        <button id="add-pet-back-button" type="button" data-ng-click="goToBack()"></button>
-        <button id="add-pet-next-button" type="button" data-ng-click="goToNext()"></button>
+    <button id="add-pet-back-button" type="button" data-ng-click="goToBack()"></button>
+    <button id="add-pet-next-button" type="button" data-ng-click="goToNext()"></button>
+    <div id="add-pet-window" class="modal-animation">
         <div class="add-pet-item">
             <div id="add-pet-name-wrap">
                 <h4 class="add-pet-title">{{ 'inputPetName' | translate }}</h4>

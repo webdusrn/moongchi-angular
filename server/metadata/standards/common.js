@@ -96,11 +96,15 @@ var standards = {
         "defaultOrderBy": "createdAt"
     },
     "poo": {
-        "enumOrderBys": ["createdAt"],
-        "defaultOrderBy": "createdAt",
+        "enumOrderBys": ["createdAt", "pooDate"],
+        "defaultOrderBy": "pooDate",
+        "orderByPooDate": "pooDate",
+        "orderByCreatedAt": "createdAt",
         "enumPooTypes": ["pooNormal", "pooSticky", "pooDiarrhea"],
         "defaultPooType": "pooNormal",
-        "enumPooColors": ["pooColor1", "pooColor2", "pooColor3"]
+        "enumPooColors": ["pooColor1", "pooColor2", "pooColor3", "pooColor4", "pooColor5", "pooColor6", "pooColor7", "pooColor8",
+            "pooColor9", "pooColor10", "pooColor11", "pooColor12", "pooColor13", "pooColor14", "pooColor15", "pooColor16",
+            "pooColor17", "pooColor18", "pooColor19", "pooColor20", "pooColor21", "pooColor22", "pooColor23", "pooColor24"]
     },
     "treatment": {
         "enumSearchFields": ["treatmentTitle", "hospitalName"],

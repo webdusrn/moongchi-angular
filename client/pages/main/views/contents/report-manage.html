@@ -6,7 +6,7 @@
     <button type="button" id="add-report-button-card" data-ng-if="ready && !reports.count" data-ng-click="openModal('add')">{{ 'doAddReport' | translate }}</button>
     <ul id="report-manage-list">
         <li data-ng-repeat="report in reports.rows" data-ng-click="openModal('detail', $index)">
-
+            <p>{{ report.body }}</p>
         </li>
     </ul>
     <ng-include src="'/pages/main/views/modals/add-report.html'"></ng-include>

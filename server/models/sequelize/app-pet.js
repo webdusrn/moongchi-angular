@@ -364,6 +364,94 @@ module.exports = {
                         });
                     }
                 });
+            },
+            'findPetPoosByOptions': function (options, callback) {
+                var count = 0;
+                var loadedData = null;
+                var where = {};
+                var countWhere = {};
+                var query = {
+                    where: where,
+                    order: [[options.order, options.sort]],
+                    limit: parseInt(options.size),
+                    include: [{
+                        model: sequelize.models.AppPoo,
+                        as: "poos",
+                        order: [[STD.poo.orderByPooDate, STD.common.DESC]],
+                        limit: STD.common.defaultLoadingLength
+                    }]
+                };
+                var countQuery = {
+                    where: countWhere
+                };
+
+                if (options.searchItem && options.searchField) {
+
+                } else if (options.searchItem) {
+
+                }
+
+                if (options.last !== undefined) {
+                    if (options.sort == STD.common.DESC) {
+                        where[options.orderBy] = {
+                            "$lt": options.last
+                        };
+                    } else {
+                        where[options.orderBy] = {
+                            "$gt": options.last
+                        };
+                    }
+                }
+
+                if (options.offset !== undefined) {
+                    query.offset = parseInt(options.offset);
+                }
+
+                if (options.userId !== undefined) {
+                    countQuery.include = [{
+                        model: sequelize.models.AppUserPet,
+                        as: "userPets",
+                        where: {
+                            userId: options.userId
+                        },
+                        required: true
+                    }];
+                    query.include.push({
+                        model: sequelize.models.AppUserPet,
+                        as: "userPets",
+                        where: {
+                            userId: options.userId
+                        },
+                        required: true
+                    });
+                }
+
+                sequelize.models.AppPet.count(countQuery).then(function (data) {
+                    if (data > 0) {
+                        count = data;
+                        return sequelize.models.AppPet.findAll(query);
+                    } else {
+                        throw new errorHandler.CustomSequelizeError(404, {
+                            code: ""
+                        });
+                    }
+                }).then(function (data) {
+                    if (data && data.length) {
+                        loadedData = data;
+                        return true;
+                    } else {
+                        throw new errorHandler.CustomSequelizeError(404, {
+                            code: ""
+                        });
+                    }
+                }).catch(errorHandler.catchCallback(callback)).done(function (isSuccess) {
+                    if (isSuccess) {
+                        callback(200, {
+                            count: count,
+                            rows: loadedData
+                        });
+                    }
+                });
             }
         })
     }

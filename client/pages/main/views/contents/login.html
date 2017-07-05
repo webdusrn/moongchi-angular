@@ -5,7 +5,7 @@
     <div id="login-icon"></div>
     <div id="login-window" data-ng-class="{'focus': focus.id || focus.pw || form.id || form.pw}">
         <h2>{{ 'login' | translate }}</h2>
-        <form data-ng-submit="login()" autocomplete="off">
+        <form data-ng-submit="login()">
             <div class="login-input-wrap" data-ng-class="{'focus': focus.id}">
                 <input type="text"
                        id="login-input-id"

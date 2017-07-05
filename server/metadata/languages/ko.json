@@ -48,5 +48,6 @@
   "wrongReportBody": "문의 내용을 입력해주세요.",
   "addReportEmail": "답변 받을 이메일",
   "addReportBody": "문의 내용",
-  "wrongImageFile": "이미지 파일이 아닙니다."
+  "wrongImageFile": "이미지 파일이 아닙니다.",
+  "pooManageTitle": "오늘 치토스는 어떠냥?"
 }
