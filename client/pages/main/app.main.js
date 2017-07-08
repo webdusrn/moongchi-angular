@@ -27,15 +27,18 @@ import DetailReportCtrl from './controllers/app.main.detail-report.controller';
 import active from './directives/active/app.main.active';
 import autoFocus from './directives/auto-focus/app.main.auto-focus';
 import defaultImage from './directives/default-image/app.main.default-image';
+import loading from './directives/loading/app.main.loading';
 
 import appResources from './services/app.main.constant';
 
 import Background from './services/app.main.background.model';
 import Pet from './services/app.main.pet.model';
+import PetPoo from './services/app.main.pet-poo.model';
 import Report from './services/app.main.report.model';
 
 import backgroundsManager from './services/app.main.backgrounds.manager';
 import petsManager from './services/app.main.pets.manager';
+import poosManager from './services/app.main.poos.manager';
 import reportsManager from './services/app.main.reports.manager';
 
 import navigator from './services/app.main.navigator';
@@ -72,12 +75,15 @@ angular.module(APP_NAME, ['app.main-core'])
     .directive("active", active)
     .directive("autoFocus", autoFocus)
     .directive("defaultImage", defaultImage)
+    .directive("loading", loading)
     .constant("appResources", appResources)
     .factory("Background", Background)
     .factory("Pet", Pet)
+    .factory("PetPoo", PetPoo)
     .factory("Report", Report)
     .service("backgroundsManager", backgroundsManager)
     .service("petsManager", petsManager)
+    .service("poosManager", poosManager)
     .service("reportsManager", reportsManager)
     .service("navigator", navigator)
     .service("modalHandler", modalHandler)

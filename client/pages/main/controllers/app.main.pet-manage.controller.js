@@ -4,10 +4,12 @@ export default function PetManageCtrl ($scope, petsManager, dialogHandler) {
 
     vm.currentPage('petManage');
 
+    $scope.findPets = findPets;
     $scope.openModal = openModal;
     $scope.closeModal = closeModal;
     $scope.addPetSuccess = addPetSuccess;
     $scope.updatePetSuccess = updatePetSuccess;
+    $scope.deletePetSuccess = deletePetSuccess;
 
     $scope.ready = false;
     $scope.more = false;
@@ -33,7 +35,7 @@ export default function PetManageCtrl ($scope, petsManager, dialogHandler) {
             };
         } else {
             var rows = $scope.pets.rows;
-            last = rows[rows.length - 1].createdAt
+            last = rows[rows.length - 1].createdAt;
         }
         var query = {
             size: vm.defaultLoadingLength
@@ -79,6 +81,12 @@ export default function PetManageCtrl ($scope, petsManager, dialogHandler) {
 
     function updatePetSuccess (pet, index) {
         $scope.pets.rows[index] = pet;
+        closeModal('detail');
+    }
+
+    function deletePetSuccess (index) {
+        $scope.pets.count--;
+        $scope.pets.rows.splice(index, 1);
         closeModal('detail');
     }
 }

@@ -8,6 +8,7 @@ export default function petsManager (appResources, Pet, metaManager, fileUploade
     this.findPetById = findPetById;
     this.createPet = createPet;
     this.updatePetById = updatePetById;
+    this.deletePet = deletePet;
 
     function uploadImages (files, folder, processCallback, callback) {
         fileUploader.upload('file', {
@@ -94,5 +95,14 @@ export default function petsManager (appResources, Pet, metaManager, fileUploade
                 statusHandler.active(data, callback);
             });
         })
+    }
+
+    function deletePet (data, callback) {
+        var pet = new Pet(data);
+        pet.$remove(function (data) {
+            callback(204);
+        }, function (data) {
+            statusHandler.active(data, callback);
+        });
     }
 }

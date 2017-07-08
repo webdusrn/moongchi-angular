@@ -32,7 +32,8 @@ var standards = {
     "pet": {
         "enumDefaultImages": [
             'default-image-1.png',
-            'default-image-2.png'
+            'default-image-2.png',
+            'default-image-3.png'
         ],
         "enumCatSeries": [
             "네바마스커레이드",

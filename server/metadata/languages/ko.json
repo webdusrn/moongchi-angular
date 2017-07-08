@@ -42,12 +42,18 @@
   "detailPetSeries": "묘종",
   "detailPetGender": "성별",
   "detailPetBirthDate": "생일",
+  "doCancel": "취소하기",
   "edit": "수정",
+  "store": "저장",
+  "doStore": "저장하기",
   "wrongPetBirthDate": "생일을 입력해주세요.",
   "wrongPetName": "이름을 입력해주세요.",
   "wrongReportBody": "문의 내용을 입력해주세요.",
   "addReportEmail": "답변 받을 이메일",
   "addReportBody": "문의 내용",
   "wrongImageFile": "이미지 파일이 아닙니다.",
-  "pooManageTitle": "오늘 치토스는 어떠냥?"
+  "pooManageTitle": "오늘 치토스는 어떠냥?",
+  "sureDeletePet": "정말 지울거냥?",
+  "delete": "삭제",
+  "doDelete": "지우기"
 }

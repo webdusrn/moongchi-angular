@@ -1,4 +1,4 @@
-export default function IndexCtrl ($scope) {
+export default function IndexCtrl ($scope, $timeout) {
     "ngInject";
     var vm = $scope.vm;
 

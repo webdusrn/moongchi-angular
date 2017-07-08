@@ -12,6 +12,7 @@ export default function DetailPetCtrl ($scope, $element, petsManager, dialogHand
     $scope.inputFocus = inputFocus;
     $scope.inputBlur = inputBlur;
     $scope.updatePet = updatePet;
+    $scope.deletePet = deletePet;
     $scope.clearImage = clearImage;
 
     $scope.focus = {};
@@ -160,6 +161,18 @@ export default function DetailPetCtrl ($scope, $element, petsManager, dialogHand
         }
     }
 
+    function deletePet () {
+        dialogHandler.show(false, vm.translate('sureDeletePet'), vm.translate('doDelete'), vm.translate('doCancel'), function () {
+            petsManager.deletePet($scope.pet, function (status, data) {
+                if (status == 204) {
+                    $scope.deletePetSuccess($scope.modal.detail.index);
+                } else {
+                    dialogHandler.alertError(status, data);
+                }
+            });
+        });
+    }
+
     function clearImage () {
         $scope.form.image = null;
         $scope.form.imageId = null;
@@ -181,8 +194,6 @@ export default function DetailPetCtrl ($scope, $element, petsManager, dialogHand
     focusObject($element);
     $element.bind('keydown', function (e) {
         var keyCode = (e.keyCode ? e.keyCode : e.which);
-
-        console.log(keyCode);
 
         switch (keyCode) {
             case 27:

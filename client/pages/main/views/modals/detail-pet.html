@@ -70,9 +70,14 @@
                             </select>
                         </div>
                     </div>
-                    <button type="submit" id="detail-pet-update-button">
-                        {{ 'edit' | translate }}
-                    </button>
+                    <div id="detail-pet-button-wrap">
+                        <button type="button" id="detail-pet-delete-button" data-ng-click="deletePet()">
+                            {{ 'doDelete' | translate }}
+                        </button>
+                        <button type="submit" id="detail-pet-update-button">
+                            {{ 'doStore' | translate }}
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
