@@ -1,4 +1,4 @@
-export default function DetailReportCtrl ($scope, reportsManager) {
+export default function DetailReportCtrl ($scope, $element, reportsManager) {
     'ngInject';
 
     var vm = $scope.vm;
@@ -15,4 +15,26 @@ export default function DetailReportCtrl ($scope, reportsManager) {
             }
         });
     }
+
+    function focusObject ($object) {
+        $object.focus();
+        $object.focusin();
+    }
+
+    focusObject($element);
+    $element.bind('keydown', function (e) {
+        var keyCode = (e.keyCode ? e.keyCode : e.which);
+
+        switch (keyCode) {
+            case 27:
+                if ($scope.$$phase == '$apply' || $scope.$$phase == '$digest') {
+                    $scope.modal.detail = false;
+                } else {
+                    $scope.$apply(function () {
+                        $scope.modal.detail = false;
+                    });
+                }
+                break;
+        }
+    });
 }

@@ -1,4 +1,4 @@
-<section id="add-report-wrap" data-ng-if="modal.add" data-ng-controller="AddReportCtrl">
+<section id="add-report-wrap" data-ng-if="modal.add" data-ng-controller="AddReportCtrl" tabindex="0">
     <div id="add-report-window" class="modal-animation">
         <div id="add-report-scroll">
             <div id="add-report-create-wrap">
@@ -12,7 +12,8 @@
                               data-ng-focus="inputFocus('body')"
                               data-ng-blur="inputBlur('body')"
                               data-ng-model="form.body"
-                              placeholder="{{ 'addReportBody' | translate }}"></textarea>
+                              placeholder="{{ 'addReportBody' | translate }}"
+                              auto-focus></textarea>
                 </div>
                 <button class="add-report-button" type="button" data-ng-click="addReport()">
                     {{ 'doAddReport' | translate }}

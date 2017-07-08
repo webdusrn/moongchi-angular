@@ -26,6 +26,7 @@ import DetailReportCtrl from './controllers/app.main.detail-report.controller';
 
 import active from './directives/active/app.main.active';
 import autoFocus from './directives/auto-focus/app.main.auto-focus';
+import defaultImage from './directives/default-image/app.main.default-image';
 
 import appResources from './services/app.main.constant';
 
@@ -70,6 +71,7 @@ angular.module(APP_NAME, ['app.main-core'])
     .controller("DetailReportCtrl", DetailReportCtrl)
     .directive("active", active)
     .directive("autoFocus", autoFocus)
+    .directive("defaultImage", defaultImage)
     .constant("appResources", appResources)
     .factory("Background", Background)
     .factory("Pet", Pet)

@@ -30,6 +30,10 @@ var standards = {
         "typeReport": "report"
     },
     "pet": {
+        "enumDefaultImages": [
+            'default-image-1.png',
+            'default-image-2.png'
+        ],
         "enumCatSeries": [
             "네바마스커레이드",
             "노르웨이 숲",

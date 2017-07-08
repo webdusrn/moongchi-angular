@@ -10,7 +10,7 @@
                 <div class="pet-image"
                      data-ng-if="pet.image"
                      data-ng-style="{'background-image': 'url(' + (pet.image | imageUrl) + ')'}"></div>
-                <!--<img data-ng-if="pet.image" data-ng-src="{{ pet.image | imageUrl: 'l' }}">-->
+                <default-image data-ng-if="!pet.image" ng-id="pet.id"></default-image>
             </div>
             <div class="pet-info-wrap">
                 <h4>{{ pet.petName }} <span data-ng-if="pet.petGender">({{ pet.petGender | translate }})</span></h4>

@@ -1,4 +1,4 @@
-export default function DetailPetCtrl ($scope, petsManager, dialogHandler) {
+export default function DetailPetCtrl ($scope, $element, petsManager, dialogHandler) {
     "ngInject";
 
     var vm = $scope.vm;
@@ -126,13 +126,13 @@ export default function DetailPetCtrl ($scope, petsManager, dialogHandler) {
 
     function updatePet () {
         if (!$scope.form.petName) {
-            focus($('#detail-pet-name'));
+            focusObject($('#detail-pet-name'));
             return dialogHandler.show(false, vm.translate("wrongPetName"), false, true);
         }
         if ($scope.form.petBirthDate) {
             $scope.form.petBirthDate = new Date($scope.form.petBirthDate);
         } else {
-            focus($('#detail-pet-birth-date-day'));
+            focusObject($('#detail-pet-birth-date-day'));
             return dialogHandler.show(false, vm.translate("wrongPetBirthDate"), false, true);
         }
         petsManager.updatePetById($scope.form, function (status, data) {
@@ -148,12 +148,11 @@ export default function DetailPetCtrl ($scope, petsManager, dialogHandler) {
     }
 
     function progressCallback (progressing) {
-        console.log("progressing", progressing);
+        // console.log("progressing", progressing);
     }
 
     function successCallback (status, data) {
         if (status == 201) {
-            console.log(data);
             $scope.form.imageId = data.images[0].id;
             $scope.form.image = data.images[0];
         } else {
@@ -162,6 +161,7 @@ export default function DetailPetCtrl ($scope, petsManager, dialogHandler) {
     }
 
     function clearImage () {
+        $scope.form.image = null;
         $scope.form.imageId = null;
     }
 
@@ -173,8 +173,27 @@ export default function DetailPetCtrl ($scope, petsManager, dialogHandler) {
         if (!$scope.form[key]) $scope.focus[key] = false;
     }
 
-    function focus ($object) {
+    function focusObject ($object) {
         $object.focus();
         $object.focusin();
     }
+
+    focusObject($element);
+    $element.bind('keydown', function (e) {
+        var keyCode = (e.keyCode ? e.keyCode : e.which);
+
+        console.log(keyCode);
+
+        switch (keyCode) {
+            case 27:
+                if ($scope.$$phase == '$apply' || $scope.$$phase == '$digest') {
+                    $scope.modal.detail = false;
+                } else {
+                    $scope.$apply(function () {
+                        $scope.modal.detail = false;
+                    });
+                }
+                break;
+        }
+    });
 }

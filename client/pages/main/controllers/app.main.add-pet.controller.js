@@ -1,4 +1,4 @@
-export default function AddPetCtrl ($scope, $timeout, metaManager, petsManager, dialogHandler) {
+export default function AddPetCtrl ($scope, $element, $timeout, metaManager, petsManager, dialogHandler) {
     'ngInject';
     var vm = $scope.vm;
     var now = new Date();
@@ -69,13 +69,13 @@ export default function AddPetCtrl ($scope, $timeout, metaManager, petsManager, 
 
     $scope.$watch('form.petBirthDateYear', function (newVal, oldVal) {
         if (newVal != oldVal) {
-            focus($('#add-pet-birth-date-month'));
+            focusObject($('#add-pet-birth-date-month'));
         }
     }, true);
 
     $scope.$watch('form.petBirthDateMonth', function (newVal, oldVal) {
         if (newVal != oldVal) {
-            focus($('#add-pet-birth-date-day'));
+            focusObject($('#add-pet-birth-date-day'));
         }
     }, true);
 
@@ -122,13 +122,9 @@ export default function AddPetCtrl ($scope, $timeout, metaManager, petsManager, 
         }
         if ($scope.form.petName) {
             $scope.canNext.petSeries = true;
-            var $addPetNameButton = $('#add-pet-name-button');
-            $addPetNameButton.blur();
-            $addPetNameButton.focusout();
+            blurObject($('#add-pet-name-button'));
         } else {
-            var $inputAddPetName = $('#add-pet-name');
-            $inputAddPetName.focus();
-            $inputAddPetName.focusin();
+            focusObject($('#add-pet-name'));
         }
     }
 
@@ -193,33 +189,33 @@ export default function AddPetCtrl ($scope, $timeout, metaManager, petsManager, 
     function goToInputPetSeries () {
         goToBottom(1);
         $timeout(function () {
-            focus($('#add-pet-series-select'));
+            focusObject($('#add-pet-series-select'));
         }, 300);
         $scope.goToInputPetSeries = null;
     }
 
     function goToInputPetGender () {
-        blur($('#add-pet-series-select'));
+        blurObject($('#add-pet-series-select'));
         goToBottom(2);
         $timeout(function () {
-            focus($('#add-pet-gender-m-button'));
+            focusObject($('#add-pet-gender-m-button'));
         }, 300);
         $scope.goToInputPetGender = null;
     }
 
     function goToInputPetBirthDate () {
-        blur($('#add-pet-gender-m-button'));
+        blurObject($('#add-pet-gender-m-button'));
         goToBottom(3);
         $timeout(function () {
-            focus($('#add-pet-birth-date-year'));
+            focusObject($('#add-pet-birth-date-year'));
         }, 300);
         $scope.goToInputPetBirthDate = null;
     }
 
     function goToInputPetTreatments () {
-        blur($('#add-pet-birth-date-year'));
-        blur($('#add-pet-birth-date-month'));
-        blur($('#add-pet-birth-date-day'));
+        blurObject($('#add-pet-birth-date-year'));
+        blurObject($('#add-pet-birth-date-month'));
+        blurObject($('#add-pet-birth-date-day'));
         goToBottom(4);
         $scope.goToInputPetTreatments = null;
     }
@@ -259,9 +255,7 @@ export default function AddPetCtrl ($scope, $timeout, metaManager, petsManager, 
     function addPet () {
         var body = angular.copy($scope.form);
         if (!body.petName) {
-            var $inputPetName = $('#add-pet-name');
-            $inputPetName.focus();
-            $inputPetName.focusin();
+            focusObject($('#add-pet-name'));
             $('#add-pet-window').animate({scrollTop: 0}, 300);
         } else {
             body.petBirthDate = new Date($scope.petBirthDate);
@@ -316,13 +310,29 @@ export default function AddPetCtrl ($scope, $timeout, metaManager, petsManager, 
         }
     }
 
-    function blur ($object) {
+    function blurObject ($object) {
         $object.blur();
         $object.focusout();
     }
 
-    function focus ($object) {
+    function focusObject ($object) {
         $object.focus();
         $object.focusin();
     }
+
+    $element.bind('keydown', function (e) {
+        var keyCode = (e.keyCode ? e.keyCode : e.which);
+
+        switch (keyCode) {
+            case 27:
+                if ($scope.$$phase == '$apply' || $scope.$$phase == '$digest') {
+                    $scope.modal.add = false;
+                } else {
+                    $scope.$apply(function () {
+                        $scope.modal.add = false;
+                    });
+                }
+                break;
+        }
+    });
 }

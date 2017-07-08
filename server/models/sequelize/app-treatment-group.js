@@ -59,6 +59,9 @@ module.exports = {
             name: 'authorId',
             fields: ['authorId']
         }, {
+            name: 'chargeId',
+            fields: ['chargeId']
+        }, {
             name: 'hospitalName',
             fields: ['hospitalName']
         }, {

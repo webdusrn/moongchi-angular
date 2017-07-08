@@ -1,4 +1,4 @@
-export default function AddReportCtrl ($scope, reportsManager, dialogHandler) {
+export default function AddReportCtrl ($scope, $element, reportsManager, dialogHandler) {
     'ngInject';
     var vm = $scope.vm;
 
@@ -16,7 +16,7 @@ export default function AddReportCtrl ($scope, reportsManager, dialogHandler) {
     function addReport () {
         var body = angular.copy($scope.form);
         if (!body.body) {
-            focusKey();
+            focusObject($('#add-report-body'));
             return dialogHandler.show(false, vm.translate("wrongReportBody"), false, true);
         }
         reportsManager.createReport(body, function (status, data) {
@@ -36,9 +36,24 @@ export default function AddReportCtrl ($scope, reportsManager, dialogHandler) {
         $scope.focus[key] = false;
     }
 
-    function focusKey (key) {
-        var $key = $(key);
-        $key.focus();
-        $key.focusin();
+    function focusObject ($object) {
+        $object.focus();
+        $object.focusin();
     }
+
+    $element.bind('keydown', function (e) {
+        var keyCode = (e.keyCode ? e.keyCode : e.which);
+
+        switch (keyCode) {
+            case 27:
+                if ($scope.$$phase == '$apply' || $scope.$$phase == '$digest') {
+                    $scope.modal.add = false;
+                } else {
+                    $scope.$apply(function () {
+                        $scope.modal.add = false;
+                    });
+                }
+                break;
+        }
+    });
 }
