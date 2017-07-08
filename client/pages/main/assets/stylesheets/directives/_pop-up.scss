@@ -1,0 +1,55 @@
+pop-up {
+  position: fixed;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, .3);
+  div.pop-up-wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -345px;
+    margin-left: -215px;
+    border-radius: 10px;
+    width: 430px;
+    height: 690px;
+    overflow: hidden;
+  }
+  div.pop-up-image {
+    position: relative;
+    width: 100%;
+    height: 630px;
+    @include background();
+  }
+  div.pop-up-button-wrap {
+    position: relative;
+    width: 100%;
+    height: 60px;
+    @include after-clear();
+    button {
+      position: relative;
+      width: 214.5px;
+      height: 100%;
+      line-height: 60px;
+      font-size: 20px;
+      font-weight: 500;
+      color: #6c6c6c;
+      cursor: pointer;
+      background-color: white;
+      float: left;
+      &:hover {
+        background-color: #f9f9f9;
+      }
+    }
+    div.pop-up-line {
+      position: relative;
+      width: 1px;
+      height: 100%;
+      background-color: #d8d8d8;
+      float: left;
+    }
+  }
+}

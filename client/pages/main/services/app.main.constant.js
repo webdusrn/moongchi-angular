@@ -1,4 +1,5 @@
 var appResources = {
+    POP_UPS: '/api/moongchi/pop-ups',
     BACKGROUNDS: '/api/moongchi/backgrounds',
     IMAGES: '/api/etc/images',
     PETS: '/api/moongchi/pets',

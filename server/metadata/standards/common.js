@@ -7,9 +7,10 @@ var standards = {
         "isResponsive": false
     },
     "file": {
-        "enumImageFolders": ["pet", "background"],
+        "enumImageFolders": ["pet", "background", "popUp"],
         "folderPet": "pet",
-        "folderBackground": "background"
+        "folderBackground": "background",
+        "folderPopUp": "popUp"
     },
     "common": {
         "minLength": 1,
@@ -134,6 +135,11 @@ var standards = {
         "defaultOrderBy": "createdAt",
         "enumSearchFields": ["chargeTitle"],
         "defaultCharge": 0
+    },
+    "popUp": {
+        "enumSearchFields": ["title"],
+        "enumOrderBys": ["createdAt"],
+        "defaultOrderBy": "createdAt"
     }
 };
 

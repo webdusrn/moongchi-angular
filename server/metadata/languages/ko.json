@@ -55,5 +55,7 @@
   "pooManageTitle": "오늘 치토스는 어떠냥?",
   "sureDeletePet": "정말 지울거냥?",
   "delete": "삭제",
-  "doDelete": "지우기"
+  "doDelete": "지우기",
+  "disabledClose": "다시 보지 않기",
+  "close": "닫기"
 }

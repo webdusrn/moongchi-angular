@@ -13,6 +13,8 @@ var AppTreatmentGroup = require('./app-treatment-group');
 var AppTreatment = require('./app-treatment');
 var AppMedicine = require('./app-medicine');
 var AppUserPet = require('./app-user-pet');
+var AppPopUp = require('./app-pop-up');
+var AppUserPopUp = require('./app-user-pop-up');
 
 var models = {
     Profile: Profile,
@@ -26,7 +28,9 @@ var models = {
     AppTreatmentGroup: AppTreatmentGroup,
     AppTreatment: AppTreatment,
     AppMedicine: AppMedicine,
-    AppUserPet: AppUserPet
+    AppUserPet: AppUserPet,
+    AppPopUp: AppPopUp,
+    AppUserPopUp: AppUserPopUp
 };
 
 module.exports = models;
