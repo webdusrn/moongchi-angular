@@ -198,6 +198,8 @@
 
 #detail-pet-button-wrap {
   position: relative;
+  width: 100%;
+  float: left;
   @include after-clear();
   #detail-pet-delete-button {
     position: relative;

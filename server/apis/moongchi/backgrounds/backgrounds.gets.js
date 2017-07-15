@@ -17,7 +17,7 @@ gets.validate = function(){
 
 gets.setParam = function() {
     return function(req, res, next) {
-        req.models.AppBackground.findBackgroundsByOptions(req.query, function (status, data) {
+        req.models.AppBackground.findBackgroundsByOptionsByUser(req.query, function (status, data) {
             if (status == 200) {
                 req.data = data;
                 next();

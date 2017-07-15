@@ -29,11 +29,13 @@ import autoFocus from './directives/auto-focus/app.main.auto-focus';
 import defaultImage from './directives/default-image/app.main.default-image';
 import loading from './directives/loading/app.main.loading';
 import popUp from './directives/pop-up/app.main.pop-up';
+import pooInfo from './directives/poo-info/app.main.poo-info';
 
 import appResources from './services/app.main.constant';
 
 import Background from './services/app.main.background.model';
 import Pet from './services/app.main.pet.model';
+import Poo from './services/app.main.poo.model';
 import PetPoo from './services/app.main.pet-poo.model';
 import Report from './services/app.main.report.model';
 import PopUp from './services/app.main.pop-up.model';
@@ -49,6 +51,7 @@ import modalHandler from './services/app.main.modal.handler';
 import statusHandler from './services/app.main.status.handler';
 
 import vaccination from './filters/app.main.vaccination.filter';
+import attachZero from './filters/app.main.attach-zero.filter';
 
 const APP_NAME = "app.main";
 
@@ -80,9 +83,11 @@ angular.module(APP_NAME, ['app.main-core'])
     .directive("defaultImage", defaultImage)
     .directive("loading", loading)
     .directive("popUp", popUp)
+    .directive("pooInfo", pooInfo)
     .constant("appResources", appResources)
     .factory("Background", Background)
     .factory("Pet", Pet)
+    .factory("Poo", Poo)
     .factory("PetPoo", PetPoo)
     .factory("Report", Report)
     .factory("PopUp", PopUp)
@@ -94,7 +99,8 @@ angular.module(APP_NAME, ['app.main-core'])
     .service("navigator", navigator)
     .service("modalHandler", modalHandler)
     .service("statusHandler", statusHandler)
-    .filter("vaccination", vaccination);
+    .filter("vaccination", vaccination)
+    .filter("attachZero", attachZero);
 
 if (window.location.hash === '#_=_') window.location.hash = '/';
 

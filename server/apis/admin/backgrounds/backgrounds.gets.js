@@ -5,30 +5,32 @@ var logger = new Logger(__filename);
 gets.validate = function(){
     return function(req, res, next){
         var COMMON = req.meta.std.common;
-        var PET = req.meta.std.pet;
+        var BACKGROUND = req.meta.std.background;
 
-        if (req.query.orderBy === undefined) req.query.orderBy = PET.defaultOrderBy;
+        if (req.query.orderBy === undefined) req.query.orderBy = BACKGROUND.defaultOrderBy;
         if (req.query.sort === undefined) req.query.sort = COMMON.DESC;
         if (req.query.size === undefined) req.query.size = COMMON.defaultLoadingLength;
 
-        if (req.query.orderBy !== undefined) req.check("orderBy", "400_3").isEnum(PET.enumOrderBys);
+        if (req.query.orderBy !== undefined) req.check("orderBy", "400_3").isEnum(BACKGROUND.enumOrderBys);
         if (req.query.sort !== undefined) req.check("sort", "400_3").isEnum(COMMON.enumSortTypes);
         if (req.query.last !== undefined) req.check("last", "400_18").isMicroTimestamp();
         if (req.query.size !== undefined) req.check("size", "400_5").isInt({
             min: 1,
             max: COMMON.loadingMaxLength
         });
-        if (req.query.offset !== undefined) req.check("offset", "400_5").isInt({
-            min: 0
-        });
+
+        if (req.query.isUse !== undefined) {
+            req.check("isUse", "400_20").isBoolean();
+            req.sanitize("isUse").toBoolean();
+        }
+        if (req.query.type !== undefined) req.check("type", "400_3").isEnum(BACKGROUND.enumTypes);
         req.utils.common.checkError(req, res, next);
     };
 };
 
 gets.setParam = function() {
     return function(req, res, next) {
-        req.query.userId = req.user.id;
-        req.models.AppPet.findPetPoosByOptions(req.query, function (status, data) {
+        req.models.AppBackground.findBackgroundsByOptions(req.query, function (status, data) {
             if (status == 200) {
                 req.data = data;
                 next();
@@ -41,9 +43,6 @@ gets.setParam = function() {
 
 gets.supplement = function(){
     return function(req, res, next){
-        for (var i=0; i<req.data.rows.length; i++) {
-            delete req.data.rows[i].dataValues.userPets;
-        }
         res.hjson(req, next, 200, req.data);
     };
 };

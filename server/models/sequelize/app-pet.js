@@ -372,13 +372,16 @@ module.exports = {
                 var countWhere = {};
                 var query = {
                     where: where,
-                    order: [[options.order, options.sort]],
+                    order: [[options.orderBy, options.sort]],
                     limit: parseInt(options.size),
                     include: [{
+                        model: sequelize.models.Image,
+                        as: "image"
+                    }, {
                         model: sequelize.models.AppPoo,
                         as: "poos",
                         order: [[STD.poo.orderByPooDate, STD.common.DESC]],
-                        limit: STD.common.defaultLoadingLength
+                        limit: STD.poo.petPooLength
                     }]
                 };
                 var countQuery = {
@@ -386,9 +389,33 @@ module.exports = {
                 };
 
                 if (options.searchItem && options.searchField) {
-
+                    if (options.searchField == STD.common.id) {
+                        where[options.searchField] = options.searchItem;
+                        countWhere[options.searchField] = options.searchItem;
+                    } else {
+                        where[options.searchField] = {
+                            "$like": options.searchItem + "%"
+                        };
+                        countWhere[options.searchField] = {
+                            "$like": options.searchItem + "%"
+                        };
+                    }
                 } else if (options.searchItem) {
-
+                    where.$or = [];
+                    countWhere.$or = [];
+                    var enumSearchFields = STD.pet.enumSearchFields;
+                    for (var i=0; i<enumSearchFields.length; i++) {
+                        var body = {};
+                        if (enumSearchFields[i] == STD.common.id) {
+                            body[enumSearchFields[i]] = options.searchItem;
+                        } else {
+                            body[enumSearchFields[i]] = {
+                                "$like": options.searchItem + "%"
+                            };
+                        }
+                        where.$or.push(body);
+                        countWhere.$or.push(body);
+                    }
                 }
 
                 if (options.last !== undefined) {

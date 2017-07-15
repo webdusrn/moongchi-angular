@@ -176,6 +176,24 @@ module.exports = {
                     countWhere.pooColor = options.pooColor;
                 }
 
+                if (options.startPooDate !== undefined) {
+                    where.pooDate = {
+                        $gt: options.startPooDate
+                    };
+                    countWhere.pooDate = {
+                        $gt: options.startPooDate
+                    };
+                }
+
+                if (options.endPooDate !== undefined) {
+                    where.pooDate = {
+                        $lt: options.endPooDate
+                    };
+                    countWhere.pooDate = {
+                        $lt: options.endPooDate
+                    };
+                }
+
                 sequelize.models.AppPoo.count(countQuery).then(function (data) {
                     if (data > 0) {
                         count = data;

@@ -6,6 +6,8 @@ export default function PooManageCtrl ($scope, dialogHandler, poosManager) {
     vm.currentPage('pooManage');
 
     $scope.findPets = findPets;
+    $scope.openModal = openModal;
+    $scope.closeModal = closeModal;
     $scope.goToPetManage = goToPetManage;
 
     $scope.ready = false;
@@ -15,7 +17,8 @@ export default function PooManageCtrl ($scope, dialogHandler, poosManager) {
         rows: []
     };
     $scope.modal = {
-
+        add: false,
+        detail: false
     };
 
     if (vm.isLoggedIn()) {
@@ -52,6 +55,21 @@ export default function PooManageCtrl ($scope, dialogHandler, poosManager) {
             }
             $scope.ready = true;
         });
+    }
+
+    function openModal (key, index) {
+        if (index !== undefined) {
+            $scope.modal[key] = {
+                petPoo: $scope.petPoos.rows[index],
+                index: index
+            };
+        } else {
+            $scope.modal[key] = true;
+        }
+    }
+
+    function closeModal (key) {
+        $scope.modal[key] = false;
     }
 
     function goToPetManage () {

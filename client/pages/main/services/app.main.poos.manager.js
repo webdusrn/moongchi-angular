@@ -1,7 +1,8 @@
-export default function poosManager (PetPoo, dialogHandler, statusHandler) {
+export default function poosManager (Poo, PetPoo, dialogHandler, statusHandler) {
     'ngInject';
 
     this.findPets = findPets;
+    this.findPoos = findPoos;
     this.findPetById = findPetById;
 
     function findPetById (petId, callback) {
@@ -16,6 +17,14 @@ export default function poosManager (PetPoo, dialogHandler, statusHandler) {
 
     function findPets (query, callback) {
         PetPoo.query(query, function (data) {
+            callback(200, data);
+        }, function (data) {
+            statusHandler.active(data, callback);
+        });
+    }
+
+    function findPoos (query, callback) {
+        Poo.query(query, function (data) {
             callback(200, data);
         }, function (data) {
             statusHandler.active(data, callback);

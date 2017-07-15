@@ -4,6 +4,7 @@ var resource = filePath[filePath.length - 1];
 
 var gets = require('./' + resource + '.gets.js');
 var get = require('./' + resource + '.get.js');
+var put = require('./' + resource + '.put.js');
 var post = require('./' + resource + '.post.js');
 var del = require('./' + resource + '.del.js');
 
@@ -26,6 +27,7 @@ var api = {
                 explains : {
                     'id': '데이터를 얻을 리소스의 id'
                 },
+                role: STD.user.roleAdmin,
                 param: 'id',
                 title: '단일 얻기',
                 state: 'design'
@@ -34,7 +36,7 @@ var api = {
             if (!isOnlyParams) {
                 var apiCreator = new HAPICreator(req, res, next);
 
-                apiCreator.add(req.middles.session.loggedIn());
+                apiCreator.add(req.middles.session.loggedInRole(STD.user.roleAdmin));
                 apiCreator.add(req.middles.validator(
                     params.acceptable,
                     params.essential,
@@ -45,7 +47,7 @@ var api = {
                 apiCreator.add(get.supplement());
                 apiCreator.run();
 
-                
+
             }
             else {
                 return params;
@@ -62,26 +64,21 @@ var api = {
                     "last",
                     "size",
                     "offset",
-                    "petId",
-                    "pooType",
-                    "pooColor",
-                    "pooYear",
-                    "pooMonth"
+                    "isUse",
+                    "type"
                 ],
                 essential: [],
                 resettable: [],
                 explains : {
-                    "orderBy": "정렬 기준 " + STD.poo.enumOrderBys.join(', '),
+                    "orderBy": "정렬 기준 " + STD.background.enumOrderBys.join(', '),
                     "sort": "정렬 방식 " + STD.common.enumSortTypes.join(', '),
-                    "last": "마지막 데이터",
-                    "size": "가져올 데이터수",
+                    "last": "정렬 기준 마지막 데이터",
+                    "size": "가져올 데이터 갯수",
                     "offset": "offset",
-                    "petId": "펫 ID",
-                    "pooType": "배변 유형 " + STD.poo.enumPooTypes.join(', '),
-                    "pooColor": "배변 색 " + STD.poo.enumPooColors.join(', '),
-                    "pooYear": "배변 년",
-                    "pooMonth": "배변 월"
+                    "isUse": "사용 여부 (true / false)",
+                    "type": "배경 유형 " + STD.background.enumTypes.join(', ')
                 },
+                role: STD.user.roleAdmin,
                 title: '조회',
                 state: 'design'
             };
@@ -89,14 +86,13 @@ var api = {
             if (!isOnlyParams) {
                 var apiCreator = new HAPICreator(req, res, next);
 
-                apiCreator.add(req.middles.session.loggedIn());
+                apiCreator.add(req.middles.session.loggedInRole(STD.user.roleAdmin));
                 apiCreator.add(req.middles.validator(
                     params.acceptable,
                     params.essential,
                     params.resettable
                 ));
                 apiCreator.add(gets.validate());
-                apiCreator.add(gets.normalizePooDate());
                 apiCreator.add(gets.setParam());
                 apiCreator.add(gets.supplement());
                 apiCreator.run();
@@ -113,24 +109,20 @@ var api = {
 
             var params = {
                 acceptable: [
-                    "petId",
-                    "pooType",
-                    "pooColor",
-                    "pooDate"
+                    "imageId",
+                    "isUse",
+                    "type"
                 ],
                 essential: [
-                    "petId",
-                    "pooType",
-                    "pooColor",
-                    "pooDate"
+                    "imageId",
                 ],
                 resettable: [],
                 explains : {
-                    "petId": "펫 ID",
-                    "pooType": "배변 유형 " + STD.poo.enumPooTypes.join(', '),
-                    "pooColor": "배변 색 " + STD.poo.enumPooColors.join(', '),
-                    "pooDate": "배변 날짜"
+                    "imageId": "이미지 ID",
+                    "isUse": "이용 여부 (true, false)",
+                    "type": "배경 유형 " + STD.background.enumTypes.join(', ')
                 },
+                role: STD.user.roleAdmin,
                 title: '생성',
                 state: 'design'
             };
@@ -138,7 +130,7 @@ var api = {
             if (!isOnlyParams) {
                 var apiCreator = new HAPICreator(req, res, next);
 
-                apiCreator.add(req.middles.session.loggedIn());
+                apiCreator.add(req.middles.session.loggedInRole(STD.user.roleAdmin));
                 apiCreator.add(req.middles.validator(
                     params.acceptable,
                     params.essential,
@@ -149,7 +141,50 @@ var api = {
                 apiCreator.add(post.supplement());
                 apiCreator.run();
 
-                
+
+            }
+            else {
+                return params;
+            }
+        };
+    },
+    put : function(isOnlyParams) {
+        return function(req, res, next) {
+
+            var params = {
+                acceptable: [
+                    "imageId",
+                    "isUse",
+                    "type"
+                ],
+                essential: [],
+                resettable: [],
+                explains : {
+                    "imageId": "이미지 ID",
+                    "isUse": "이용 여부 (true, false)",
+                    "type": "배경 유형 " + STD.background.enumTypes.join(', ')
+                },
+                role: STD.user.roleAdmin,
+                title: '수정',
+                param: 'id',
+                state: 'design'
+            };
+
+            if (!isOnlyParams) {
+                var apiCreator = new HAPICreator(req, res, next);
+
+                apiCreator.add(req.middles.session.loggedInRole(STD.user.roleAdmin));
+                apiCreator.add(req.middles.validator(
+                    params.acceptable,
+                    params.essential,
+                    params.resettable
+                ));
+                apiCreator.add(put.validate());
+                apiCreator.add(put.setParam());
+                apiCreator.add(put.supplement());
+                apiCreator.run();
+
+
             }
             else {
                 return params;
@@ -159,13 +194,13 @@ var api = {
     delete : function(isOnlyParams) {
         return function(req, res, next) {
             var params = {
-                acceptable: [
-                ],
+                acceptable: [],
                 essential: [],
                 resettable: [],
                 explains : {
                     'id': '데이터 리소스의 id'
                 },
+                role: STD.user.roleAdmin,
                 title: '제거',
                 param: 'id',
                 state: 'design'
@@ -174,7 +209,7 @@ var api = {
             if (!isOnlyParams) {
                 var apiCreator = new HAPICreator(req, res, next);
 
-                apiCreator.add(req.middles.session.loggedIn());
+                apiCreator.add(req.middles.session.loggedInRole(STD.user.roleAdmin));
                 apiCreator.add(req.middles.validator(
                     params.acceptable,
                     params.essential,
@@ -185,7 +220,7 @@ var api = {
                 apiCreator.add(del.supplement());
                 apiCreator.run();
 
-                
+
             }
             else {
                 return params;
@@ -197,6 +232,7 @@ var api = {
 router.get('/' + resource + '/:id', api.get());
 router.get('/' + resource, api.gets());
 router.post('/' + resource, api.post());
+router.put('/' + resource + '/:id', api.put());
 router.delete('/' + resource + '/:id', api.delete());
 
 module.exports.router = router;

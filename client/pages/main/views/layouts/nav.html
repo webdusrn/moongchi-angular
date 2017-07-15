@@ -1,6 +1,9 @@
 <section id="navigation-wrap" data-ng-controller="NavigationCtrl" data-ng-class="{'open': vm.isNavOpen}" data-ng-click="$event.preventDefault();">
     <div id="navigation-window">
         <ul>
+            <li class="navigation-item" data-ng-class="{'current': vm.currentNav['index']}" data-ng-click="goTo('index')">
+                {{ 'index' | translate }}
+            </li>
             <li class="navigation-item" data-ng-class="{'current': vm.currentNav['petManage']}" data-ng-click="goTo('petManage')">
                 {{ 'petManage' | translate }}
             </li>
@@ -12,6 +15,9 @@
             </li>
             <li class="navigation-item" data-ng-class="{'current': vm.currentNav['treatmentManage']}" data-ng-click="goTo('treatmentManage')">
                 {{ 'treatmentManage' | translate }}
+            </li>
+            <li class="navigation-item" data-ng-class="{'current': vm.currentNav['chargeManage']}" data-ng-click="goTo('chargeManage')">
+                {{ 'chargeManage' | translate }}
             </li>
             <li class="navigation-item" data-ng-class="{'current': vm.currentNav['reportManage']}" data-ng-click="goTo('reportManage')">
                 {{ 'userReportManage' | translate }}

@@ -32,7 +32,7 @@
   "wrongSignUpId": "잘못된 이메일 형식입니다.",
   "wrongSignUpPw": "비밀번호는 6~12자이며 문자와 숫자는 필수입니다.",
   "userReportManage": "문의하기",
-  "petManage": "고양이관리",
+  "petManage": "고양이등록",
   "pooManage": "배변관리",
   "mealManage": "사료관리",
   "treatmentManage": "진료관리",
@@ -57,5 +57,13 @@
   "delete": "삭제",
   "doDelete": "지우기",
   "disabledClose": "다시 보지 않기",
-  "close": "닫기"
+  "close": "닫기",
+  "index": "전체통계",
+  "chargeManage": "가계부",
+  "doAddPoo": "치토스 기록하기",
+  "cat": "고양이",
+  "pooState1": "치토스 1",
+  "pooState2": "치토스 2",
+  "pooState3": "치토스 3",
+  "noData": "-"
 }

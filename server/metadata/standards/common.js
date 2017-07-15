@@ -17,6 +17,7 @@ var standards = {
         "maxLength": 150
     },
     "background": {
+        "enumOrderBys": ["createdAt"],
         "defaultOrderBy": "createdAt",
         "defaultIsUse": true,
         "enumTypes": ["login", "signUp", "pet", "meal", "treatment", "poo", "report", "all"],
@@ -102,15 +103,16 @@ var standards = {
         "defaultOrderBy": "createdAt"
     },
     "poo": {
+        "petPooLength": 3,
         "enumOrderBys": ["createdAt", "pooDate"],
         "defaultOrderBy": "pooDate",
         "orderByPooDate": "pooDate",
         "orderByCreatedAt": "createdAt",
         "enumPooTypes": ["pooNormal", "pooSticky", "pooDiarrhea"],
         "defaultPooType": "pooNormal",
-        "enumPooColors": ["pooColor1", "pooColor2", "pooColor3", "pooColor4", "pooColor5", "pooColor6", "pooColor7", "pooColor8",
-            "pooColor9", "pooColor10", "pooColor11", "pooColor12", "pooColor13", "pooColor14", "pooColor15", "pooColor16",
-            "pooColor17", "pooColor18", "pooColor19", "pooColor20", "pooColor21", "pooColor22", "pooColor23", "pooColor24"]
+        "enumPooColors": ["#9F825A", "#895C3B", "#78593C", "#A17D31", "#834320", "#6B6333",
+            "#E1C8A9", "#D5C58A", "#D1C5B7", "#B7A368", "#B4A393", "#96846E",
+            "#504D2C", "#483524", "#5C4034", "#3C2618", "#25140D", "#010000", "#BB0000"]
     },
     "treatment": {
         "enumSearchFields": ["treatmentTitle", "hospitalName"],

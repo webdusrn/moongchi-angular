@@ -21,7 +21,43 @@ gets.validate = function(){
         if (req.query.petId !== undefined) req.check("petId", "400_12").isInt();
         if (req.query.pooType !== undefined) req.check("pooType", "400_3").isEnum(POO.enumPooTypes);
         if (req.query.pooColor !== undefined) req.check("pooColor", "400_3").isEnum(POO.enumPooColors);
+        if (req.query.pooYear !== undefined || req.query.pooMonth !== undefined) {
+            if (req.query.pooYear === undefined || req.query.pooMonth === undefined) {
+                return res.hjson(req, next, 400, {
+                    code: "400_14"
+                });
+            }
+            req.check("pooYear", "400_5").isInt();
+            req.check("pooMonth", "400_5").isInt();
+        }
         req.utils.common.checkError(req, res, next);
+    };
+};
+
+gets.normalizePooDate = function () {
+    return function (req, res, next) {
+        if (req.query.pooYear !== undefined) {
+            if (req.query.pooMonth == 12) {
+                req.query.pooEndYear = req.query.pooYear + 1;
+                req.query.pooEndMonth = '01';
+            } else {
+                req.query.pooEndYear = req.query.pooYear;
+                req.query.pooEndMonth = req.query.pooMonth + 1;
+            }
+
+            if (req.query.pooMonth < 10) {
+                req.query.pooMonth = '0' + req.query.pooMonth;
+            }
+
+            if (req.query.pooEndMonth < 10) {
+                req.query.pooEndMonth = '0' + req.query.pooEndMonth;
+            }
+
+            req.query.startPooDate = new Date(req.query.pooYear + '-' + req.query.pooMonth + '-01').getTime() - 1;
+            req.query.endPooDate = new Date(req.query.pooEndYear + '-' + req.query.pooEndMonth + '-01').getTime();
+        }
+
+        next();
     };
 };
 

@@ -1,5 +1,37 @@
 <section id="poo-manage-wrap" data-ng-controller="PooManageCtrl">
     <div class="manage-title-wrap">
         <h2>{{ 'pooManageTitle' | translate }}</h2>
+        <button type="button" id="add-poo-button" data-ng-if="ready && petPoos.count" data-ng-click="openModal('add')">{{ 'doAddPoo' | translate }}</button>
     </div>
+    <div class="list-title-wrap">
+        <span>{{ 'cat' | translate }}</span>
+        <span>{{ 'pooState1' | translate }}</span>
+        <span>{{ 'pooState2' | translate }}</span>
+        <span>{{ 'pooState3' | translate }}</span>
+    </div>
+    <ul id="poo-manage-list">
+        <li data-ng-repeat="petPoo in petPoos.rows" data-ng-click="openModal('detail', $index)">
+            <div class="poo-manage-item">
+                <div class="default-image-wrap">
+                    <default-image data-ng-if="!petPoo.image" ng-id="petPoo.id"></default-image>
+                    <div class="pet-image" data-ng-if="petPoo.image" data-ng-style="{'background-image': 'url(' + (petPoo.image | imageUrl: 'l') + ')'}"></div>
+                </div>
+                <p class="poo-list-pet-name">{{ petPoo.petName }}</p>
+            </div>
+            <div class="poo-manage-item">
+                <poo-info data-ng-if="petPoo.poos.length > 0" ng-poo="petPoo.poos[0]"></poo-info>
+                <p data-ng-if="petPoo.poos.length < 1" class="poo-list-empty">{{ 'noData' | translate }}</p>
+            </div>
+            <div class="poo-manage-item">
+                <poo-info data-ng-if="petPoo.poos.length > 1" ng-poo="petPoo.poos[1]"></poo-info>
+
+                <p data-ng-if="petPoo.poos.length < 2" class="poo-list-empty">{{ 'noData' | translate }}</p>
+            </div>
+            <div class="poo-manage-item">
+                <poo-info data-ng-if="petPoo.poos.length > 2" ng-poo="petPoo.poos[2]"></poo-info>
+
+                <p data-ng-if="petPoo.poos.length < 3" class="poo-list-empty">{{ 'noData' | translate }}</p>
+            </div>
+        </li>
+    </ul>
 </section>

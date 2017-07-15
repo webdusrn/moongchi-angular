@@ -1,6 +1,7 @@
-export default function AddPetCtrl ($scope, $element, $timeout, metaManager, petsManager, dialogHandler) {
+export default function AddPetCtrl ($scope, $element, $timeout, $filter, metaManager, petsManager, dialogHandler) {
     'ngInject';
     var vm = $scope.vm;
+    var attachZero = $filter('attachZero');
     var now = new Date();
     var nowTime = new Date(now.getFullYear() + '-' + attachZero(now.getMonth() + 1) + '-' + now.getDate()).getTime();
     var nowYear = now.getFullYear();
@@ -87,19 +88,11 @@ export default function AddPetCtrl ($scope, $element, $timeout, metaManager, pet
             $scope.focus.petBirthDateDay = !!$scope.form.petBirthDateDay;
             if ($scope.form.petBirthDateDay) {
                 $scope.canNext.petTreatments = true;
-                var birthDate = $scope.form.petBirthDateYear + '-' + attachZero($scope.form.petBirthDateMonth) + '-' + $scope.form.petBirthDateDay;
+                var birthDate = $scope.form.petBirthDateYear + '-' + attachZero($scope.form.petBirthDateMonth) + '-' + attachZero($scope.form.petBirthDateDay);
                 $scope.petBirthDate = new Date(birthDate).getTime();
             }
         }
     }, true);
-
-    function attachZero (value) {
-        if (value && value < 10 && value > 0) {
-            return '0' + value;
-        } else {
-            return value;
-        }
-    }
 
     function generateEnumDates () {
         if (prevYear != $scope.form.petBirthDateYear || prevMonth != $scope.form.petBirthDateMonth) {

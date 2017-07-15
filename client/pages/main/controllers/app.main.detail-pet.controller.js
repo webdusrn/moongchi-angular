@@ -1,7 +1,8 @@
-export default function DetailPetCtrl ($scope, $element, petsManager, dialogHandler) {
+export default function DetailPetCtrl ($scope, $element, $filter, petsManager, dialogHandler) {
     "ngInject";
 
     var vm = $scope.vm;
+    var attachZero = $filter('attachZero');
     var imageExp = new RegExp('image', 'i');
     var now = new Date();
     var nowTime = new Date(now.getFullYear() + '-' + attachZero(now.getMonth() + 1) + '-' + now.getDate()).getTime();
@@ -90,14 +91,6 @@ export default function DetailPetCtrl ($scope, $element, petsManager, dialogHand
                 }
             }
         }, true);
-    }
-
-    function attachZero (value) {
-        if (value && value < 10 && value > 0) {
-            return '0' + value;
-        } else {
-            return value;
-        }
     }
 
     function generateEnumDates (refresh) {

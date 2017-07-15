@@ -82,7 +82,7 @@ module.exports = {
                     as: 'image'
                 }];
             },
-            'findBackgroundsByOptions': function (options, callback) {
+            'findBackgroundsByOptionsByUser': function (options, callback) {
                 var loadedData = null;
 
                 var where = {};
@@ -115,6 +115,89 @@ module.exports = {
                             count: loadedData.length,
                             rows: loadedData
                         });
+                    }
+                });
+            },
+            'findBackgroundsByOptions': function (options, callback) {
+                var count = 0;
+                var loadedData = null;
+                var where = {};
+                var countWhere = {};
+                var query = {
+                    include: sequelize.models.AppBackground.getIncludeBackground(),
+                    where: where,
+                    order: [[options.orderBy, options.sort]],
+                    limit: parseInt(options.size)
+                };
+
+                if (options.last !== undefined) {
+                    if (options.sort == STD.common.DESC) {
+                        where[options.orderBy] = {
+                            "$lt": options.last
+                        };
+                    } else {
+                        where[options.orderBy] = {
+                            "$gt": options.last
+                        };
+                    }
+                }
+
+                if (options.offset !== undefined) {
+                    query.offset = parseInt(options.offset);
+                }
+
+                if (options.types) {
+                    where.type = options.types;
+                    countWhere.type = options.types;
+                }
+
+                if (options.isUse) {
+                    where.isUse = options.isUse;
+                    countWhere.isUse = options.isUse;
+                }
+
+                sequelize.models.AppBackground.count({
+                    where: countWhere
+                }).then(function (data) {
+                    if (data > 0) {
+                        count = data;
+                        return sequelize.models.AppBackground.findAll(query);
+                    } else {
+                        throw new errorHandler.CustomSequelizeError(404, {
+                            code: ""
+                        });
+                    }
+                }).then(function (data) {
+                    if (data && data.length) {
+                        loadedData = data;
+                        return true;
+                    } else {
+                        throw new errorHandler.CustomSequelizeError(404, {
+                            code: ""
+                        });
+                    }
+                }).catch(errorHandler.catchCallback(callback)).done(function (isSuccess) {
+                    if (isSuccess) {
+                        callback(200, {
+                            count: count,
+                            rows: loadedData
+                        });
+                    }
+                });
+            },
+            'deleteBackgroundById': function (reqId, callback) {
+                sequelize.transaction(function (t) {
+                    return sequelize.models.AppBackground.destroy({
+                        where: {
+                            id: reqId
+                        },
+                        transaction: t
+                    }).then(function () {
+                        return true;
+                    });
+                }).catch(errorHandler.catchCallback(callback)).done(function (isSuccess) {
+                    if (isSuccess) {
+                        callback(204);
                     }
                 });
             }
