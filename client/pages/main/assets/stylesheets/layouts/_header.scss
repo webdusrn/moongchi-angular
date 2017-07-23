@@ -43,7 +43,7 @@ header {
     border-radius: 2px;
     width: 34px;
     height: 4px;
-    background-color: #71581c;
+    background-color: $mirage;
     -webkit-transition: transform .3s, opacity .2s;
     -moz-transition: transform .3s, opacity .2s;
     -o-transition: transform .3s, opacity .2s;
@@ -90,12 +90,12 @@ header {
   }
   i:nth-of-type(2) {
     position: absolute;
-    top: 23.5px;
-    right: 19px;
-    width: 20px;
-    height: 17px;
+    top: 22.5px;
+    right: 16px;
+    width: 22px;
+    height: 19px;
     @include background();
-    background-image: url(/pages/main/assets/images/icons/ic-header-logout-arrow-20-17@2x.png);
+    background-image: url(/pages/main/assets/images/icons/ic-header-logout-arrow-22-19@2x.png);
   }
   &:hover {
     i:nth-of-type(2) {

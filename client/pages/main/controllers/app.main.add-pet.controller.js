@@ -70,20 +70,20 @@ export default function AddPetCtrl ($scope, $element, $timeout, $filter, metaMan
 
     $scope.$watch('form.petBirthDateYear', function (newVal, oldVal) {
         if (newVal != oldVal) {
+            $scope.focus.petBirthDateYear = true;
             focusObject($('#add-pet-birth-date-month'));
         }
     }, true);
 
     $scope.$watch('form.petBirthDateMonth', function (newVal, oldVal) {
         if (newVal != oldVal) {
+            $scope.focus.petBirthDateMonth = true;
             focusObject($('#add-pet-birth-date-day'));
         }
     }, true);
 
     $scope.$watch('form', function () {
         if ($scope.form.petBirthDateYear && $scope.form.petBirthDateMonth) {
-            $scope.focus.petBirthDateYear = !!$scope.form.petBirthDateYear;
-            $scope.focus.petBirthDateMonth = !!$scope.form.petBirthDateMonth;
             generateEnumDates();
             $scope.focus.petBirthDateDay = !!$scope.form.petBirthDateDay;
             if ($scope.form.petBirthDateDay) {
@@ -246,61 +246,77 @@ export default function AddPetCtrl ($scope, $element, $timeout, $filter, metaMan
     }
 
     function addPet () {
+        var $window = $('#add-pet-window');
         var body = angular.copy($scope.form);
+
         if (!body.petName) {
-            focusObject($('#add-pet-name'));
-            $('#add-pet-window').animate({scrollTop: 0}, 300);
-        } else {
-            body.petBirthDate = new Date($scope.petBirthDate);
-            if (body.vaccinations['1'] ||
-                body.vaccinations['2'] ||
-                body.vaccinations['3']) {
-                body.treatmentArray = [];
-                if (body.vaccinations['1']) {
-                    body.treatmentArray.push({
-                        treatmentType: vm.TREATMENT.treatmentTypeVaccination,
-                        treatmentTitle: vm.TREATMENT.vaccination1
-                    });
-                }
-                if (body.vaccinations['2']) {
-                    body.treatmentArray.push({
-                        treatmentType: vm.TREATMENT.treatmentTypeVaccination,
-                        treatmentTitle: vm.TREATMENT.vaccination1
-                    });
-                    body.treatmentArray.push({
-                        treatmentType: vm.TREATMENT.treatmentTypeVaccination,
-                        treatmentTitle: vm.TREATMENT.vaccination2
-                    });
-                }
-                if (body.vaccinations['3']) {
-                    body.treatmentArray.push({
-                        treatmentType: vm.TREATMENT.treatmentTypeVaccination,
-                        treatmentTitle: vm.TREATMENT.vaccination1
-                    });
-                    body.treatmentArray.push({
-                        treatmentType: vm.TREATMENT.treatmentTypeVaccination,
-                        treatmentTitle: vm.TREATMENT.vaccination2
-                    });
-                    body.treatmentArray.push({
-                        treatmentType: vm.TREATMENT.treatmentTypeVaccination,
-                        treatmentTitle: vm.TREATMENT.vaccination3
-                    });
-                }
-            } else {
-                body.treatmentArray = [{
-                    treatmentType: vm.TREATMENT.treatmentTypeNoVaccination,
-                    treatmentTitle: vm.TREATMENT.noVaccination
-                }];
-            }
-            body.treatmentArray = JSON.stringify(body.treatmentArray);
-            petsManager.createPet(body, function (status, data) {
-                if (status == 201) {
-                    $scope.addPetSuccess(data);
-                } else {
-                    dialogHandler.alertError(status, data);
-                }
-            });
+            $window.animate({scrollTop: 0}, 300);
+            return $timeout(function () {
+                focusObject($('#add-pet-name'));
+            }, 300);
         }
+
+        if ($scope.petBirthDate) {
+            body.petBirthDate = new Date($scope.petBirthDate);
+        } else {
+
+            var windowHeight = $window.height();
+            $window.animate({scrollTop: windowHeight * 3}, 300);
+            return $timeout(function () {
+                focusObject($('#add-pet-birth-date-day'));
+            }, 300);
+        }
+
+        if (body.vaccinations['1'] ||
+            body.vaccinations['2'] ||
+            body.vaccinations['3']) {
+            body.treatmentArray = [];
+            if (body.vaccinations['1']) {
+                body.treatmentArray.push({
+                    treatmentType: vm.TREATMENT.treatmentTypeVaccination,
+                    treatmentTitle: vm.TREATMENT.vaccination1
+                });
+            }
+            if (body.vaccinations['2']) {
+                body.treatmentArray.push({
+                    treatmentType: vm.TREATMENT.treatmentTypeVaccination,
+                    treatmentTitle: vm.TREATMENT.vaccination1
+                });
+                body.treatmentArray.push({
+                    treatmentType: vm.TREATMENT.treatmentTypeVaccination,
+                    treatmentTitle: vm.TREATMENT.vaccination2
+                });
+            }
+            if (body.vaccinations['3']) {
+                body.treatmentArray.push({
+                    treatmentType: vm.TREATMENT.treatmentTypeVaccination,
+                    treatmentTitle: vm.TREATMENT.vaccination1
+                });
+                body.treatmentArray.push({
+                    treatmentType: vm.TREATMENT.treatmentTypeVaccination,
+                    treatmentTitle: vm.TREATMENT.vaccination2
+                });
+                body.treatmentArray.push({
+                    treatmentType: vm.TREATMENT.treatmentTypeVaccination,
+                    treatmentTitle: vm.TREATMENT.vaccination3
+                });
+            }
+        } else {
+            body.treatmentArray = [{
+                treatmentType: vm.TREATMENT.treatmentTypeNoVaccination,
+                treatmentTitle: vm.TREATMENT.noVaccination
+            }];
+        }
+
+        body.treatmentArray = JSON.stringify(body.treatmentArray);
+
+        petsManager.createPet(body, function (status, data) {
+            if (status == 201) {
+                $scope.addPetSuccess(data);
+            } else {
+                dialogHandler.alertError(status, data);
+            }
+        });
     }
 
     function blurObject ($object) {

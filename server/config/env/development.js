@@ -1,6 +1,6 @@
 module.exports = {
     app: {
-        port: 8080,
+        port: 3001,
         uploadStore: "local"
     },
     db: {

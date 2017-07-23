@@ -20,6 +20,7 @@ import TreatmentManageCtrl from './controllers/app.main.treatment-manage.control
 import MealManageCtrl from './controllers/app.main.meal-manage.controller';
 import ChargeManageCtrl from './controllers/app.main.charge-manage.controller';
 import PooManageCtrl from './controllers/app.main.poo-manage.controller';
+import DetailPooCtrl from './controllers/app.main.detail-poo.controller';
 import ReportManageCtrl from './controllers/app.main.report-manage.controller';
 import AddReportCtrl from './controllers/app.main.add-report.controller';
 import DetailReportCtrl from './controllers/app.main.detail-report.controller';
@@ -75,6 +76,7 @@ angular.module(APP_NAME, ['app.main-core'])
     .controller("MealManageCtrl", MealManageCtrl)
     .controller("ChargeManageCtrl", ChargeManageCtrl)
     .controller("PooManageCtrl", PooManageCtrl)
+    .controller("DetailPooCtrl", DetailPooCtrl)
     .controller("ReportManageCtrl", ReportManageCtrl)
     .controller("AddReportCtrl", AddReportCtrl)
     .controller("DetailReportCtrl", DetailReportCtrl)

@@ -13,7 +13,7 @@
   top: 74px;
   left: 50%;
   margin-left: -280px;
-  border-radius: 5px;
+  border-radius: 10px;
   width: 560px;
   height: calc(100% - 228px);
   background-color: white;
@@ -39,7 +39,7 @@
 #detail-pet-image-wrap {
   position: relative;
   margin-left: 70px;
-  border: solid 2px #979797;
+  border: solid 2px $aluminium;
   border-radius: 50%;
   margin-bottom: 30px;
   width: 160px;
@@ -91,10 +91,10 @@
     width: 30px;
     height: 30px;
     z-index: 2;
-    background-color: #926c2d;
+    background-color: $dark;
     cursor: pointer;
     &:hover {
-      background-color: #78551c;
+      background-color: $mirage;
     }
     i {
       position: absolute;
@@ -130,19 +130,19 @@
     width: 100%;
     font-size: 14px;
     font-weight: 500;
-    color: #926c2d;
+    color: $slate-grey;
     float: left;
   }
   .detail-pet-input-wrap {
     position: relative;
     margin-bottom: 20px;
-    border-bottom: 2px solid #ccc;
+    border-bottom: 2px solid $aluminium;
     width: 100%;
     height: 40px;
     overflow: hidden;
     float: left;
     &.focus {
-      border-color: #d2b76d;
+      border-color: $sea-pink;
     }
     &.select-wrap-220 {
       background-position-x: 200px;
@@ -208,12 +208,12 @@
     height: 40px;
     line-height: 40px;
     font-size: 18px;
-    color: #707070;
-    background-color: #efefef;
+    color: $slate-grey;
+    background-color: $anthens-gray;
     cursor: pointer;
     float: left;
     &:hover {
-      background-color: #e1e1e1;
+      background-color: $pale-grey-two;
     }
   }
   #detail-pet-update-button {
@@ -224,11 +224,11 @@
     line-height: 40px;
     font-size: 18px;
     color: white;
-    background-color: #926c2d;
+    background-color: $dark;
     cursor: pointer;
     float: right;
     &:hover {
-      background-color: #78551c;
+      background-color: $mirage;
     }
   }
 }

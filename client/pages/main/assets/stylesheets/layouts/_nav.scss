@@ -40,12 +40,14 @@
       line-height: 43px;
       font-size: 16px;
       font-weight: 500;
+      color: $slate-grey;
       cursor: pointer;
       &:hover {
-        background-color: #f3f3f3;
+        background-color: $pale-grey;
       }
       &.current {
-        color: #71581c;
+        color: $mirage;
+        background-color: $pale-grey;
       }
     }
   }

@@ -18,7 +18,10 @@ var api = {
         return function(req, res, next) {
 
             var params = {
-                acceptable: [],
+                acceptable: [
+                    'year',
+                    'month'
+                ],
                 essential: [],
                 resettable: [],
                 explains : {

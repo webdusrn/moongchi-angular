@@ -1,3 +1,21 @@
+// color
+$white: #fff;
+$light-rose: #ffc7c9;
+$pig-pink: #f0abad;
+$sea-pink: #e99d9f;
+$dodger-blue: #5395ff;
+$dodger-blue-two: #438bff;
+$aluminium: #a7aab2;
+$slate-grey: #646771;
+$dark: #2b313e;
+$mirage: #171b25;
+$wild-sand: #f4f4f4;
+$anthens-gray: #eef0f4;
+$pale-grey-two: #e6e8ee;
+$mercury: #e6e6e6;
+$pale-grey: #f6f8f9;
+$light-pink: #fffbfb;
+
 // header & footer
 $g-header-size: 64px;
 $g-without-header-size: calc(100% - 64px);
@@ -6,7 +24,6 @@ $g-without-footer-size: calc(100% - 50px);
 
 // navigation
 $g-navigation-size: 180px;
-$g-without-navigation-size: calc(100% - 180px);
 
 // placeholder
-$g-color-placeholder: #bec1c5;
+$g-color-placeholder: $aluminium;

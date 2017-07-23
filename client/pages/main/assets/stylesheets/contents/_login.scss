@@ -1,8 +1,7 @@
-$g-color-login-background: #f4f5f8;
+$g-color-login-background: #f6f8f9;;
 $g-color-login-window-background: rgba(255, 255, 255, .7);
-$g-color-login-input-border: #ccc;
-$g-color-login-input-border-focus: #d2b76d;
-
+$g-color-login-input-border: $aluminium;
+$g-color-login-input-border-focus: $sea-pink;
 
 #login-wrap {
   position: fixed;
@@ -31,7 +30,7 @@ $g-color-login-input-border-focus: #d2b76d;
   left: 50%;
   margin-top: -295px;
   margin-left: -70px;
-  border: 3px solid #979797;
+  border: 3px solid $aluminium;
   border-radius: 50%;
   width: 140px;
   height: 140px;
@@ -51,7 +50,7 @@ $g-color-login-input-border-focus: #d2b76d;
   width: 450px;
   height: 440px;
   background-color: $g-color-login-window-background;
-  box-shadow: 0 2px 4px 0 #4a3600;
+  box-shadow: 0 2px 4px 0 $dark;
   z-index: 3;
   -webkit-transition: background-color .3s;
   -moz-transition: background-color .3s;
@@ -66,7 +65,6 @@ $g-color-login-input-border-focus: #d2b76d;
     margin-bottom: 15px;
     font-weight: normal;
     font-size: 28px;
-    color: #2e2e2e;
   }
 }
 
@@ -96,7 +94,7 @@ div.login-input-wrap {
     height: 28px;
     line-height: 28px;
     font-size: 18px;
-    color: #a4a4a4;
+    color: $aluminium;
     z-index: 1;
     pointer-events: none;
     -webkit-transform-origin: left;
@@ -120,7 +118,7 @@ div.login-input-wrap {
       -ms-transform: translate3d(0, -26px, 0) scale3d(.7, .7, 1);
       -o-transform: translate3d(0, -26px, 0) scale3d(.7, .7, 1);
       transform: translate3d(0, -26px, 0) scale3d(.7, .7, 1);
-      color: #a78c41;
+      color: $g-color-login-input-border-focus;
     }
   }
 }
@@ -138,11 +136,11 @@ div.login-input-wrap {
   width: 150px;
   height: 40px;
   font-size: 18px;
-  background-color: #d2b46d;
+  background-color: $dark;
   color: white;
   cursor: pointer;
   &:hover {
-    background-color: #ba994d;
+    background-color: $mirage;
   }
 }
 
@@ -153,11 +151,11 @@ div.login-input-wrap {
   border-bottom: 1px solid transparent;
   height: 21px;
   font-size: 16px;
-  color: #4ba8f8;
+  color: $dodger-blue;
   cursor: pointer;
   &:hover {
-    color: #2899fb;
-    border-color: #2899fb;
+    color: $dodger-blue-two;
+    border-color: $dodger-blue-two;
   }
 }
 
@@ -167,7 +165,7 @@ div.login-input-wrap {
   left: 60px;
   font-size: 16px;
   font-weight: 400;
-  color: #707070;
+  color: $slate-grey;
 }
 
 #login-sign-up-button {
@@ -179,10 +177,10 @@ div.login-input-wrap {
   line-height: 24px;
   font-size: 16px;
   font-weight: 400;
-  color: #4ba8f8;
+  color: $dodger-blue;
   cursor: pointer;
   &:hover {
-    color: #2899fb;
-    border-color: #2899fb;
+    color: $dodger-blue-two;
+    border-color: $dodger-blue-two;
   }
 }

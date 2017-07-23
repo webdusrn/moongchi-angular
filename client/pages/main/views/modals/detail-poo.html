@@ -1,0 +1,10 @@
+<section id="detail-poo-wrap" data-ng-if="modal.detail" data-ng-controller="DetailPooCtrl" tabindex="0">
+    <div id="detail-poo-window" class="modal-animation" data-ng-if="ready">
+        <div id="detail-poo-pet-image-wrap">
+            <div class="detail-pet-image"
+                 data-ng-if="petPoo.image"
+                 data-ng-style="{'backgroud-image': 'url(' + (form.image | imageUrl) + ')'}"></div>
+            <default-image data-ng-if="!form.image" ng-id="petPoo.id"></default-image>
+        </div>
+    </div>
+</section>

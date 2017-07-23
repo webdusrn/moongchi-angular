@@ -13,7 +13,7 @@
     height: 40px;
     line-height: 40px;
     font-size: 20px;
-    background-color: #926c2d;
+    background-color: $dark;
     color: white;
     cursor: pointer;
     background-image: url(/pages/main/assets/images/icons/ic-neko-add-32@2x.png);
@@ -22,7 +22,7 @@
     background-size: 30px;
     background-position-x: 17px;
     &:hover {
-      background-color: #7d591c;
+      background-color: $mirage;
     }
   }
 }
@@ -37,10 +37,10 @@
   height: 190px;
   font-size: 20px;
   font-weight: 500;
-  color: #a2a2a2;
+  color: $aluminium;
   cursor: pointer;
   background-image: url(/pages/main/assets/images/icons/ic-neko-card-add-37@2x.png);
-  background-color: #ededed;
+  background-color: $anthens-gray;
   background-repeat: no-repeat;
   background-size: 67px 67px;
   background-position-x: 246.5px;
@@ -52,7 +52,7 @@
   transition: transform .3s, box-shadow .2s;
   transform-origin: bottom;
   &:hover {
-    background-color: #e4e4e4;
+    background-color: $pale-grey-two;
     -webkit-transform: translate3d(0, -1px, 0) scale3d(1.01, 1.01, 1);
     -moz-transform: translate3d(0, -1px, 0) scale3d(1.01, 1.01, 1);
     -ms-transform: translate3d(0, -1px, 0) scale3d(1.01, 1.01, 1);
@@ -94,7 +94,7 @@
       position: absolute;
       top: 34px;
       left: 30px;
-      border: solid 2px #979797;
+      border: solid 2px $aluminium;
       border-radius: 50%;
       width: 120px;
       height: 120px;
@@ -122,21 +122,23 @@
       p.pet-info {
         position: relative;
         margin-bottom: 10px;
+        padding-left: 90px;
         font-size: 20px;
-        @include after-clear();
         &:last-child {
           margin-bottom: 0;
         }
         span {
           position: relative;
           display: block;
-          float: left;
           &.pet-info-title {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 90px;
-            color: #818181;
+            color: $slate-grey;
           }
           &.pet-info-content {
-            width: calc(100% - 90px);
+            width: 100%;
           }
         }
       }

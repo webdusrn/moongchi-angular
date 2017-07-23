@@ -5,10 +5,13 @@ export default function poosManager (Poo, PetPoo, dialogHandler, statusHandler) 
     this.findPoos = findPoos;
     this.findPetById = findPetById;
 
-    function findPetById (petId, callback) {
-        PetPoo.get({
+    function findPetById (petId, data, callback) {
+        var query = {
             id: petId
-        }, function (data) {
+        };
+        if (data.year !== undefined) query.year = data.year;
+        if (data.month !== undefined) query.month = data.month;
+        PetPoo.get(query, function (data) {
             callback(200, data);
         }, function (data) {
             statusHandler.active(data, callback);

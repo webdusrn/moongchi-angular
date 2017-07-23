@@ -15,6 +15,11 @@
 
 * {
   box-sizing: border-box;
+  -webkit-transition: all .1s;
+  -moz-transition: all .1s;
+  -ms-transition: all .1s;
+  -o-transition: all .1s;
+  transition: all .1s;
 }
 
 html,
@@ -28,8 +33,8 @@ body {
 body {
   padding-top: $g-header-size;
   font-family: 'Noto Sans KR', sans-serif;
-  background-color: #f7f7f7;
-  color: #535e6d;
+  background-color: $pale-grey;
+  color: $mirage;
   overflow-y: auto;
 }
 
@@ -54,6 +59,7 @@ button {
 
 select {
   border-radius: 0;
+  color: $dark;
 }
 
 input::-ms-clear {
@@ -90,4 +96,14 @@ input:-webkit-autofill {
 
 #sg-main-wrap {
   position: relative;
+}
+
+@media screen and (min-width: 769px) {
+  body {
+    overflow-y: hidden;
+  }
+  #sg-main-wrap {
+    height: 100%;
+    overflow-y: auto;
+  }
 }
