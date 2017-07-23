@@ -12,7 +12,13 @@ export default function DetailPooCtrl ($scope, $element, $filter, poosManager) {
     };
 
     if ($scope.petPoo) {
-        poosManager.findPetById($scope.petPoo.id, function (status, data) {
+        findPetPoo();
+    } else {
+        $scope.closeModal('detail');
+    }
+
+    function findPetPoo () {
+        poosManager.findPetById($scope.petPoo.id, $scope.form, function (status, data) {
             if (status == 200) {
                 $scope.form = angular.copy(data);
                 $scope.ready = true;
@@ -20,8 +26,6 @@ export default function DetailPooCtrl ($scope, $element, $filter, poosManager) {
                 $scope.closeModal('detail');
             }
         });
-    } else {
-        $scope.closeModal('detail');
     }
 
     function focusObject ($object) {

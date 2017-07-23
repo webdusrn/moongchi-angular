@@ -36,15 +36,15 @@
   height: 40px;
   line-height: 40px;
   font-size: 20px;
-  background-color: #926c2d;
-  color: white;
+  background-color: $dark;
+  color: $white;
   cursor: pointer;
   background-position: left center;
   background-repeat: no-repeat;
   background-size: 30px;
   background-position-x: 17px;
   &:hover {
-    background-color: #7d591c;
+    background-color: $mirage;
   }
 }
 

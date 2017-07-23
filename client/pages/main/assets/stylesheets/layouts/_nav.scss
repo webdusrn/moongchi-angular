@@ -39,7 +39,7 @@
       height: 43px;
       line-height: 43px;
       font-size: 16px;
-      font-weight: 500;
+      font-weight: 300;
       color: $slate-grey;
       cursor: pointer;
       &:hover {
@@ -48,6 +48,7 @@
       &.current {
         color: $mirage;
         background-color: $pale-grey;
+        font-weight: 500;
       }
     }
   }
