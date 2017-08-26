@@ -113,7 +113,7 @@ var standards = {
         "defaultOrderBy": "pooDate",
         "orderByPooDate": "pooDate",
         "orderByCreatedAt": "createdAt",
-        "enumPooTypes": ["pooNormal", "pooSticky", "pooDiarrhea"],
+        "enumPooTypes": ["pooNormal", "pooSticky", "pooDiarrhea", "pooConstipation", "pooBlood"],
         "defaultPooType": "pooNormal",
         "enumPooColors": ["#9F825A", "#895C3B", "#78593C", "#A17D31", "#834320", "#6B6333",
             "#E1C8A9", "#D5C58A", "#D1C5B7", "#B7A368", "#B4A393", "#96846E",

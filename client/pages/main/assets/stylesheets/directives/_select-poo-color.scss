@@ -1,0 +1,25 @@
+select-poo-color {
+  overflow: visible;
+  div.select-wrap {
+    position: relative;
+    height: 40px;
+    border-color: $sea-pink;
+    background-position-x: 70px !important;
+    cursor: pointer;
+    div.poo-color {
+      position: absolute;
+      top: 13px;
+      left: 0;
+      border-radius: 7px;
+      width: 42px;
+      height: 14px;
+    }
+  }
+  div.select-poo-color-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+}

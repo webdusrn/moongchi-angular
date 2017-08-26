@@ -65,5 +65,14 @@
   "pooState1": "치토스 1",
   "pooState2": "치토스 2",
   "pooState3": "치토스 3",
-  "noData": "-"
+  "noData": "-",
+  "selectDate": "날짜",
+  "selectPooColor": "변 색상",
+  "selectPooType": "변 상태",
+  "submit": "등록",
+  "pooNormal": "보통",
+  "pooSticky": "무른똥",
+  "pooConstipation": "변비",
+  "pooDiarrhea": "설사",
+  "pooBlood": "혈변"
 }

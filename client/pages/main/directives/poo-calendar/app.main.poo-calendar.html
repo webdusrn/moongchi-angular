@@ -1,0 +1,36 @@
+<div class="select-year-month-wrap">
+
+</div>
+<div class="calendar-list-wrap">
+    <div class="calendar-wrap">
+        <div class="calendar-header">
+            <ul>
+                <li>일</li>
+                <li>월</li>
+                <li>화</li>
+                <li>수</li>
+                <li>목</li>
+                <li>금</li>
+                <li>토</li>
+            </ul>
+        </div>
+        <div class="calendar-body">
+            <ul data-ng-repeat="week in calendars">
+                <li data-ng-repeat="day in week" data-ng-class="{'button': day.poo}">
+                    <p>{{ day.date || '&nbsp;' }}</p>
+                    <div class="line" data-ng-if="day.poo" data-ng-style="{'border-color': day.poo.pooColor}"></div>
+                    <div class="circle" data-ng-if="day.poo" data-ng-style="{'background-color': day.poo.pooColor}"></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="list-wrap">
+        <ul>
+            <li data-ng-repeat="poo in pooList">
+                <div><p>{{ poo.pooDate | date: 'yyyy-MM-dd' }}</p></div>
+                <div><span data-ng-style="{'background-color': poo.pooColor}"></span></div>
+                <div><p>{{ poo.pooType | translate }}</p></div>
+            </li>
+        </ul>
+    </div>
+</div>

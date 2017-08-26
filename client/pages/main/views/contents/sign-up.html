@@ -6,7 +6,7 @@
     <div id="sign-up-window" data-ng-class="{'focus': focus.id || focus.pw || form.id || form.pw}">
         <h2>{{ 'signUp' | translate }}</h2>
         <form data-ng-submit="signUp()" autocomplete="off">
-            <div class="sign-up-input-wrap" data-ng-class="{'focus': focus.id}">
+            <div class="sign-up-input-wrap" data-ng-class="{'focus': focus.id || form.id}">
                 <input type="text"
                        id="sign-up-input-id"
                        class="sign-up-input"
@@ -15,7 +15,7 @@
                        data-ng-model="form.id">
                 <span data-ng-class="{'focus': focus.id || form.id}">{{ 'email' | translate }}</span>
             </div>
-            <div class="sign-up-input-wrap" data-ng-class="{'focus': focus.pw}">
+            <div class="sign-up-input-wrap" data-ng-class="{'focus': focus.pw || form.pw}">
                 <input type="password"
                        id="sign-up-input-pw"
                        class="sign-up-input"

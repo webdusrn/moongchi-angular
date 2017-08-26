@@ -1,10 +1,43 @@
 <section id="detail-poo-wrap" data-ng-if="modal.detail" data-ng-controller="DetailPooCtrl" tabindex="0">
     <div id="detail-poo-window" class="modal-animation" data-ng-if="ready">
-        <div id="detail-poo-pet-image-wrap">
-            <div class="detail-pet-image"
-                 data-ng-if="petPoo.image"
-                 data-ng-style="{'backgroud-image': 'url(' + (form.image | imageUrl) + ')'}"></div>
-            <default-image data-ng-if="!form.image" ng-id="petPoo.id"></default-image>
+        <div id="detail-poo-pet-detail-info-wrap">
+            <div id="detail-poo-pet-image-wrap">
+                <div class="detail-pet-image"
+                     data-ng-if="petPoo.image"
+                     data-ng-style="{'backgroud-image': 'url(' + (form.image | imageUrl) + ')'}"></div>
+                <default-image data-ng-if="!form.image" ng-id="petPoo.id"></default-image>
+            </div>
+            <div id="detail-poo-pet-info">
+                <p>{{ petPoo.petName }}</p>
+            </div>
         </div>
+        <div id="detail-poo-pet-input-wrap">
+            <div class="input-poo-wrap">
+                <label class="poo-label">{{ 'selectDate' | translate }}</label>
+                <div class="select-wrap datepicker" date-format="yyyy-MM-dd">
+                    <input type="text" class="input-datepicker" data-ng-model="form.pooDate" placeholder="{{ 'selectDate' | translate }}" readonly>
+                </div>
+            </div>
+            <div class="input-poo-wrap">
+                <label class="poo-label">{{ 'selectPooColor' | translate }}</label>
+                <select-poo-color ng-model="form.pooColor"></select-poo-color>
+            </div>
+            <div class="input-poo-wrap">
+                <label for="detail-poo-pet-type" class="poo-label">{{ 'selectPooType' | translate }}</label>
+                <div class="select-wrap" data-ng-class="{'focus': form.pooType, 'placeholder': !form.pooType}">
+                    <select id="detail-poo-pet-type" class="select" data-ng-model="form.pooType">
+                        <option data-ng-repeat="pooType in enumPooTypes" value="{{ pooType }}">
+                            {{ pooType | translate }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="input-poo-wrap">
+                <button type="button" id="detail-pet-poo-add" data-ng-click="createPoo()">
+                    {{ 'submit' | translate }}
+                </button>
+            </div>
+        </div>
+        <poo-calendar ng-pet-id="petPoo.id" ng-year="form.year" ng-month="form.month"></poo-calendar>
     </div>
 </section>

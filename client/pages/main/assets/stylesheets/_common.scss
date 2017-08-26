@@ -62,6 +62,11 @@
   &:hover {
     background-color: $light-pink !important;
   }
+  &.placeholder {
+    select {
+      color: $g-color-placeholder;
+    }
+  }
 }
 
 .select {
@@ -114,4 +119,14 @@
   &:hover {
     opacity: 1;
   }
+}
+
+._720kb-datepicker-calendar {
+  display: none;
+  visibility: visible;
+}
+
+._720kb-datepicker-calendar._720kb-datepicker-forced-to-open, ._720kb-datepicker-calendar._720kb-datepicker-open {
+  display: block;
+  visibility: visible;
 }

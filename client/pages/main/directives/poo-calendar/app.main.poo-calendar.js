@@ -13,14 +13,21 @@ export default function pooCalendar ($filter, metaManager, poosManager, dialogHa
         },
         templateUrl: templatePath + 'main/directives/poo-calendar/app.main.poo-calendar.html',
         link: function (scope, element, attr) {
+            var now = new Date();
+            var nowYear = now.getFullYear();
             var SIZE = 31;
 
+            scope.enumYears = [];
+            scope.enumMonths = [];
             scope.calendars = [];
-            scope.calenders = [[{
-                date: 0,
-
-            }], [], [], [], []];
             scope.pooList = [];
+
+            for (var i=0; i<20; i++) {
+                scope.enumYears.push(nowYear - i);
+            }
+            for (var i=1; i<=12; i++) {
+                scope.enumMonths.push(i);
+            }
 
             scope.$watch('ngYear', function (newVal, oldVal) {
                 if (newVal != oldVal && newVal) {
@@ -40,19 +47,23 @@ export default function pooCalendar ($filter, metaManager, poosManager, dialogHa
                 }
             }, true);
 
+            scope.$on('poo-calendar-reload', function (event, args) {
+                findPoos();
+            });
+
             findPoos();
 
             function findPoos () {
                 var query = {
                     petId: scope.ngPetId,
-                    pooYear: scope.ngYear,
-                    pooMonth: scope.ngMonth,
+                    pooYear: parseInt(scope.ngYear),
+                    pooMonth: parseInt(scope.ngMonth),
                     size: SIZE
                 };
 
                 poosManager.findPoos(query, function (status, data) {
                     if (status == 200) {
-                        scope.pooList = data.rows;
+                        scope.pooList = data.rows.slice();
                         generateCalendar(data.rows, scope.ngYear, scope.ngMonth);
                     } else if (status == 404) {
                         scope.pooList = [];
@@ -85,7 +96,7 @@ export default function pooCalendar ($filter, metaManager, poosManager, dialogHa
                         poo: null,
                         pooIndex: null
                     };
-                    if (poos && poos.length && new Date(poos[0].pooDate).getDate == currentDate) {
+                    if (poos && poos.length && new Date(poos[0].pooDate).getDate() == currentDate) {
                         calendarItem.poo = poos.splice(0, 1)[0];
                         calendarItem.pooIndex = pooIndex;
                         pooIndex++;
@@ -102,7 +113,7 @@ export default function pooCalendar ($filter, metaManager, poosManager, dialogHa
                                 poo: null,
                                 pooIndex: null
                             };
-                            if (poos && poos.length && new Date(poos[0].pooDate).getDate == currentDate) {
+                            if (poos && poos.length && new Date(poos[0].pooDate).getDate() == currentDate) {
                                 calendarItem.poo = poos.splice(0, 1)[0];
                                 calendarItem.pooIndex = pooIndex;
                                 pooIndex++;

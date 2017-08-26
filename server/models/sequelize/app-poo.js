@@ -55,6 +55,10 @@ module.exports = {
     },
     options: {
         'indexes': [{
+            name: 'petId_pooDate',
+            fields: ['petId', 'pooDate'],
+            unique: true
+        }, {
             name: 'petId',
             fields: ['petId']
         }, {
@@ -83,6 +87,25 @@ module.exports = {
         },
         'instanceMethods': Sequelize.Utils._.extend(mixin.options.instanceMethods, {}),
         'classMethods': Sequelize.Utils._.extend(mixin.options.classMethods, {
+            'createPoo': function (body, callback) {
+                var loadedData = null;
+
+                sequelize.models.AppPoo.upsert(body).then(function () {
+                    return sequelize.models.AppPoo.findOne({
+                        where: {
+                            petId: body.petId,
+                            pooDate: body.pooDate
+                        }
+                    });
+                }).then(function (data) {
+                    loadedData = data;
+                    return true;
+                }).catch(errorHandler.catchCallback(callback)).done(function (isSuccess) {
+                    if (isSuccess) {
+                        callback(201, loadedData);
+                    }
+                });
+            },
             'deletePooById': function (reqId, reqUser, callback) {
 
                 function deletePoo (t) {
@@ -194,7 +217,9 @@ module.exports = {
                     };
                 }
 
-                sequelize.models.AppPoo.count(countQuery).then(function (data) {
+                sequelize.models.AppPoo.count({
+                    where: countWhere
+                }).then(function (data) {
                     if (data > 0) {
                         count = data;
                         return sequelize.models.AppPoo.findAll(query);

@@ -1,4 +1,4 @@
-export default function PooManageCtrl ($scope, dialogHandler, poosManager) {
+export default function PooManageCtrl ($scope, dialogHandler, poosManager, navigator) {
     "ngInject";
 
     var vm = $scope.vm;
@@ -8,7 +8,6 @@ export default function PooManageCtrl ($scope, dialogHandler, poosManager) {
     $scope.findPets = findPets;
     $scope.openModal = openModal;
     $scope.closeModal = closeModal;
-    $scope.goToPetManage = goToPetManage;
 
     $scope.ready = false;
     $scope.more = false;
@@ -20,6 +19,10 @@ export default function PooManageCtrl ($scope, dialogHandler, poosManager) {
         add: false,
         detail: false
     };
+
+    $scope.$on('poo-detail-reload', function (event, args) {
+        applyPoo(args.poo);
+    });
 
     if (vm.isLoggedIn()) {
         findPets(true);
@@ -50,11 +53,55 @@ export default function PooManageCtrl ($scope, dialogHandler, poosManager) {
                 $scope.more = ($scope.petPoos.rows.length < $scope.petPoos.count);
             } else if (status == 404) {
                 $scope.more = false;
+                if (refresh) {
+                    dialogHandler.show('', '고양이를 등록해주세요.', '', true, null, function () {
+                        navigator.goToPetManage();
+                    });
+                }
             } else {
                 dialogHandler.alertError(status, data);
             }
             $scope.ready = true;
         });
+    }
+
+    function applyPoo (poo) {
+        for (var i=0; i<$scope.petPoos.rows.length; i++) {
+            if ($scope.petPoos.rows[i].id == poo.petId) {
+                var poos = $scope.petPoos.rows[i].poos;
+                if (poos.length) {
+                    if (poos[0].pooDate < poo.pooDate) {
+                        poos.unshift(poo);
+                        if (poos.length > 3) {
+                            poos.splice(3, 1);
+                        }
+                        break;
+                    } else if (poos[poos.length - 1].pooDate > poo.pooDate) {
+                        poos.push(poo);
+                        if (poos.length > 3) {
+                            poos.splice(3, 1);
+                        }
+                        break;
+                    } else {
+                        for (var j=0; j<poos.length; j++) {
+                            if (poos[j].pooDate == poo.pooDate) {
+                                poos[j] = poo;
+                                break;
+                            } else if (poos[j].pooDate < poo.pooDate) {
+                                poos.splice(j, 0, poo);
+                                if (poos.length > 3) {
+                                    poos.splice(3, 1);
+                                }
+                                break;
+                            }
+                        }
+                    }
+                } else {
+                    poos.push(poo);
+                }
+                break;
+            }
+        }
     }
 
     function openModal (key, index) {
@@ -70,9 +117,5 @@ export default function PooManageCtrl ($scope, dialogHandler, poosManager) {
 
     function closeModal (key) {
         $scope.modal[key] = false;
-    }
-
-    function goToPetManage () {
-
     }
 }

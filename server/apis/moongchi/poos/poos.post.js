@@ -15,9 +15,8 @@ post.validate = function () {
 
 post.setParam = function () {
     return function (req, res, next) {
-        var instance = req.models.AppPoo.build(req.body);
-        instance.create(function (status, data) {
-            if (status == 200) {
+        req.models.AppPoo.createPoo(req.body, function (status, data) {
+            if (status == 201) {
                 req.data = data;
                 next();
             } else {

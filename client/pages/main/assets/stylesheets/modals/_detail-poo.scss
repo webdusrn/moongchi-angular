@@ -19,5 +19,112 @@
   width: 560px;
   height: 588px;
   background-color: $white;
+  overflow: hidden;
+  text-align: center;
 }
 
+#detail-poo-pet-detail-info-wrap {
+  position: relative;
+  display: inline-block;
+  padding: 47px 20px 0 20px;
+  height: 141px;
+  @include after-clear();
+  #detail-poo-pet-image-wrap {
+    position: relative;
+    margin-right: 8px;
+    border-radius: 50%;
+    border: 1px solid $aluminium;
+    width: 94px;
+    height: 94px;
+    overflow: hidden;
+    float: left;
+  }
+  #detail-poo-pet-info {
+    position: relative;
+    height: 94px;
+    float: left;
+    p {
+      position: relative;
+      max-width: 418px;
+      height: 100%;
+      line-height: 94px;
+      font-size: 24px;
+      font-weight: 500;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}
+
+#detail-poo-pet-input-wrap {
+  position: relative;
+  padding: 30px 20px 0 20px;
+  @include after-clear();
+  div.input-poo-wrap {
+    position: relative;
+    margin-right: 10px;
+    height: 64px;
+    text-align: left;
+    float: left;
+    &:nth-of-type(1) {
+      width: 150px;
+    }
+    &:nth-of-type(2) {
+      width: 90px;
+    }
+    &:nth-of-type(3) {
+      width: 170px;
+    }
+    &:nth-of-type(4) {
+      margin-right: 0;
+      width: 80px;
+    }
+    label.poo-label {
+      position: relative;
+      height: 20px;
+      font-size: 14px;
+      font-weight: 400;
+      color: $slate-grey;
+    }
+    div.select-wrap {
+      border-bottom: solid 2px $aluminium;
+      width: 100%;
+      height: 40px;
+      background-position-x: 150px;
+      select.select {
+        padding-left: 0;
+        font-size: 18px;
+      }
+    }
+    div.datepicker {
+      position: relative;
+      border-bottom: solid 2px $aluminium;
+      height: 40px;
+      background-position-x: 130px;
+    }
+    input.input-datepicker {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      line-height: 38px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    #detail-pet-poo-add {
+      position: relative;
+      margin-top: 24px;
+      border-radius: 5px;
+      width: 100%;
+      height: 40px;
+      font-size: 18px;
+      font-weight: 500;
+      color: $white;
+      background-color: $dark;
+      cursor: pointer;
+      &:hover {
+        background-color: $mirage;
+      }
+    }
+  }
+}

@@ -31,6 +31,8 @@ import defaultImage from './directives/default-image/app.main.default-image';
 import loading from './directives/loading/app.main.loading';
 import popUp from './directives/pop-up/app.main.pop-up';
 import pooInfo from './directives/poo-info/app.main.poo-info';
+import selectPooColor from './directives/select-poo-color/app.main.select-poo-color';
+import pooCalendar from './directives/poo-calendar/app.main.poo-calendar';
 
 import appResources from './services/app.main.constant';
 
@@ -86,6 +88,8 @@ angular.module(APP_NAME, ['app.main-core'])
     .directive("loading", loading)
     .directive("popUp", popUp)
     .directive("pooInfo", pooInfo)
+    .directive("selectPooColor", selectPooColor)
+    .directive("pooCalendar", pooCalendar)
     .constant("appResources", appResources)
     .factory("Background", Background)
     .factory("Pet", Pet)

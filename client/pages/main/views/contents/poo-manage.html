@@ -3,7 +3,7 @@
         <h2>{{ 'pooManageTitle' | translate }}</h2>
         <button type="button" id="add-poo-button" data-ng-if="ready && petPoos.count" data-ng-click="openModal('add')">{{ 'doAddPoo' | translate }}</button>
     </div>
-    <div class="list-title-wrap">
+    <div class="list-title-wrap" data-ng-if="petPoos.count">
         <span>{{ 'cat' | translate }}</span>
         <span>{{ 'pooState1' | translate }}</span>
         <span>{{ 'pooState2' | translate }}</span>

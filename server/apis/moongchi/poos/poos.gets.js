@@ -8,7 +8,7 @@ gets.validate = function(){
         var POO = req.meta.std.poo;
 
         if (req.query.orderBy === undefined) req.query.orderBy = POO.defaultOrderBy;
-        if (req.query.sort === undefined) req.query.sort = COMMON.DESC;
+        if (req.query.sort === undefined) req.query.sort = COMMON.ASC;
         if (req.query.size === undefined) req.query.size = COMMON.defaultLoadingLength;
 
         if (req.query.orderBy !== undefined) req.check("orderBy", "400_3").isEnum(POO.enumOrderBys);
@@ -42,7 +42,7 @@ gets.normalizePooDate = function () {
                 req.query.pooEndMonth = '01';
             } else {
                 req.query.pooEndYear = req.query.pooYear;
-                req.query.pooEndMonth = req.query.pooMonth + 1;
+                req.query.pooEndMonth = parseInt(req.query.pooMonth) + 1;
             }
 
             if (req.query.pooMonth < 10) {
@@ -53,8 +53,8 @@ gets.normalizePooDate = function () {
                 req.query.pooEndMonth = '0' + req.query.pooEndMonth;
             }
 
-            req.query.startPooDate = new Date(req.query.pooYear + '-' + req.query.pooMonth + '-01').getTime() - 1;
-            req.query.endPooDate = new Date(req.query.pooEndYear + '-' + req.query.pooEndMonth + '-01').getTime();
+            req.query.startPooDate = new Date(new Date(req.query.pooYear + '-' + req.query.pooMonth + '-01').getTime() - 1);
+            req.query.endPooDate = new Date(req.query.pooEndYear + '-' + req.query.pooEndMonth + '-01');
         }
 
         next();
