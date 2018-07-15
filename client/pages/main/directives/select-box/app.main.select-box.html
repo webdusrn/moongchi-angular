@@ -1,0 +1,4 @@
+<select class="{{ ngClass }}" data-ng-model="ngModel">
+    <option data-ng-if="ngTitle" value="" disabled selected hidden>{{ ngTitle }}</option>
+    <option data-ng-repeat="item in ngEnum" value="{{ item }}">{{ item }}</option>
+</select>

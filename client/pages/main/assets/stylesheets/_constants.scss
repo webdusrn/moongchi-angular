@@ -7,23 +7,33 @@ $dodger-blue: #5395ff;
 $dodger-blue-two: #438bff;
 $aluminium: #a7aab2;
 $slate-grey: #646771;
+$slate-grey-two: #5a595e;
 $dark: #2b313e;
 $mirage: #171b25;
 $wild-sand: #f4f4f4;
 $anthens-gray: #eef0f4;
-$pale-grey-two: #e6e8ee;
 $mercury: #e6e6e6;
 $pale-grey: #f6f8f9;
+$pale-grey-two: #e6e8ee;
+$pale-grey-three: #eceef2;
 $light-pink: #fffbfb;
-
-// header & footer
-$g-header-size: 64px;
-$g-without-header-size: calc(100% - 64px);
-$g-footer-size: 50px;
-$g-without-footer-size: calc(100% - 50px);
+$dark-grey: #242328;
+$dark-two: #1c202a;
+$warm-grey: #979797;
+$cool-grey: #8c8f96;
+$pale-grey-four: #e3e5ea;
+$silver-three: #d2d4d8;
+$purpley-grey: #908e96;
+$very-light-pink: #ffeded;
+$pig-pink-two: #e89d9f;
 
 // navigation
-$g-navigation-size: 180px;
+$g-navigation-width: 210px;
+$g-navigation-logo-height: 104px;
 
 // placeholder
 $g-color-placeholder: $aluminium;
+
+// media query
+$g-media-query-max-width: 1599px;
+$g-media-query-min-width: 1600px;

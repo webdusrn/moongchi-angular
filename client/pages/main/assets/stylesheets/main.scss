@@ -4,14 +4,15 @@
 
 @import "constants";
 @import "mixin";
+@import "animation";
 
 @import "common";
 
 @import "layouts";
 @import "contents";
+@import "components";
 @import "directives";
 @import "modals";
-@import "animation";
 
 * {
   box-sizing: border-box;
@@ -31,10 +32,9 @@ body {
 }
 
 body {
-  padding-top: $g-header-size;
+  padding-left: $g-navigation-width;
   font-family: 'Noto Sans KR', sans-serif;
-  background-color: $pale-grey;
-  color: $mirage;
+  color: $slate-grey-two;
   overflow-y: auto;
 }
 
@@ -59,6 +59,29 @@ button {
 
 select {
   border-radius: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+input::-ms-expand {
+  display: none;
 }
 
 input::-ms-clear {
@@ -66,6 +89,7 @@ input::-ms-clear {
 }
 
 a {
+  color: $slate-grey-two !important;
   text-decoration: none !important;
 }
 
@@ -95,14 +119,11 @@ input:-webkit-autofill {
 
 #sg-main-wrap {
   position: relative;
-}
-
-@media screen and (min-width: 769px) {
-  body {
-    overflow-y: hidden;
-  }
-  #sg-main-wrap {
-    height: 100%;
-    overflow-y: auto;
+  margin: 0 auto;
+  padding: 0 24px;
+  min-width: 1008px;
+  max-width: 1008px;
+  @media screen and (min-width: $g-media-query-min-width) {
+    max-width: 1336px;
   }
 }

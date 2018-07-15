@@ -1,12 +1,13 @@
-<section id="navigation-wrap" data-ng-controller="NavigationCtrl" data-ng-class="{'open': vm.isNavOpen}" data-ng-click="$event.preventDefault();">
-    <div id="navigation-window">
+<nav id="navigation-wrap" data-ng-controller="NavigationCtrl" data-ng-class="{'open': vm.isNavOpen}" data-ng-click="$event.preventDefault();">
+    <div id="navigation-logo-wrap">
+        <div></div>
+        <h1>뭉치코</h1>
+    </div>
+    <div id="navigation-item-wrap">
         <ul>
-            <li class="navigation-item" data-ng-class="{'current': vm.currentNav['index']}" data-ng-click="goTo('index')">
-                {{ 'index' | translate }}
-            </li>
-            <li class="navigation-item" data-ng-class="{'current': vm.currentNav['reportManage']}" data-ng-click="goTo('reportManage')">
-                {{ 'userReportManage' | translate }}
+            <li data-ng-repeat="(key, value) in items">
+                <a ui-sref="{{ key }}" data-ng-class="{'current': vm.currentNav[key]}">{{ value.title }}</a>
             </li>
         </ul>
     </div>
-</section>
+</nav>

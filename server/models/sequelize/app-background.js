@@ -62,6 +62,9 @@ module.exports = {
         }, {
             name: 'createdAt',
             fields: ['createdAt']
+        }, {
+            name: 'deletedAt',
+            fields: ['deletedAt']
         }],
         'timestamps': true,
         'createdAt': false,
@@ -75,7 +78,7 @@ module.exports = {
             'beforeUpdate': mixin.options.hooks.microUpdatedAt
         },
         'instanceMethods': Sequelize.Utils._.extend(mixin.options.instanceMethods, {}),
-        'classMethods': Sequelize.Utils._.extend(mixin.options.classMethods, {
+        'classMethods': Sequelize.Utils._.extend({
             'getIncludeBackground': function () {
                 return [{
                     model: sequelize.models.Image,
@@ -201,6 +204,6 @@ module.exports = {
                     }
                 });
             }
-        })
+        }, mixin.options.classMethods)
     }
 };

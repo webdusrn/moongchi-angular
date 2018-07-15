@@ -1,0 +1,49 @@
+<article id="pet-wrap" data-ng-controller="PetCtrl">
+    <content-title ng-title="{{ navigationConstant.items[currentNav].contentTitle }}"
+                   ng-create-title="추가하기"
+                   ng-create-func="createPet"></content-title>
+    <div class="content-manage-wrap">
+        <div class="content-manage-item-wrap">
+            <select-box ng-class="filter" ng-model="form.petGender" ng-enum="enumPetGenders"></select-box>
+            <select-box ng-class="filter" ng-model="form.petSeries" ng-enum="enumPetSeries"></select-box>
+            <select-box ng-class="filter" ng-model="form.vaccination" ng-enum="enumVaccinations"></select-box>
+            <select-box ng-class="filter" ng-model="form.neuter" ng-enum="enumNeuters"></select-box>
+            <search-input ng-model="form.searchItem" ng-placeholder="이름으로 검색" ng-func="reload"></search-input>
+        </div>
+        <p>총 {{ pets.count | number }}건</p>
+    </div>
+    <div class="content-list-wrap">
+        <ul>
+            <li data-ng-repeat="item in pets.rows" data-ng-click="openDetailPet(item, $index)">
+                <div class="pet-list-item-1">
+                    <div class="pet-image-wrap">
+                        <default-image data-ng-if="!item.image" ng-id="item.id"></default-image>
+                        <div class="pet-image" data-ng-if="item.image" data-ng-style="{'background-image': 'url(' + (item.image | imageUrl) + ')'}"></div>
+                    </div>
+                    <div class="pet-info">
+                        <p>{{ item.petName }} <span>({{ item.petGender }})</span></p>
+                        <p>{{ item.birthAt | date: 'yyyy-MM-dd' }}</p>
+                    </div>
+                </div>
+                <div class="pet-list-item-2">
+                    <ul>
+                        <li>
+                            <p>종류</p>
+                            <p>{{ item.petSeries || '-' }}</p>
+                        </li>
+                        <li>
+                            <p>접종여부</p>
+                            <p>{{ item | vaccination: '1차 완료': '2차 완료': '3차 완료': '안함' }}</p>
+                        </li>
+                        <li>
+                            <p>중성화여부</p>
+                            <p>{{ item | neuter: '했음': '안함' }}</p>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        <more ng-more="more" ng-func="findPets"></more>
+    </div>
+</article>
+<ng-include src="vm.templatePath + 'main/views/modals/detail-pet.html'"></ng-include>

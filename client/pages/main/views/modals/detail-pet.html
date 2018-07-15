@@ -1,0 +1,71 @@
+<article id="detail-pet-wrap" data-ng-controller="DetailPetCtrl" tabindex="0">
+    <div class="modal-overlay" data-ng-class="{'active': isOpen}">
+        <div class="modal-vertical-align-wrap">
+            <div class="modal-vertical-align">
+                <div id="detail-pet" class="modal-item" data-ng-if="isOpen">
+                    <button type="button" class="modal-close-button" data-ng-click="close()"></button>
+                    <div class="pet-image-box">
+                        <div class="pet-image-wrap">
+                            <default-image data-ng-if="!form.image" ng-id="form.id"></default-image>
+                            <div class="image-overlay"></div>
+                            <div class="pet-image" data-ng-if="form.image" data-ng-style="{'background-image': 'url(' + (form.image | imageUrl) + ')'}"></div>
+                        </div>
+                    </div>
+                    <div class="input-wrap">
+                        <label class="label" for="petName">이름입력</label>
+                        <input id="petName" type="text" class="input" data-ng-model="form.petName" placeholder="고양이 이름">
+                    </div>
+                    <div class="input-wrap">
+                        <label class="label">성별</label>
+                        <label class="radio three" data-ng-class="{'select': form.petGender == enumPetGenders[0]}">
+                            <input type="radio" class="radio" data-ng-model="form.petGender" value="{{ enumPetGenders[0] }}">
+                            {{ enumPetGenders[0] }}
+                        </label>
+                        <label class="radio three" data-ng-class="{'select': form.petGender == enumPetGenders[1]}">
+                            <input type="radio" class="radio" data-ng-model="form.petGender" value="{{ enumPetGenders[1] }}">
+                            {{ enumPetGenders[1] }}
+                        </label>
+                        <label class="radio three last" data-ng-class="{'select': form.petGender == enumPetGenders[2]}">
+                            <input type="radio" class="radio" data-ng-model="form.petGender" value="{{ enumPetGenders[2] }}">
+                            {{ enumPetGenders[2] }}
+                        </label>
+                    </div>
+                    <div class="input-wrap">
+                        <label class="label">생년월일</label>
+                        <input type="number" class="input three" data-ng-model="form.birthYear" placeholder="YYYY">
+                        <select-box class="three" ng-class="select" ng-title="MM" ng-model="form.birthMonth" ng-enum="enumMonths"></select-box>
+                        <select-box class="three last" ng-class="select" ng-title="DD" ng-model="form.birthDate" ng-enum="enumDates"></select-box>
+                    </div>
+                    <div class="input-wrap">
+                        <label class="label">중성화여부</label>
+                        <label class="radio half" data-ng-class="{'select': form.neuter == enumNeuters[0]}">
+                            <input type="radio" class="radio" data-ng-model="form.neuter" value="{{ enumNeuters[0] }}">
+                            {{ enumNeuters[0] }}
+                        </label>
+                        <label class="radio half last" data-ng-class="{'select': form.neuter == enumNeuters[1]}">
+                            <input type="radio" class="radio" data-ng-model="form.neuter" value="{{ enumNeuters[1] }}">
+                            {{ enumNeuters[1] }}
+                        </label>
+                    </div>
+                    <div class="input-wrap">
+                        <label class="label">예방접종여부</label>
+                        <button type="button" class="button three" data-ng-class="{'select': form.vaccination > 0}" data-ng-click="selectVaccination(1)">
+                            1차
+                        </button>
+                        <button type="button" class="button three" data-ng-class="{'select': form.vaccination > 1}" data-ng-click="selectVaccination(2)">
+                            2차
+                        </button>
+                        <button type="button" class="button three last" data-ng-class="{'select': form.vaccination > 2}" data-ng-click="selectVaccination(3)">
+                            3차
+                        </button>
+                    </div>
+                    <div class="modal-button-wrap">
+                        <button type="button" data-ng-if="isCreate" data-ng-click="createPet()">등록</button>
+                        <button type="button" data-ng-if="!isCreate" data-ng-click="updatePet()">등록</button>
+                        <button type="button" data-ng-click="close()">취소</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>

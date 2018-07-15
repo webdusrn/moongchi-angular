@@ -6,7 +6,7 @@ export default function attachZero () {
             if (data < 10) {
                 return '0' + data;
             } else {
-                return data;
+                return '' + data;
             }
         } else {
             return null;

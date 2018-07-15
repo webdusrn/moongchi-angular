@@ -1,0 +1,39 @@
+article.content-title-wrap {
+  position: relative;
+  border-bottom: 1px solid $pale-grey-three;
+  padding-top: 40px;
+  padding-bottom: 16px;
+  h2 {
+    height: 48px;
+    line-height: 48px;
+    font-size: 27px;
+    font-weight: normal;
+  }
+  button {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    border-radius: 5px;
+    width: 146px;
+    height: 48px;
+    line-height: 48px;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    background-color: $dark;
+    cursor: pointer;
+    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.19);
+    -webkit-transition: all .1s;
+    -moz-transition: all .1s;
+    -ms-transition: all .1s;
+    -o-transition: all .1s;
+    transition: all .1s;
+    &:hover {
+      background-color: $dark-two;
+    }
+    &:active {
+      background-color: $dark-two;
+      box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.5);
+    }
+  }
+}

@@ -1,0 +1,22 @@
+div.more-button-wrap {
+  padding-top: 40px;
+  text-align: center;
+  button.more-button {
+    border-radius: 5px;
+    width: 146px;
+    height: 48px;
+    line-height: 48px;
+    font-size: 16px;
+    color: $cool-grey;
+    background-color: $pale-grey-three;
+    cursor: pointer;
+    -webkit-transition: background-color .1s;
+    -moz-transition: background-color .1s;
+    -ms-transition: background-color .1s;
+    -o-transition: background-color .1s;
+    transition: background-color .1s;
+    &:hover {
+      background-color: $pale-grey-four;
+    }
+  }
+}

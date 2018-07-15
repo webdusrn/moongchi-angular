@@ -1,0 +1,14 @@
+form.search-input-wrap {
+  input.search-input {
+    border-radius: 5px;
+    padding-left: 8px;
+    width: 230px;
+    height: 40px;
+    font-size: 16px;
+    background-color: $pale-grey;
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 36px;
+    background-image: url(/pages/main/assets/images/search-input/ic-filter-search-36@2x.png);
+  }
+}

@@ -1,72 +1,63 @@
 #navigation-wrap {
   position: fixed;
-  width: 245px;
-  z-index: 50;
-  text-align: left;
-  top: $g-header-size;
-  left: -245px;
-  height: $g-without-header-size;
-  background-color: transparent;
-  -webkit-overflow-scrolling: touch;
-  -webkit-transform: translate3d(-300px, 0, 0);
-  -ms-transform: translate(-300px, 0);
-  transform: translate3d(-300px, 0, 0);
-  transition: left 0s 0.3s,-webkit-transform 0.3s;
-  transition: transform 0.3s,left 0s 0.3s;
-  transition: transform 0.3s,left 0s 0.3s,-webkit-transform 0.3s;
-  &.open {
-    left: 0;
-    -webkit-transform: translate3d(0, 0, 0);
-    -ms-transform: translate(0, 0);
-    transform: translate3d(0, 0, 0);
-    transition: left 0s 0s,-webkit-transform 0.25s;
-    transition: transform 0.25s,left 0s 0s;
-    transition: transform 0.25s,left 0s 0s,-webkit-transform 0.25s;
+  display: block;
+  top: 0;
+  left: 0;
+  width: $g-navigation-width;
+  height: 100%;
+  background-color: $pale-grey;
+}
+
+#navigation-logo-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: $g-navigation-logo-height;
+  overflow: hidden;
+  h1 {
+    margin-top: 3000px;
+  }
+  div {
+    position: relative;
+    margin: 30px auto 0 auto;
+    width: 72px;
+    height: 44px;
+    @include background();
+    background-image: url(/pages/main/assets/images/logo-72-44@2x.png);
   }
 }
 
-#navigation-window {
+#navigation-item-wrap {
   position: relative;
+  padding-top: $g-navigation-logo-height;
   width: 100%;
-  height: 100%;
-  background-color: white;
   ul {
-    position: relative;
-    padding-top: 12px;
-    li.navigation-item {
-      position: relative;
-      padding-left: 50px;
-      height: 43px;
-      line-height: 43px;
+    border-top: 1px solid $pale-grey-three;
+    li {
+      height: 48px;
+      line-height: 48px;
       font-size: 16px;
-      font-weight: 300;
-      color: $slate-grey;
       cursor: pointer;
-      &:hover {
-        background-color: $pale-grey;
-      }
-      &.current {
-        color: $mirage;
-        background-color: $pale-grey;
-        font-weight: 500;
+      -webkit-transition: all .1s;
+      -moz-transition: all .1s;
+      -ms-transition: all .1s;
+      -o-transition: all .1s;
+      transition: all .1s;
+      a {
+        display: block;
+        padding-left: 24px;
+        width: 100%;
+        height: 100%;
+        &:hover {
+          background-color: $pale-grey-three;
+        }
+        &.current {
+          font-weight: 500;
+          color: $dark-grey;
+          background-color: $pale-grey-three;
+        }
       }
     }
-  }
-}
-
-#navigation-overlay {
-  position: fixed;
-  top: $g-header-size;
-  left: -100%;
-  width: 100%;
-  height: $g-without-header-size;
-  background-color: rgba(0,0,0,.5);
-  z-index: 40;
-  opacity: 0;
-  transition: opacity .3s,left 0s .3s;
-  &.open {
-    opacity: 1;
-    left: 0;
-    transition: opacity .3s,left 0s 0s;
   }
 }

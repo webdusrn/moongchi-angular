@@ -1,2 +1,86 @@
-@import "./modals/add-report";
-@import "./modals/detail-report";
+@import './modals/detail-pet';
+
+div.modal-overlay {
+  position: fixed;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background-color: rgba(0,0,0,.5);
+  overflow-y: auto;
+  overflow-x: hidden;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: visibility .3s, opacity .3s;
+  -moz-transition: visibility .3s, opacity .3s;
+  -ms-transition: visibility .3s, opacity .3s;
+  -o-transition: visibility .3s, opacity .3s;
+  transition: visibility .3s, opacity .3s;
+  &.active {
+    visibility: visible;
+    opacity: 1;
+  }
+  div.modal-vertical-align-wrap {
+    position: relative;
+    display: table;
+    width: 100%;
+    height: 100%;
+    div.modal-vertical-align {
+      display: table-cell;
+      vertical-align: middle;
+      div.modal-item {
+        margin: 0 auto;
+        border-radius: 8px;
+        background-color: white;
+        box-shadow: 0 6px 10px 2px rgba(0, 0, 0, 0.17);
+        @include modal();
+        button.modal-close-button {
+          position: absolute;
+          top: 12px;
+          right: 12px;
+          width: 24px;
+          height: 24px;
+          cursor: pointer;
+          @include background();
+        }
+        div.modal-button-wrap {
+          margin-top: 24px;
+          @include after-clear();
+          button {
+            margin-left: 8px;
+            border-radius: 3px;
+            width: 88px;
+            height: 38px;
+            line-height: 38px;
+            font-size: 14px;
+            cursor: pointer;
+            float: right;
+            -webkit-transition: all .1s;
+            -moz-transition: all .1s;
+            -ms-transition: all .1s;
+            -o-transition: all .1s;
+            transition: all .1s;
+            &:nth-of-type(1) {
+              color: white;
+              box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.5);
+              background-color: $dark;
+              &:hover {
+                background-color: $dark-two;
+                box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.5);
+              }
+            }
+            &:nth-of-type(2) {
+              color: $warm-grey;
+              background-color: white;
+              &:hover {
+                background-color: #f0f0f0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

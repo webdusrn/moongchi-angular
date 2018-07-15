@@ -1,0 +1,36 @@
+#detail-pet {
+  padding: 24px;
+  width: 400px;
+  div.pet-image-box {
+    padding-top: 30px;
+    div.pet-image-wrap {
+      position: relative;
+      margin: 0 auto;
+      border-radius: 50%;
+      border: 2px solid $warm-grey;
+      width: 80px;
+      height: 80px;
+      overflow: hidden;
+      div.image-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        @include background();
+        background-color: rgba(0, 0, 0, .3);
+        //background-image: url(/pages/main/assets/images/)
+        opacity: 0;
+        -webkit-transition: opacity .1s;
+        -moz-transition: opacity .1s;
+        -ms-transition: opacity .1s;
+        -o-transition: opacity .1s;
+        transition: opacity .1s;
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

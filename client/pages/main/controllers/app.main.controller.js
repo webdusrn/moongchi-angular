@@ -1,4 +1,4 @@
-export default function MainCtrl($rootScope, $scope, $location, $filter, metaManager, FileUploader, sessionManager, statusHandler, loadingHandler, dialogHandler, navigator, backgroundsManager) {
+export default function MainCtrl($rootScope, $scope, $location, $filter, metaManager, FileUploader, sessionManager, statusHandler, loadingHandler, dialogHandler, appNavigator, backgroundsManager) {
     'ngInject';
 
     var vm = $scope.vm = {};
@@ -6,26 +6,27 @@ export default function MainCtrl($rootScope, $scope, $location, $filter, metaMan
     statusHandler.init(vm);
     loadingHandler.init(vm);
     dialogHandler.init(vm);
+
     vm.translate = $filter('translate');
     vm.session = sessionManager.session;
     vm.FILE = STD.file;
     vm.COMMON = STD.common;
     vm.USER = STD.user;
     vm.BACKGROUND = STD.background;
-    vm.PET = STD.pet;
-    vm.TREATMENT = STD.treatment;
-    vm.REPORT = STD.report;
     vm.templatePath = STD.templatePath;
     vm.defaultLoadingLength = vm.COMMON.defaultLoadingLength;
+
     FileUploader.FileSelect.prototype.isEmptyAfterSelection = function () {
         return true;
     };
     vm.FileUploader = FileUploader;
 
-    vm.currentPage = currentPage;
+    vm.setNav = setNav;
     vm.isLoggedIn = isLoggedIn;
+    vm.getSession = getSession;
     vm.logout = logout;
     vm.toggleClose = toggleClose;
+    vm.apply = apply;
 
     vm.currentNav = {};
     vm.isNavOpen = false;
@@ -52,7 +53,7 @@ export default function MainCtrl($rootScope, $scope, $location, $filter, metaMan
 
     init();
 
-    function currentPage (page) {
+    function setNav (page) {
         vm.currentNav = {};
         vm.currentNav[page] = true;
     }
@@ -61,11 +62,22 @@ export default function MainCtrl($rootScope, $scope, $location, $filter, metaMan
         return (vm.session && vm.session.id);
     }
 
+    function getSession (successCallback, failCallback) {
+        sessionManager.getSession(function (status, data) {
+            if (status == 200) {
+                if (successCallback) successCallback();
+            } else {
+                if (failCallback) failCallback();
+                appNavigator.goToLogin();
+            }
+        });
+    }
+
     function logout () {
         sessionManager.logout(function (status) {
             if (status == 204) {
                 vm.session = null;
-                navigator.goToLogin();
+                appNavigator.goToLogin();
             }
         });
     }
@@ -87,13 +99,23 @@ export default function MainCtrl($rootScope, $scope, $location, $filter, metaMan
         });
     }
 
+    function apply (callback) {
+        if ($scope.$$phase == '$apply' || $scope.$$phase == '$digest') {
+            callback();
+        } else {
+            $scope.$apply(function () {
+                callback();
+            });
+        }
+    }
+
     $scope.$on("core.session.callback", function (event, args) {
         if (args.type == 'signup') {
             vm.session = sessionManager.session;
-            navigator.goToIndex();
+            appNavigator.goToIndex();
         } else if (args.type == 'login') {
             vm.session = sessionManager.session;
-            navigator.goToIndex();
+            appNavigator.goToIndex();
         } else if (args.type == 'findPass') {
 
         } else if (args.type == 'changePass') {
@@ -105,7 +127,7 @@ export default function MainCtrl($rootScope, $scope, $location, $filter, metaMan
         if ((!vm.session || !vm.session.id) &&
             next.indexOf("sign-up") == -1 &&
             next.indexOf("find-pass") == -1) {
-            navigator.goToLogin();
+            appNavigator.goToLogin();
         }
     });
 }

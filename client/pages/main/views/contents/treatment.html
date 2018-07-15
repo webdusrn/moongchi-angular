@@ -1,0 +1,16 @@
+<article id="treatment-wrap" data-ng-controller="TreatmentCtrl">
+    <content-title ng-title="{{ navigationConstant.items[currentNav].contentTitle }}"
+                   ng-create-title="추가하기"
+                   ng-create-func="createTreatmentGroup"></content-title>
+    <div class="content-manage-wrap">
+
+        <p>총 {{ treatmentGroups.count | number }}건</p>
+    </div>
+    <div class="content-list-wrap">
+        <ul>
+            <li data-ng-repeat="item in treatmentGroups.rows">
+
+            </li>
+        </ul>
+    </div>
+</article>

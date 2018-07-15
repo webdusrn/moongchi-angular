@@ -18,6 +18,9 @@ function extending() {
         }
         return result;
     });
+    expressValidator.validator.extend('isExp', function (str, exp) {
+        return (exp.test(str));
+    });
 }
 
 module.exports = extending;

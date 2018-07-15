@@ -3,8 +3,10 @@ import '../../../../core/client/modules/common/base/loading-handler/assets/style
 
 import coreBaseModule from '../../../../core/client/modules/common/base/core.base.module';
 import sessionModule from '../../../../core/client/modules/common/session/core.session.module';
+import 'angular-file-upload';
 
 export default angular.module("app.main-core", [
     coreBaseModule,
-    sessionModule
+    sessionModule,
+    'angularFileUpload'
 ]).name;

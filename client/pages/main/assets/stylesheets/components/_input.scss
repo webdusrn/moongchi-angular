@@ -1,0 +1,98 @@
+div.input-wrap {
+  position: relative;
+  margin-top: 24px;
+  @include after-clear();
+  label.label {
+    display: block;
+    margin-bottom: 4px;
+    width: 100%;
+    font-size: 14px;
+    color: $purpley-grey;
+    float: left;
+  }
+  input.input {
+    border-radius: 3px;
+    padding-left: 16px;
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+    background-color: $pale-grey;
+    float: left;
+  }
+  label.radio {
+    margin: 0;
+    border-radius: 3px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    color: $cool-grey;
+    background-color: $pale-grey;
+    text-align: center;
+    cursor: pointer;
+    float: left;
+    -webkit-transition: background-color .1s;
+    -moz-transition: background-color .1s;
+    -ms-transition: background-color .1s;
+    -o-transition: background-color .1s;
+    transition: background-color .1s;
+    &:hover {
+      background-color: $pale-grey-three;
+    }
+    &.select {
+      color: $pig-pink-two;
+      font-weight: 500;
+      background-color: $very-light-pink;
+    }
+  }
+  input.radio {
+    margin: 0;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+  select-box {
+    float: left;
+  }
+  button.button {
+    border-radius: 3px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    color: $cool-grey;
+    background-color: $pale-grey;
+    cursor: pointer;
+    float: left;
+    -webkit-transition: background-color .1s;
+    -moz-transition: background-color .1s;
+    -ms-transition: background-color .1s;
+    -o-transition: background-color .1s;
+    transition: background-color .1s;
+    &:hover {
+      background-color: $pale-grey-three;
+    }
+    &.select {
+      color: $pig-pink-two;
+      font-weight: 500;
+      background-color: $very-light-pink;
+      &:hover {
+
+      }
+    }
+  }
+  .half {
+    display: block;
+    margin-right: 4px !important;
+    width: calc(50% - 2px) !important;
+  }
+  .three {
+    display: block;
+    margin-right: 4px !important;
+    width: calc(33.333% - 2.666px) !important;
+  }
+  .last {
+    margin-right: 0 !important;
+  }
+}

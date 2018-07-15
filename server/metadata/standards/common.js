@@ -7,36 +7,40 @@ var standards = {
         "isResponsive": false
     },
     "file": {
-        "enumImageFolders": ["pet", "background", "popUp"],
+        "enumImageFolders": ["pet", "background"],
         "folderPet": "pet",
-        "folderBackground": "background",
-        "folderPopUp": "popUp"
+        "folderBackground": "background"
     },
     "common": {
         "minLength": 1,
-        "maxLength": 150
+        "maxLength": 190,
+        "maxLongLength": 1000
     },
     "background": {
         "enumOrderBys": ["createdAt"],
         "defaultOrderBy": "createdAt",
         "defaultIsUse": true,
-        "enumTypes": ["login", "signUp", "pet", "meal", "treatment", "poo", "report", "all"],
+        "enumTypes": ["login", "signUp", "all"],
         "defaultType": "all",
         "typeAll": "all",
         "typeLogin": "login",
-        "typeSignUp": "signUp",
-        "typePet": "pet",
-        "typeMeal": "meal",
-        "typeTreatment": "treatment",
-        "typePoo": "poo",
-        "typeReport": "report"
+        "typeSignUp": "signUp"
     },
     "pet": {
+        "enumSearchFields": ["petName"],
+        "enumOrderBys": ["petName", "createdAt", "updatedAt"],
+        "defaultOrderBy": "petName",
         "enumDefaultImages": [
             'default-image-1.png',
             'default-image-2.png',
-            'default-image-3.png'
+            'default-image-3.png',
+            'default-image-4.png',
+            'default-image-5.png'
         ],
+        "enumPetTypes": ["고양이"],
+        "defaultPetType": "고양이",
+        "enumPetGenders": ["남자", "여자", "모르겠음"],
+        "defaultPetGender": "모르겠음",
         "enumCatSeries": [
             "네바마스커레이드",
             "네벨룽",
@@ -94,59 +98,48 @@ var standards = {
             "히말라얀",
             "기타묘종",
             "묘종모름"
-        ],
-        "enumSearchFields": ["petName"],
-        "enumOrderBys": ["createdAt"],
+        ]
+    },
+    "treatmentGroup": {
+        "enumOrderBys": ["createdAt", "treatmentAt"],
         "defaultOrderBy": "createdAt",
-        "enumPetTypes": ["petTypeCat", "petTypeDog", "petTypeEtc"],
-        "defaultPetType": "petTypeCat",
-        "enumPetGenders": ["petGenderM", "petGenderF"],
-        "defaultPetGender": "petGenderM"
+        "enumSearchFields": ["hospitalName"]
+    },
+    "treatment": {
+        "enumTreatmentTypes": [
+            "레볼루션",
+            "구충제",
+            "피부질환",
+            "안구질환",
+            "구강질환",
+            "소화계질환",
+            "1차 예방접종",
+            "2차 예방접종",
+            "3차 예방접종",
+            "중성화수술",
+            "기타질환",
+        ],
+        "defaultTreatmentType": "레볼루션",
+        "treatmentTypeVaccination1": "1차 예방접종",
+        "treatmentTypeVaccination2": "2차 예방접종",
+        "treatmentTypeVaccination3": "3차 예방접종",
+        "treatmentTypeNeuter": "중성화수술",
+        "petTreatmentTypes": [
+            "1차 예방접종",
+            "2차 예방접종",
+            "3차 예방접종",
+            "중성화수술"
+        ]
     },
     "petImage": {
         "enumOrderBys": ["createdAt"],
         "defaultOrderBy": "createdAt"
     },
-    "poo": {
-        "petPooLength": 3,
-        "enumOrderBys": ["createdAt", "pooDate"],
-        "defaultOrderBy": "pooDate",
-        "orderByPooDate": "pooDate",
-        "orderByCreatedAt": "createdAt",
-        "enumPooTypes": ["pooNormal", "pooSticky", "pooDiarrhea", "pooConstipation", "pooBlood"],
-        "defaultPooType": "pooNormal",
-        "enumPooColors": ["#9F825A", "#895C3B", "#78593C", "#A17D31", "#834320", "#6B6333",
-            "#E1C8A9", "#D5C58A", "#D1C5B7", "#B7A368", "#B4A393", "#96846E",
-            "#504D2C", "#483524", "#5C4034", "#3C2618", "#25140D", "#010000", "#BB0000"]
-    },
-    "treatment": {
-        "enumSearchFields": ["treatmentTitle", "hospitalName"],
+    "diary": {
         "enumOrderBys": ["createdAt"],
         "defaultOrderBy": "createdAt",
-        "enumTreatmentTypes": ["treatmentTypeVaccination", "treatmentTypeNoVaccination", "treatmentTypeEtc"],
-        "defaultTreatmentType": "treatmentTypeEtc",
-        "treatmentTypeVaccination": "treatmentTypeVaccination",
-        "treatmentTypeNoVaccination": "treatmentTypeNoVaccination",
-        "vaccination1": "1차 예방접종",
-        "vaccination2": "2차 예방접종",
-        "vaccination3": "3차 예방접종",
-        "noVaccination": "접종 안함"
-    },
-    "meal": {
-        "enumSearchFields": ["mealName"],
-        "enumOrderBys": ["createdAt"],
-        "defaultOrderBy": "createdAt"
-    },
-    "charge": {
-        "enumOrderBys": ["createdAt"],
-        "defaultOrderBy": "createdAt",
-        "enumSearchFields": ["chargeTitle"],
-        "defaultCharge": 0
-    },
-    "popUp": {
-        "enumSearchFields": ["title"],
-        "enumOrderBys": ["createdAt"],
-        "defaultOrderBy": "createdAt"
+        "enumDiaryTypes": ["일상", "식사거부", "설사", "혈변", "변비", "구토", "기타"],
+        "defaultDiaryType": "일상"
     }
 };
 

@@ -38,11 +38,27 @@ export default function routes($stateProvider, $urlRouterProvider) {
                 }
             }
         })
-        .state('reportManage', {
-            url: '/report-manage',
+        .state('pet', {
+            url: '/pet?petGender&petSeries&vaccination&neuter&searchItem',
             views: {
                 contents: {
-                    templateUrl: templatePath + 'main/views/contents/report-manage.html'
+                    templateUrl: templatePath + 'main/views/contents/pet.html'
+                }
+            }
+        })
+        .state('diary', {
+            url: '/diary',
+            views: {
+                contents: {
+                    templateUrl: templatePath + 'main/views/contents/diary.html'
+                }
+            }
+        })
+        .state('treatment', {
+            url: '/treatment',
+            views: {
+                contents: {
+                    templateUrl: templatePath + 'main/views/contents/treatment.html'
                 }
             }
         });
