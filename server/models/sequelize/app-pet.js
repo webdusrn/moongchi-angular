@@ -344,6 +344,7 @@ module.exports = {
                 var query = `SELECT pet.petSeries FROM AppPets AS pet
                 INNER JOIN AppUserPets AS userPet ON userPet.petId = pet.id AND userPet.userId = ${reqUser.id}
                 WHERE pet.deletedAt IS NULL
+                AND pet.petSeries IS NOT NULL
                 GROUP BY pet.petSeries`;
 
                 sequelize.query(query, {
