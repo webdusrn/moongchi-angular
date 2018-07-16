@@ -15,6 +15,16 @@ export default function petCtrl ($scope, $rootScope, $state, $stateParams, navig
     var NEUTER_FALSE = '중성화 안함';
     var selectedIndex = null;
 
+    var defaultForm = {
+        orderBy: PET.defaultOrderBy,
+        sort: vm.COMMON.ASC,
+        searchField: PET.enumSearchFields[0],
+        petGender: TOTAL_PET_GENDER,
+        petSeries: TOTAL_PET_SERIES,
+        vaccination: TOTAL_VACCINATION,
+        neuter: TOTAL_NEUTER
+    };
+
     vm.setNav(currentNav);
 
     $scope.findPets = findPets;
@@ -52,7 +62,7 @@ export default function petCtrl ($scope, $rootScope, $state, $stateParams, navig
     });
 
     $scope.$on('create-pet', function (event, args) {
-        reload();
+        reload(true);
     });
 
     $scope.$on('update-pet', function (event, args) {
@@ -134,8 +144,8 @@ export default function petCtrl ($scope, $rootScope, $state, $stateParams, navig
         });
     }
 
-    function reload () {
-        appNavigator.goToPet(angular.copy($scope.form), true);
+    function reload (refresh) {
+        appNavigator.goToPet(angular.copy(refresh ? defaultForm : $scope.form), true);
     }
 
     function findPetSeries () {
