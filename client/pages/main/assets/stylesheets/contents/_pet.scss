@@ -8,6 +8,12 @@
       width: 64px;
       height: 64px;
       overflow: hidden;
+      div.pet-image {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        @include background();
+      }
     }
     div.pet-info {
       position: relative;

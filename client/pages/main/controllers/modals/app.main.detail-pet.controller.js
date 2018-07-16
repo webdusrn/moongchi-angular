@@ -1,8 +1,9 @@
-export default function DetailPetCtrl ($scope, $rootScope, $filter, metaManager, dialogHandler, loadingHandler, petsManager, modalHandler) {
+export default function DetailPetCtrl ($scope, $rootScope, $filter, metaManager, dialogHandler, loadingHandler, petsManager, uploadManager, modalHandler) {
     'ngInject';
 
     var vm = $scope.vm;
     var PET = metaManager.std.pet;
+    var FILE = metaManager.std.file;
     var attachZero = $filter('attachZero');
     var neuter = $filter('neuter');
     var vaccination = $filter('vaccination');
@@ -49,6 +50,21 @@ export default function DetailPetCtrl ($scope, $rootScope, $filter, metaManager,
     $scope.isCreate = null;
     $scope.isOpen = false;
     $scope.form = {};
+
+    $scope.uploader = new vm.FileUploader({
+        onAfterAddingAll: function (items) {
+            var file = items[0]._file;
+            uploadManager.uploadImages([file], FILE.folderPet, function (status, data) {
+                if (status == 201) {
+                    $scope.form.imageId = data.images[0].id;
+                    $scope.form.image = data.images[0];
+                } else {
+                    dialogHandler.alertError(status, data);
+                }
+            });
+            $scope.uploader.clearQueue();
+        }
+    });
 
     $scope.$watch('form.birthYear', function (n, o) {
         if (n != o) {

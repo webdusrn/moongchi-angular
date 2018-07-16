@@ -6,6 +6,8 @@
   width: $g-navigation-width;
   height: 100%;
   background-color: $pale-grey;
+  box-shadow: 0 0 5px 0 rgba(176,194,200,.49);
+  z-index: 10;
 }
 
 #navigation-logo-wrap {
