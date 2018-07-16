@@ -6,6 +6,9 @@ export default function Diary($resource, appResources) {
     return $resource(appResources.DIARIES + '/:id', {
         id: '@id'
     }, {
+        update: {
+            method: 'PUT'
+        },
         query: {
             isArray: false
         }

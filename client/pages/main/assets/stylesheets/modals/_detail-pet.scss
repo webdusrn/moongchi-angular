@@ -19,8 +19,8 @@
         height: 100%;
         cursor: pointer;
         @include background();
-        background-color: rgba(0, 0, 0, .3);
-        //background-image: url(/pages/main/assets/images/)
+        background-color: rgba(0, 0, 0, .2);
+        background-image: url(/pages/main/assets/images/icons/ic-modal-profile-edit-80@2x.png);
         opacity: 0;
         -webkit-transition: opacity .1s;
         -moz-transition: opacity .1s;

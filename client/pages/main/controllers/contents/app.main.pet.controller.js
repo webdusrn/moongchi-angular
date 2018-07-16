@@ -51,6 +51,21 @@ export default function petCtrl ($scope, $rootScope, $state, $stateParams, navig
         findPets(true);
     });
 
+    $scope.$on('create-pet', function (event, args) {
+        reload();
+    });
+
+    $scope.$on('update-pet', function (event, args) {
+        findPet($scope.pets.rows[selectedIndex], function (pet) {
+            $scope.pets.rows[selectedIndex] = pet;
+        });
+    });
+
+    $scope.$on('delete-pet', function (event, args) {
+        $scope.pets.count--;
+        $scope.pets.rows.splice(selectedIndex, 1);
+    });
+
     $scope.$watch('form.petGender', function (n, o) {
         if (n != o) {
             reload();
@@ -129,6 +144,16 @@ export default function petCtrl ($scope, $rootScope, $state, $stateParams, navig
                 data.forEach(function (item) {
                     $scope.enumPetSeries.push(item.petSeries);
                 });
+            }
+        });
+    }
+
+    function findPet (target, callback) {
+        petsManager.findPet(target.id, function (status, data) {
+            if (status == 200) {
+                callback(data);
+            } else {
+                dialogHandler.alertError(status, data);
             }
         });
     }

@@ -6,6 +6,9 @@ export default function PetSeries($resource, appResources) {
     return $resource(appResources.PET_SERIES + '/:id', {
         id: '@id'
     }, {
+        update: {
+            method: 'PUT'
+        },
         query: {
             isArray: true
         }

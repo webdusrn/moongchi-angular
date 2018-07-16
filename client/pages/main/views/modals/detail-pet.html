@@ -31,7 +31,12 @@
                         </label>
                     </div>
                     <div class="input-wrap">
+                        <label class="label">품종</label>
+                        <select-box class="one" ng-class="select" ng-title="품종" ng-model="form.petSeries" ng-enum="enumPetSeries"></select-box>
+                    </div>
+                    <div class="input-wrap">
                         <label class="label">생년월일</label>
+                        <button type="button" class="clear" data-ng-click="clearBirth()"></button>
                         <input type="number" class="input three" data-ng-model="form.birthYear" placeholder="YYYY">
                         <select-box class="three" ng-class="select" ng-title="MM" ng-model="form.birthMonth" ng-enum="enumMonths"></select-box>
                         <select-box class="three last" ng-class="select" ng-title="DD" ng-model="form.birthDate" ng-enum="enumDates"></select-box>
@@ -61,7 +66,7 @@
                     </div>
                     <div class="modal-button-wrap">
                         <button type="button" data-ng-if="isCreate" data-ng-click="createPet()">등록</button>
-                        <button type="button" data-ng-if="!isCreate" data-ng-click="updatePet()">등록</button>
+                        <button type="button" data-ng-if="!isCreate" data-ng-click="updatePet()">수정</button>
                         <button type="button" data-ng-click="close()">취소</button>
                     </div>
                 </div>

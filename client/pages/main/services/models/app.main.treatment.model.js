@@ -6,6 +6,9 @@ export default function Treatment($resource, appResources) {
     return $resource(appResources.TREATMENTS + '/:id', {
         id: '@id'
     }, {
+        update: {
+            method: 'PUT'
+        },
         query: {
             isArray: false
         }

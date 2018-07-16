@@ -1,9 +1,8 @@
-export default function DetailPetCtrl ($scope, $filter, metaManager, dialogHandler, loadingHandler, petsManager, modalHandler) {
+export default function DetailPetCtrl ($scope, $rootScope, $filter, metaManager, dialogHandler, loadingHandler, petsManager, modalHandler) {
     'ngInject';
 
     var vm = $scope.vm;
     var PET = metaManager.std.pet;
-    var TREATMENT = metaManager.std.treatment;
     var attachZero = $filter('attachZero');
     var neuter = $filter('neuter');
     var vaccination = $filter('vaccination');
@@ -36,9 +35,12 @@ export default function DetailPetCtrl ($scope, $filter, metaManager, dialogHandl
     $scope.close = close;
     $scope.createPet = createPet;
     $scope.updatePet = updatePet;
+    $scope.deletePet = deletePet;
+    $scope.clearBirth = clearBirth;
     $scope.selectVaccination = selectVaccination;
 
     $scope.enumPetGenders = PET.enumPetGenders.slice();
+    $scope.enumPetSeries = PET.enumCatSeries.slice();
     $scope.enumNeuters = [NEUTER_TRUE, NEUTER_FALSE];
     $scope.enumVaccinations = [VACCINATION1, VACCINATION2, VACCINATION3, VACCINATION_FALSE];
     $scope.enumMonths = enumMonths;
@@ -62,7 +64,7 @@ export default function DetailPetCtrl ($scope, $filter, metaManager, dialogHandl
 
     $scope.$on('open-detail-pet', function (event, args) {
         if (args.pet) {
-            $scope.form = generateForm(angular.copy(args.pet));
+            $scope.form = generateForm(args.pet);
             $scope.isOpen = true;
             $scope.isCreate = false;
             modalHandler.focus($target);
@@ -80,15 +82,16 @@ export default function DetailPetCtrl ($scope, $filter, metaManager, dialogHandl
     });
 
     function generateForm (data) {
-        if (data.birthAt) {
-            var birthAt = new Date(data.birthAt);
-            data.birthYear = birthAt.getFullYear();
-            data.birthMonth = attachZero(birthAt.getMonth() + 1);
-            data.birthDate = attachZero(birthAt.getDate());
+        var form = angular.copy(data);
+        if (form.birthAt) {
+            var birthAt = new Date(form.birthAt);
+            form.birthYear = birthAt.getFullYear();
+            form.birthMonth = attachZero(birthAt.getMonth() + 1);
+            form.birthDate = attachZero(birthAt.getDate());
         }
-        data.vaccination = vaccination(data, VACCINATION1, VACCINATION2, VACCINATION3, VACCINATION_FALSE);
-        data.neuter = neuter(data, NEUTER_TRUE, NEUTER_FALSE);
-        return data;
+        form.vaccination = vaccination(form, VACCINATION1, VACCINATION2, VACCINATION3, VACCINATION_FALSE);
+        form.neuter = neuter(form, NEUTER_TRUE, NEUTER_FALSE);
+        return form;
     }
 
     function generateEnumDates () {
@@ -107,11 +110,61 @@ export default function DetailPetCtrl ($scope, $filter, metaManager, dialogHandl
     }
     
     function createPet () {
-        
+        var body = generateBody($scope.form);
+        petsManager.createPet(body, function (status, data) {
+            if (status == 201) {
+                $rootScope.$broadcast('create-pet', {
+                    pet: data
+                });
+                close();
+            } else {
+                dialogHandler.alertError(status, data);
+            }
+        });
     }
     
     function updatePet () {
+        var body = generateBody($scope.form);
+        petsManager.updatePet(body, function (status, data) {
+            if (status == 204) {
+                $rootScope.$broadcast('update-pet', {});
+                close();
+            } else {
+                dialogHandler.alertError(status, data);
+            }
+        });
+    }
 
+    function deletePet () {
+        petsManager.deletePet($scope.form, function (status, data) {
+            if (status == 204) {
+                $rootScope.$broadcast('delete-pet', {});
+                close();
+            } else {
+                dialogHandler.alertError(status, data);
+            }
+        });
+    }
+
+    function generateBody (data) {
+        var body = angular.copy(data);
+        body.isVaccination1 = false;
+        body.isVaccination2 = false;
+        body.isVaccination3 = false;
+        for (var i=0; i<body.vaccination; i++) {
+            body['isVaccination' + (i + 1)] = true;
+        }
+        body.isNeuter = body.neuter == NEUTER_TRUE;
+        if (body.birthYear && body.birthMonth && body.birthDate) {
+            body.birthAt = body.birthYear + '-' + body.birthMonth + '-' + body.birthDate;
+        }
+        return body;
+    }
+
+    function clearBirth () {
+        delete $scope.form.birthYear;
+        delete $scope.form.birthMonth;
+        delete $scope.form.birthDate;
     }
 
     modalHandler.eventBind($target, function () {

@@ -6,6 +6,9 @@ export default function PetImage($resource, appResources) {
     return $resource(appResources.PET_IMAGES + '/:id', {
         id: '@id'
     }, {
+        update: {
+            method: 'PUT'
+        },
         query: {
             isArray: false
         }

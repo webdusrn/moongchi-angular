@@ -32,6 +32,8 @@ post.validate = function () {
             req.sanitize('isNeuter').toBoolean();
         }
 
+        if (req.body.imageId !== undefined) req.check('imageId', '400_12').isInt();
+
         req.utils.common.checkError(req, res, next);
     };
 };

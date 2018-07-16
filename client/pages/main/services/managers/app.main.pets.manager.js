@@ -1,5 +1,7 @@
-export default function petsManager (Pet, PetImage, PetSeries, statusHandler) {
+export default function petsManager (Pet, PetImage, PetSeries, statusHandler, metaManager) {
     'ngInject';
+
+    var MAGIC = metaManager.std.magic;
 
     this.findPets = findPets;
     this.findPet = findPet;
@@ -14,6 +16,16 @@ export default function petsManager (Pet, PetImage, PetSeries, statusHandler) {
 
     function createPet (data, callback) {
         var body = {};
+        if (data.petType !== undefined) body.petType = data.petType;
+        if (data.petSeries !== undefined) body.petSeries = data.petSeries;
+        if (data.petGender !== undefined) body.petGender = data.petGender;
+        if (data.petName !== undefined) body.petName = data.petName;
+        if (data.birthAt !== undefined) body.birthAt = data.birthAt;
+        if (data.isVaccination1 !== undefined) body.isVaccination1 = data.isVaccination1;
+        if (data.isVaccination2 !== undefined) body.isVaccination2 = data.isVaccination2;
+        if (data.isVaccination3 !== undefined) body.isVaccination3 = data.isVaccination3;
+        if (data.isNeuter !== undefined) body.isNeuter = data.isNeuter;
+        if (data.imageId !== undefined) body.imageId = data.imageId;
 
         var pet = new Pet(body);
         pet.$save(function (data) {
@@ -26,6 +38,15 @@ export default function petsManager (Pet, PetImage, PetSeries, statusHandler) {
     function updatePet (data, callback) {
         var where = {id: data.id};
         var body = {};
+        if (data.petSeries !== undefined) body.petSeries = data.petSeries || MAGIC.reset;
+        if (data.petGender !== undefined) body.petGender = data.petGender;
+        if (data.petName !== undefined) body.petName = data.petName;
+        if (data.birthAt !== undefined) body.birthAt = data.birthAt || MAGIC.reset;
+        if (data.isVaccination1 !== undefined) body.isVaccination1 = data.isVaccination1;
+        if (data.isVaccination2 !== undefined) body.isVaccination2 = data.isVaccination2;
+        if (data.isVaccination3 !== undefined) body.isVaccination3 = data.isVaccination3;
+        if (data.isNeuter !== undefined) body.isNeuter = data.isNeuter;
+        if (data.imageId !== undefined) body.imageId = data.imageId || MAGIC.reset;
 
         Pet.update(where, body, function () {
             callback(204);

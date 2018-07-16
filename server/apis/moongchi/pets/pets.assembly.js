@@ -123,7 +123,8 @@ var api = {
                     'isVaccination1',
                     'isVaccination2',
                     'isVaccination3',
-                    'isNeuter'
+                    'isNeuter',
+                    'imageId'
                 ],
                 essential: [
                     'petName'
@@ -138,7 +139,8 @@ var api = {
                     'isVaccination1': '1차 예방접종 여부',
                     'isVaccination2': '2차 예방접종 여부',
                     'isVaccination3': '3차 예방접종 여부',
-                    'isNeuter': '중상화 여부'
+                    'isNeuter': '중상화 여부',
+                    'imageId': 'IMAGE ID'
                 },
                 title: '생성',
                 state: 'design'

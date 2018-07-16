@@ -44,6 +44,17 @@ div.modal-overlay {
           height: 24px;
           cursor: pointer;
           @include background();
+          background-image: url(/pages/main/assets/images/close/ic-modal-close-24@2x.png);
+        }
+        button.clear {
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 18px;
+          height: 18px;
+          cursor: pointer;
+          @include background();
+          background-image: url(/pages/main/assets/images/clear/ic-modal-birth-reset-18@2x.png);
         }
         div.modal-button-wrap {
           margin-top: 24px;
