@@ -30,6 +30,7 @@ import defaultImage from './directives/default-image/app.main.default-image';
 import loading from './directives/loading/app.main.loading';
 import contentTitle from './directives/content-title/app.main.content-title';
 import selectBox from './directives/select-box/app.main.select-box';
+import selectPet from './directives/select-pet/app.main.select-pet';
 import searchInput from './directives/search-input/app.main.search-input';
 import more from './directives/more/app.main.more';
 
@@ -89,6 +90,7 @@ angular.module(APP_NAME, ['app.main-core'])
     .directive("loading", loading)
     .directive("contentTitle", contentTitle)
     .directive("selectBox", selectBox)
+    .directive("selectPet", selectPet)
     .directive("searchInput", searchInput)
     .directive("more", more)
 

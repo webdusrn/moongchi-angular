@@ -1,13 +1,17 @@
-export default function DiaryCtrl ($scope, $state, navigationConstant, dialogHandler, loadingHandler, diariesManager) {
+export default function DiaryCtrl ($scope, $rootScope, $state, navigationConstant, dialogHandler, loadingHandler, metaManager, diariesManager) {
     'ngInject';
 
     var vm = $scope.vm;
+    var DIARY = metaManager.std.diary;
     var currentNav = $state.current.name;
+    var TOTAL_DIARY_TYPE = '전체 항목';
 
     vm.setNav(currentNav);
 
     $scope.createDiary = createDiary;
+    $scope.findDiaries = findDiaries;
 
+    $scope.enumDiaryTypes = [TOTAL_DIARY_TYPE].concat(DIARY.enumDiaryTypes);
     $scope.currentNav = currentNav;
     $scope.navigationConstant = navigationConstant;
 
@@ -17,7 +21,7 @@ export default function DiaryCtrl ($scope, $state, navigationConstant, dialogHan
         rows: []
     };
     $scope.form = {
-        
+        diaryType: TOTAL_DIARY_TYPE
     };
 
     vm.getSession(function () {
@@ -35,6 +39,7 @@ export default function DiaryCtrl ($scope, $state, navigationConstant, dialogHan
             offset = $scope.diaries.rows.length;
         }
         var query = angular.copy($scope.form);
+        if (query.diaryType == TOTAL_DIARY_TYPE) delete query.diaryType;
         if (offset) query.offset = offset;
         diariesManager.findDiaries(query, function (status, data) {
             if (status == 200) {

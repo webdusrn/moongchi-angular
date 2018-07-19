@@ -13,7 +13,7 @@
         <p>총 {{ pets.count | number }}건</p>
     </div>
     <div class="content-list-wrap">
-        <ul>
+        <ul class="card-wrap">
             <li data-ng-repeat="item in pets.rows" data-ng-click="openDetailPet(item, $index)">
                 <div class="pet-list-item-1">
                     <div class="pet-image-wrap">

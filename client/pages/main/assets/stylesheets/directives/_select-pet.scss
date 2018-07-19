@@ -1,0 +1,62 @@
+button.select-pet-button {
+  border-radius: 5px;
+  padding-left: 14px;
+  padding-right: 36px;
+  width: auto;
+  max-width: 300px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 16px;
+  color: #5a595e;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background-color: #f6f8f9;
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: 36px;
+  background-image: url(/pages/main/assets/images/select-box/ic-select-arrow-40@2x.png);
+  cursor: pointer;
+}
+
+#select-pet {
+  padding: 24px;
+  width: 900px;
+  div.content-list-wrap {
+    ul.half-card-wrap {
+      li {
+        margin-bottom: 12px;
+        margin-right: 12px;
+        padding: 12px;
+        width: calc(50% - 6px);
+        @include after-clear();
+        &:nth-of-type(2n) {
+          margin-right: 0;
+        }
+        p.no-select {
+          height: 40px;
+          line-height: 40px;
+          text-align: center;
+        }
+        div.pet-image-wrap {
+          position: relative;
+          border: 1px solid $warm-grey;
+          border-radius: 50%;
+          width: 40px;
+          height: 40px;
+          overflow: hidden;
+          float: left;
+          div.pet-image {
+            width: 100%;
+            height: 100%;
+            @include background();
+          }
+        }
+      }
+    }
+    div.more-button-wrap {
+      padding-top: 0;
+    }
+  }
+}

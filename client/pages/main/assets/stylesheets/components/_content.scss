@@ -11,6 +11,12 @@ div.content-manage-wrap {
       display: block;
       float: left;
     }
+    select-pet {
+      position: relative;
+      margin-right: 8px;
+      display: block;
+      float: left;
+    }
     search-input {
       position: relative;
       margin-right: 8px;
@@ -18,7 +24,7 @@ div.content-manage-wrap {
       float: left;
     }
   }
-  p {
+  & > p {
     position: relative;
     height: 40px;
     line-height: 40px;
@@ -30,27 +36,60 @@ div.content-manage-wrap {
 
 div.content-list-wrap {
   & > ul {
-    @include after-clear();
-    & > li {
-      margin-right: 24px;
-      margin-bottom: 24px;
-      border-radius: 3px;
-      padding: 24px;
-      width: 304px;
-      box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.19);
-      cursor: pointer;
-      float: left;
-      &:hover {
-        box-shadow: 0 2px 8px 1px rgba(0, 0, 0, 0.2)
+    &.card-wrap {
+      @include after-clear();
+      & > li {
+        margin-right: 24px;
+        margin-bottom: 24px;
+        border-radius: 3px;
+        padding: 24px;
+        width: 304px;
+        box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.19);
+        cursor: pointer;
+        float: left;
+        &:hover {
+          box-shadow: 0 2px 8px 1px rgba(0, 0, 0, 0.2)
+        }
+        @media screen and (max-width: $g-media-query-max-width) {
+          &:nth-of-type(3n) {
+            margin-right: 0;
+          }
+        }
+        @media screen and (min-width: $g-media-query-min-width) {
+          &:nth-of-type(4n) {
+            margin-right: 0;
+          }
+        }
       }
-      @media screen and (max-width: $g-media-query-max-width) {
-        &:nth-of-type(3n) {
+    }
+    &.half-card-wrap {
+      @include after-clear();
+      & > li {
+        margin-bottom: 24px;
+        margin-right: 24px;
+        border-radius: 3px;
+        padding: 24px;
+        width: calc(50% - 12px);
+        box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.19);
+        cursor: pointer;
+        float: left;
+        &:hover {
+          box-shadow: 0 2px 8px 1px rgba(0, 0, 0, 0.2)
+        }
+        &:nth-of-type(2n) {
           margin-right: 0;
         }
       }
-      @media screen and (min-width: $g-media-query-min-width) {
-        &:nth-of-type(4n) {
-          margin-right: 0;
+    }
+    &.list-wrap {
+      & > li {
+        margin-bottom: 24px;
+        border-radius: 3px;
+        padding: 24px;
+        box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.19);
+        cursor: pointer;
+        &:hover {
+          box-shadow: 0 2px 8px 1px rgba(0, 0, 0, 0.2)
         }
       }
     }

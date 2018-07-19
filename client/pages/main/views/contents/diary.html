@@ -3,11 +3,14 @@
                    ng-create-title="추가하기"
                    ng-create-func="createDiary"></content-title>
     <div class="content-manage-wrap">
-
+        <div class="content-manage-item-wrap">
+            <select-box ng-class="filter" ng-model="form.diaryType" ng-enum="enumDiaryTypes"></select-box>
+            <select-pet ng-pet="selectedPet"></select-pet>
+        </div>
         <p>총 {{ diaries.count | number }}건</p>
     </div>
     <div class="content-list-wrap">
-        <ul>
+        <ul class="card-wrap">
             <li data-ng-repeat="item in diaries.rows">
 
             </li>
