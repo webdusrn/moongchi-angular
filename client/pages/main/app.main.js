@@ -22,6 +22,8 @@ import DiaryCtrl from './controllers/contents/app.main.diary.controller';
 import TreatmentCtrl from './controllers/contents/app.main.treatment.controller';
 
 import DetailPetCtrl from './controllers/modals/app.main.detail-pet.controller';
+import DetailDiaryCtrl from './controllers/modals/app.main.detail-diary.controller';
+import SelectPetCtrl from './controllers/modals/app.main.select-pet.controller';
 
 // directive
 import active from './directives/active/app.main.active';
@@ -33,6 +35,8 @@ import selectBox from './directives/select-box/app.main.select-box';
 import selectPet from './directives/select-pet/app.main.select-pet';
 import searchInput from './directives/search-input/app.main.search-input';
 import more from './directives/more/app.main.more';
+import uploadImage from './directives/upload-image/app.main.upload-image';
+import fileOver from './directives/file-over';
 
 // constant
 import appResources from './services/constants/app.main.resources';
@@ -83,6 +87,8 @@ angular.module(APP_NAME, ['app.main-core'])
     .controller("DiaryCtrl", DiaryCtrl)
     .controller("TreatmentCtrl", TreatmentCtrl)
     .controller("DetailPetCtrl", DetailPetCtrl)
+    .controller("DetailDiaryCtrl", DetailDiaryCtrl)
+    .controller("SelectPetCtrl", SelectPetCtrl)
 
     .directive("active", active)
     .directive("autoFocus", autoFocus)
@@ -93,6 +99,8 @@ angular.module(APP_NAME, ['app.main-core'])
     .directive("selectPet", selectPet)
     .directive("searchInput", searchInput)
     .directive("more", more)
+    .directive("uploadImage", uploadImage)
+    .directive("fileOver", fileOver)
 
     .constant("appResources", appResources)
     .constant("navigationConstant", navigationConstant)

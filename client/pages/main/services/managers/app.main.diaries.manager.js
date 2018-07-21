@@ -1,5 +1,7 @@
-export default function diariesManager (Diary, statusHandler) {
+export default function diariesManager (Diary, statusHandler, metaManager) {
     'ngInject';
+
+    var MAGIC = metaManager.std.magic;
 
     this.findDiaries = findDiaries;
     this.findDiary = findDiary;
@@ -9,7 +11,11 @@ export default function diariesManager (Diary, statusHandler) {
 
     function createDiary (data, callback) {
         var body = {};
-
+        if (data.petId !== undefined) body.petId = data.petId;
+        if (data.diaryType !== undefined) body.diaryType = data.diaryType;
+        if (data.diaryContent !== undefined) body.diaryContent = data.diaryContent;
+        if (data.diaryAt !== undefined) body.diaryAt = data.diaryAt;
+        if (data.imageIds !== undefined) body.imageIds = data.imageIds;
         var diary = new Diary(body);
         diary.$save(function (data) {
             callback(201, data);
@@ -21,7 +27,10 @@ export default function diariesManager (Diary, statusHandler) {
     function updateDiary (data, callback) {
         var where = {id: data.id};
         var body = {};
-
+        if (data.diaryType !== undefined) body.diaryType = data.diaryType;
+        if (data.diaryContent !== undefined) body.diaryContent = data.diaryContent || MAGIC.reset;
+        if (data.diaryAt !== undefined) body.diaryAt = data.diaryAt;
+        if (data.imageIds !== undefined) body.imageIds = data.imageIds || MAGIC.reset;
         Diary.update(where, body, function () {
             callback(204);
         }, function () {

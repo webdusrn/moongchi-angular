@@ -1,9 +1,9 @@
-export default function petCtrl ($scope, $rootScope, $state, $stateParams, navigationConstant, metaManager, dialogHandler, petsManager, loadingHandler, appNavigator) {
+export default function SelectPetCtrl ($scope, $rootScope, metaManager, dialogHandler, petsManager, modalHandler) {
     'ngInject';
 
     var vm = $scope.vm;
+    var COMMON = metaManager.std.common;
     var PET = metaManager.std.pet;
-    var currentNav = $state.current.name;
     var TOTAL_PET_GENDER = '전체 성별';
     var TOTAL_PET_SERIES = '전체 종';
     var NO_PET_SERIES = '품종 미입력';
@@ -14,11 +14,12 @@ export default function petCtrl ($scope, $rootScope, $state, $stateParams, navig
     var TOTAL_NEUTER = '중성화 여부';
     var NEUTER_TRUE = '중성화 했음';
     var NEUTER_FALSE = '중성화 안함';
-    var selectedIndex = null;
+    var $target = $('#select-pet-wrap');
+    var eventKey = null;
 
     var defaultForm = {
         orderBy: PET.defaultOrderBy,
-        sort: vm.COMMON.ASC,
+        sort: COMMON.ASC,
         searchField: PET.enumSearchFields[0],
         petGender: TOTAL_PET_GENDER,
         petSeries: TOTAL_PET_SERIES,
@@ -26,64 +27,44 @@ export default function petCtrl ($scope, $rootScope, $state, $stateParams, navig
         neuter: TOTAL_NEUTER
     };
 
-    vm.setNav(currentNav);
-
+    $scope.close = close;
     $scope.findPets = findPets;
+    $scope.selectPet = selectPet;
     $scope.reload = reload;
-    $scope.createPet = createPet;
-    $scope.openDetailPet = openDetailPet;
 
-    $scope.enumOrderBys = PET.enumOrderBys;
     $scope.enumPetGenders = [TOTAL_PET_GENDER].concat(PET.enumPetGenders);
     $scope.enumPetSeries = [TOTAL_PET_SERIES];
     $scope.enumVaccinations = [TOTAL_VACCINATION, VACCINATION1, VACCINATION2, VACCINATION3];
     $scope.enumNeuters = [TOTAL_NEUTER, NEUTER_TRUE, NEUTER_FALSE];
-    $scope.currentNav = currentNav;
-    $scope.navigationConstant = navigationConstant;
 
+    $scope.isOpen = false;
+    $scope.isFilter = false;
+    $scope.more = false;
+    $scope.form = angular.copy(defaultForm);
     $scope.pets = {
         count: 0,
         rows: []
     };
-    $scope.more = false;
-    $scope.form = {
-        orderBy: PET.defaultOrderBy,
-        sort: vm.COMMON.ASC,
-        searchField: PET.enumSearchFields[0],
-        searchItem: $stateParams.searchItem,
-        petGender: $stateParams.petGender || TOTAL_PET_GENDER,
-        petSeries: $stateParams.petSeries || TOTAL_PET_SERIES,
-        vaccination: $stateParams.vaccination || TOTAL_VACCINATION,
-        neuter: $stateParams.neuter || TOTAL_NEUTER
-    };
 
-    vm.getSession(function () {
-        findPetSeries();
-        findPets(true);
-    });
-
-    $scope.$on('create-pet', function (event, args) {
-        reload(true);
-    });
-
-    $scope.$on('update-pet', function (event, args) {
-        findPet($scope.pets.rows[selectedIndex], function (pet) {
-            $scope.pets.rows[selectedIndex] = pet;
+    modalHandler.eventBind($target, function () {
+        vm.apply(function () {
+            close();
         });
     });
 
-    $scope.$on('delete-pet', function (event, args) {
-        $scope.pets.count--;
-        $scope.pets.rows.splice(selectedIndex, 1);
+    $scope.$on('select-pet', function (event, args) {
+        if (args.eventKey) {
+            openModal(args.eventKey, args.isFilter);
+        }
     });
 
-    $scope.$watch('form.petGender', function (n, o) {
+    $scope.$watch('form.petSeries', function (n, o) {
         if (n != o) {
             reload();
         }
     }, true);
 
-    $scope.$watch('form.petSeries', function (n, o) {
+    $scope.$watch('form.petGender', function (n, o) {
         if (n != o) {
             reload();
         }
@@ -101,13 +82,17 @@ export default function petCtrl ($scope, $rootScope, $state, $stateParams, navig
         }
     }, true);
 
+    function reload () {
+        findPets(true);
+    }
+
     function findPets (refresh) {
         var offset = null;
         if (refresh) {
-            $scope.pets = {
-                count: 0,
-                rows: []
-            };
+            // $scope.pets = {
+            //     count: 0,
+            //     rows: []
+            // };
         } else {
             offset = $scope.pets.rows.length;
         }
@@ -149,10 +134,6 @@ export default function petCtrl ($scope, $rootScope, $state, $stateParams, navig
         });
     }
 
-    function reload (refresh) {
-        appNavigator.goToPet(angular.copy(refresh ? defaultForm : $scope.form), true);
-    }
-
     function findPetSeries () {
         petsManager.findPetSeries({}, function (status, data) {
             if (status == 200) {
@@ -163,24 +144,26 @@ export default function petCtrl ($scope, $rootScope, $state, $stateParams, navig
         });
     }
 
-    function findPet (target, callback) {
-        petsManager.findPet(target.id, function (status, data) {
-            if (status == 200) {
-                callback(data);
-            } else {
-                dialogHandler.alertError(status, data);
-            }
+    function selectPet (pet) {
+        $rootScope.$broadcast(eventKey, {
+            pet: angular.copy(pet || null)
         });
+        close();
     }
 
-    function openDetailPet (pet, index) {
-        selectedIndex = index;
-        $rootScope.$broadcast('open-detail-pet', {
-            pet: pet
-        });
+    function openModal (key, isFilter) {
+        if (!$scope.pets.rows.length) {
+            findPetSeries();
+            findPets(true);
+        }
+        $scope.isOpen = true;
+        $scope.isFilter = !!isFilter;
+        modalHandler.focus($target);
+        eventKey = key;
     }
 
-    function createPet () {
-        $rootScope.$broadcast('open-create-pet', {});
+    function close () {
+        $scope.isOpen = false;
+        eventKey = null;
     }
 }

@@ -3,6 +3,7 @@ var OBJECTIFY = require('../../../core/server/utils/objectify');
 var sequelize = require('../../../core/server/config/sequelize');
 
 var TREATMENT = STD.treatment;
+var MAGIC = STD.magic;
 
 module.exports = {
     generateCountByUserQuery: function (options) {
@@ -42,7 +43,7 @@ module.exports = {
         }
 
         if (options.petSeries !== undefined) {
-            query += ` AND pet.petSeries = "${options.petSeries}"`;
+            query += ` AND pet.petSeries ${options.petSeries == MAGIC.empty ? 'IS NULL' : '= "' + options.petSeries + '"'}`;
         }
 
         if (options.neuter !== undefined && !options.neuter) {
@@ -94,7 +95,7 @@ module.exports = {
         }
 
         if (options.petSeries !== undefined) {
-            query += ` AND pet.petSeries = "${options.petSeries}"`;
+            query += ` AND pet.petSeries ${options.petSeries == MAGIC.empty ? 'IS NULL' : '= "' + options.petSeries + '"'}`;
         }
 
         if (options.neuter !== undefined && !options.neuter) {

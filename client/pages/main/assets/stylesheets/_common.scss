@@ -53,12 +53,18 @@
   }
 }
 
-._720kb-datepicker-calendar {
-  display: none;
-  visibility: visible;
+._720kb-datepicker-calendar-header:nth-child(odd) {
+  background-color: $pig-pink-two;
 }
 
-._720kb-datepicker-calendar._720kb-datepicker-forced-to-open, ._720kb-datepicker-calendar._720kb-datepicker-open {
-  display: block;
-  visibility: visible;
+._720kb-datepicker-calendar-days-header {
+  background-color: $very-light-pink;
+}
+
+._720kb-datepicker-calendar-day._720kb-datepicker-active {
+  background-color: $light-rose;
+}
+
+._720kb-datepicker-calendar-day:hover {
+  background-color: $very-light-pink;
 }

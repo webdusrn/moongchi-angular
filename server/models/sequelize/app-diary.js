@@ -182,6 +182,7 @@ module.exports = {
                 }).then(function (data) {
                     if (data && data.length) {
                         loadedData = OBJECTIFY.convert(data, {
+                            pet: {},
                             images: [{
                                 attributes: sequelize.models.Image.attributes
                             }]
@@ -209,6 +210,7 @@ module.exports = {
                         callback(status, {
                             count: data.count,
                             rows: OBJECTIFY.convert(data.rows, {
+                                pet: {},
                                 images: [{
                                     attributes: sequelize.models.Image.attributes
                                 }]

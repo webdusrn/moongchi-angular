@@ -1,0 +1,20 @@
+<div class="upload-image-wrap">
+    <ul>
+        <li>
+            <div class="upload-image"
+                 data-ng-if="uploader"
+                 nv-file-drop nv-file-over file-over
+                 over-class="file-over"
+                 uploader="uploader">
+                <p class="explain-file">사진 업로드</p>
+                <input type="file" class="file" nv-file-select uploader="uploader" multiple>
+            </div>
+        </li>
+        <li data-ng-repeat="item in ngModel">
+            <div class="image" data-ng-style="{'background-image': 'url(' + (item | imageUrl) + ')'}"></div>
+            <div class="image-overlay" data-ng-click="removeItem($index)">
+                <p>이미지 삭제</p>
+            </div>
+        </li>
+    </ul>
+</div>

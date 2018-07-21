@@ -1,5 +1,7 @@
-export default function treatmentsManager (TreatmentGroup, Treatment, statusHandler) {
+export default function treatmentsManager (TreatmentGroup, Treatment, statusHandler, metaManager) {
     'ngInject';
+
+    var MAGIC = metaManager.std.magic;
 
     this.findTreatmentGroups = findTreatmentGroups;
     this.findTreatmentGroup = findTreatmentGroup;
@@ -12,7 +14,11 @@ export default function treatmentsManager (TreatmentGroup, Treatment, statusHand
 
     function createTreatment (data, callback) {
         var body = {};
-
+        if (data.treatmentGroupId !== undefined) body.treatmentGroupId = data.treatmentGroupId;
+        if (data.petId !== undefined) body.petId = data.petId;
+        if (data.treatmentType !== undefined) body.treatmentType = data.treatmentType;
+        if (data.treatmentPrice !== undefined) body.treatmentPrice = data.treatmentPrice;
+        if (data.treatmentMemo !== undefined) body.treatmentMemo = data.treatmentMemo;
         var treatment = new Treatment(body);
         treatment.$save(function (data) {
             callback(201, data);
@@ -24,7 +30,10 @@ export default function treatmentsManager (TreatmentGroup, Treatment, statusHand
     function updateTreatment (data, callback) {
         var where = {id: data.id};
         var body = {};
-
+        if (data.petId !== undefined) body.petId = data.petId;
+        if (data.treatmentType !== undefined) body.treatmentType = data.treatmentType;
+        if (data.treatmentPrice !== undefined) body.treatmentPrice = data.treatmentPrice || MAGIC.reset;
+        if (data.treatmentMemo !== undefined) body.treatmentMemo = data.treatmentMemo || MAGIC.reset;
         Treatment.update(where, body, function () {
             callback(204);
         }, function (data) {
@@ -43,7 +52,13 @@ export default function treatmentsManager (TreatmentGroup, Treatment, statusHand
 
     function createTreatmentGroup (data, callback) {
         var body = {};
-
+        if (data.hospitalName !== undefined) body.hospitalName = data.hospitalName;
+        if (data.treatmentAt !== undefined) body.treatmentAt = data.treatmentAt;
+        if (data.treatmentTotalPrice !== undefined) body.treatmentTotalPrice = data.treatmentTotalPrice;
+        if (data.petIds !== undefined) body.petIds = data.petIds;
+        if (data.treatmentTypes !== undefined) body.treatmentTypes = data.treatmentTypes;
+        if (data.treatmentPrices !== undefined) body.treatmentPrices = data.treatmentPrices;
+        if (data.treatmentMemos !== undefined) body.treatmentMemos = data.treatmentMemos;
         var treatmentGroup = new TreatmentGroup(body);
         treatmentGroup.$save(function (data) {
             callback(201, data);
@@ -55,7 +70,9 @@ export default function treatmentsManager (TreatmentGroup, Treatment, statusHand
     function updateTreatmentGroup (data, callback) {
         var where = {id: data.id};
         var body = {};
-
+        if (data.hospitalName !== undefined) body.hospitalName = data.hospitalName || MAGIC.reset;
+        if (data.treatmentAt !== undefined) body.treatmentAt = data.treatmentAt || MAGIC.reset;
+        if (data.treatmentTotalPrice !== undefined) body.treatmentTotalPrice = data.treatmentTotalPrice || MAGIC.reset;
         TreatmentGroup.update(where, body, function () {
             callback(204);
         }, function (data) {

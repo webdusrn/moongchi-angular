@@ -21,6 +21,9 @@
       padding-left: 80px;
       height: 64px;
       p {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
         &:nth-of-type(1) {
           font-size: 18px;
           span {

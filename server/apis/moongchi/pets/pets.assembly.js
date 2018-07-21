@@ -81,7 +81,7 @@ var api = {
                     "size": "가져올 데이터수",
                     "offset": "offset",
                     "petGender": "성별 " + STD.pet.enumPetGenders.join(', '),
-                    "petSeries": "펫 종 " + STD.pet.enumCatSeries.join(', '),
+                    "petSeries": "펫 종 " + [STD.magic.empty].concat(STD.pet.enumCatSeries).join(', '),
                     "vaccination": "접종 완료 여부 (1, 2, 3)",
                     "neuter": "중성화 여부 (true / false)"
                 },

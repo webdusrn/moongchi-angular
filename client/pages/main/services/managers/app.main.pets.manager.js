@@ -75,6 +75,7 @@ export default function petsManager (Pet, PetImage, PetSeries, statusHandler, me
     }
 
     function findPets (query, callback) {
+        if (query.petSeries === null) query.petSeries = MAGIC.empty;
         Pet.query(query, function (data) {
             callback(200, data);
         }, function (data) {
@@ -84,7 +85,8 @@ export default function petsManager (Pet, PetImage, PetSeries, statusHandler, me
 
     function createPetImage (data, callback) {
         var body = {};
-
+        if (data.petId !== undefined) body.petId = data.petId;
+        if (data.imageId !== undefined) body.imageId = data.imageId;
         var petImage = new PetImage(body);
         petImage.$save(function (data) {
             callback(201, data);

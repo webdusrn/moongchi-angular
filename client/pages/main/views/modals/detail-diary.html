@@ -1,0 +1,44 @@
+<article id="detail-diary-wrap" data-ng-controller="DetailDiaryCtrl" tabindex="0">
+    <div class="modal-overlay" data-ng-class="{'active': isOpen}">
+        <div class="modal-vertical-align-wrap">
+            <div class="modal-vertical-align">
+                <div id="detail-diary" class="modal-item" data-ng-if="isOpen">
+                    <button type="button" class="modal-close-button" data-ng-click="close()"></button>
+                    <div class="input-container">
+                        <div class="input-wrap half">
+                            <div class="input-wrap">
+                                <label class="label">고양이 선택</label>
+                                <select-pet ng-class="select" ng-pet="form.pet" ng-key="detail-diary"></select-pet>
+                            </div>
+                            <div class="input-wrap">
+                                <label class="label">항목 선택</label>
+                                <select-box class="one" ng-class="select" ng-title="항목 선택" ng-model="form.diaryType" ng-enum="enumDiaryTypes"></select-box>
+                            </div>
+                            <div class="input-wrap">
+                                <label class="label">날짜 선택</label>
+                                <datepicker date-format="yyyy-MM-dd">
+                                    <input type="text" class="date" data-ng-model="form.diaryAt" placeholder="{{ 'YYYY-MM-DD' }}" readonly>
+                                </datepicker>
+                            </div>
+                        </div>
+                        <div class="input-wrap half last">
+                            <div class="input-wrap">
+                                <label class="label">내용</label>
+                                <textarea class="input" rows="9" data-ng-model="form.diaryContent" data-ng-attr-placeholder="{{ '-' }}"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-wrap">
+                        <label class="label">사진</label>
+                        <upload-image ng-model="form.images" ng-folder="{{ folder }}"></upload-image>
+                    </div>
+                    <div class="modal-button-wrap">
+                        <button type="button" data-ng-if="isCreate" data-ng-click="createDiary()">등록</button>
+                        <button type="button" data-ng-if="!isCreate" data-ng-click="updateDiary()">수정</button>
+                        <button type="button" data-ng-click="close()">취소</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>

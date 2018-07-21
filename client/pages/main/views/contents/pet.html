@@ -18,11 +18,11 @@
                 <div class="pet-list-item-1">
                     <div class="pet-image-wrap">
                         <default-image data-ng-if="!item.image" ng-id="item.id"></default-image>
-                        <div class="pet-image" data-ng-if="item.image" data-ng-style="{'background-image': 'url(' + (item.image | imageUrl) + ')'}"></div>
+                        <div class="pet-image" data-ng-if="item.image" data-ng-style="{'background-image': 'url(' + (item.image | imageUrl: 'm') + ')'}"></div>
                     </div>
                     <div class="pet-info">
                         <p>{{ item.petName }} <span>({{ item.petGender }})</span></p>
-                        <p>{{ item.birthAt | date: 'yyyy-MM-dd' }}</p>
+                        <p>{{ item.birthAt ? (item.birthAt | date: 'yyyy-MM-dd') : '(생일 미입력)' }}</p>
                     </div>
                 </div>
                 <div class="pet-list-item-2">

@@ -1,3 +1,13 @@
+p.explain-file {
+  position: relative;
+  top: 50%;
+  margin-top: -10px;
+  width: 100%;
+  font-size: 14px;
+  color: $warm-grey;
+  text-align: center;
+}
+
 input.file {
   position: absolute;
   top: 0;
@@ -9,10 +19,27 @@ input.file {
   cursor: pointer;
 }
 
+div.input-container {
+  @include after-clear();
+}
+
 div.input-wrap {
   position: relative;
   margin-top: 24px;
   @include after-clear();
+  &.half {
+    margin-right: 12px;
+    width: calc(50% - 6px);
+    float: left;
+  }
+  &.last {
+    margin-right: 0;
+  }
+  div.input-wrap {
+    &:first-of-type {
+      margin-top: 0;
+    }
+  }
   label.label {
     display: block;
     margin-bottom: 4px;
@@ -27,7 +54,29 @@ div.input-wrap {
     width: 100%;
     height: 40px;
     font-size: 14px;
+    color: $slate-grey-two;
     background-color: $pale-grey;
+    float: left;
+  }
+  input.date {
+    border-radius: 3px;
+    padding-left: 16px;
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+    color: $slate-grey-two;
+    background-color: $pale-grey;
+    cursor: pointer;
+  }
+  textarea.input {
+    border-radius: 3px;
+    padding: 8px 16px;
+    width: 100%;
+    line-height: 1.5;
+    font-size: 14px;
+    color: $slate-grey-two;
+    background-color: $pale-grey;
+    resize: none;
     float: left;
   }
   label.radio {

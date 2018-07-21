@@ -7,8 +7,9 @@ var standards = {
         "isResponsive": false
     },
     "file": {
-        "enumImageFolders": ["pet", "background"],
+        "enumImageFolders": ["pet", "diary", "background"],
         "folderPet": "pet",
+        "folderDiary": "diary",
         "folderBackground": "background"
     },
     "common": {
@@ -139,7 +140,8 @@ var standards = {
         "enumOrderBys": ["createdAt"],
         "defaultOrderBy": "createdAt",
         "enumDiaryTypes": ["일상", "식사거부", "설사", "혈변", "변비", "구토", "기타"],
-        "defaultDiaryType": "일상"
+        "defaultDiaryType": "일상",
+        "maxImageCount": 3
     }
 };
 

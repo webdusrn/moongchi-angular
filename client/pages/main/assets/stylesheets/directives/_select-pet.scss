@@ -1,15 +1,23 @@
 button.select-pet-button {
-  border-radius: 5px;
-  padding-left: 14px;
-  padding-right: 36px;
-  width: auto;
-  max-width: 300px;
+  &.select {
+    border-radius: 3px;
+    padding-left: 16px;
+    width: 100%;
+    font-size: 14px;
+  }
+  &.filter {
+    border-radius: 5px;
+    padding-left: 14px;
+    width: auto;
+    max-width: 300px;
+    font-size: 16px;
+    overflow: hidden;
+  }
+  padding-right: 32px;
   height: 40px;
   line-height: 40px;
-  font-size: 16px;
   color: #5a595e;
   text-align: left;
-  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   background-color: #f6f8f9;
@@ -22,10 +30,11 @@ button.select-pet-button {
 
 #select-pet {
   padding: 24px;
-  width: 900px;
+  width: 940px;
   div.content-list-wrap {
     ul.half-card-wrap {
       li {
+        position: relative;
         margin-bottom: 12px;
         margin-right: 12px;
         padding: 12px;
@@ -53,10 +62,54 @@ button.select-pet-button {
             @include background();
           }
         }
+        div.pet-info-wrap {
+          position: relative;
+          padding-left: 12px;
+          width: calc(100% - 40px);
+          height: 40px;
+          float: left;
+          div.pet-base {
+            margin-bottom: 4px;
+            height: 20px;
+            line-height: 20px;
+            font-size: 16px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            span {
+              font-size: 14px;
+            }
+          }
+          div.pet-sub {
+            position: relative;
+            @include after-clear();
+            span {
+              height: 16px;
+              line-height: 16px;
+              font-size: 14px;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              float: left;
+              &:nth-of-type(1) {
+                width: 50%;
+              }
+              &:nth-of-type(2),
+              &:nth-of-type(3) {
+                width: 25%;
+              }
+            }
+          }
+        }
       }
     }
     div.more-button-wrap {
-      padding-top: 0;
+      padding-bottom: 0;
+      button.more-button {
+        width: 120px;
+        height: 40px;
+        line-height: 40px;
+      }
     }
   }
 }

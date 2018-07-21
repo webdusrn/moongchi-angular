@@ -6,6 +6,7 @@ gets.validate = function(){
     return function(req, res, next){
         var PET = req.meta.std.pet;
         var COMMON = req.meta.std.common;
+        var MAGIC = req.meta.std.magic;
 
         if (req.query.size === undefined) req.query.size = COMMON.defaultLoadingLength;
         if (req.query.sort === undefined) req.query.sort = COMMON.ASC;
@@ -24,7 +25,7 @@ gets.validate = function(){
         });
 
         if (req.query.petGender !== undefined) req.check('petGender', '400_3').isEnum(PET.enumPetGenders);
-        if (req.query.petSeries !== undefined) req.check('petSeries', '400_3').isEnum(PET.enumCatSeries);
+        if (req.query.petSeries !== undefined) req.check('petSeries', '400_3').isEnum([MAGIC.empty].concat(PET.enumCatSeries));
         if (req.query.vaccination !== undefined) req.check('vaccination', '400_5').isInt();
         if (req.query.neuter !== undefined) {
             req.check('neuter', '400_20').isBoolean();

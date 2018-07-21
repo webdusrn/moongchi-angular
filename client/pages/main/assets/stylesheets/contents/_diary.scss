@@ -1,3 +1,59 @@
 #diary-wrap {
-
+  div.diary-list-item-1 {
+    padding-bottom: 16px;
+    div.pet-image-wrap {
+      position: absolute;
+      border: 2px solid $warm-grey;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      overflow: hidden;
+      div.pet-image {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        @include background();
+      }
+    }
+    div.pet-info {
+      position: relative;
+      padding-left: 56px;
+      height: 40px;
+      p {
+        height: 40px;
+        line-height: 40px;
+        font-size: 18px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+  }
+  div.diary-list-item-2 {
+    border-top: 1px solid $pale-grey-three;
+    padding-top: 16px;
+    ul {
+      li {
+        position: relative;
+        margin-top: 16px;
+        height: 17px;
+        &:first-of-type {
+          margin-top: 0;
+        }
+        p {
+          font-size: 14px;
+          line-height: 17px;
+          &:nth-of-type(1) {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100px;
+          }
+          &:nth-of-type(2) {
+            padding-left: 100px;
+          }
+        }
+      }
+    }
+  }
 }

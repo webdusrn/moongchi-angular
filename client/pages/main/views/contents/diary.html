@@ -5,15 +5,41 @@
     <div class="content-manage-wrap">
         <div class="content-manage-item-wrap">
             <select-box ng-class="filter" ng-model="form.diaryType" ng-enum="enumDiaryTypes"></select-box>
-            <select-pet ng-pet="selectedPet"></select-pet>
+            <select-pet ng-class="filter" ng-pet="selectedPet" ng-key="diary" ng-filter="true"></select-pet>
         </div>
         <p>총 {{ diaries.count | number }}건</p>
     </div>
     <div class="content-list-wrap">
         <ul class="card-wrap">
-            <li data-ng-repeat="item in diaries.rows">
-
+            <li data-ng-repeat="item in diaries.rows" data-ng-click="openDetailDiary(item, $index)">
+                <div class="diary-list-item-1">
+                    <div class="pet-image-wrap">
+                        <default-image data-ng-if="!item.image" ng-id="item.id"></default-image>
+                        <div class="pet-image" data-ng-if="item.image" data-ng-style="{'background-image': 'url(' + (item.image | imageUrl: 'm') + ')'}"></div>
+                    </div>
+                    <div class="pet-info">
+                        <p>{{ item.pet.petName }}</p>
+                    </div>
+                </div>
+                <div class="diary-list-item-2">
+                    <ul>
+                        <li>
+                            <p>항목</p>
+                            <p>{{ item.diaryType }}</p>
+                        </li>
+                        <li>
+                            <p>날짜</p>
+                            <p>{{ item.diaryAt | date: 'yyyy-MM-dd' }}</p>
+                        </li>
+                        <li>
+                            <p>이미지</p>
+                            <p>{{ item.images.length }}</p>
+                        </li>
+                    </ul>
+                </div>
             </li>
         </ul>
     </div>
 </article>
+<ng-include src="vm.templatePath + 'main/views/modals/detail-diary.html'"></ng-include>
+<ng-include src="vm.templatePath + 'main/views/modals/select-pet.html'"></ng-include>

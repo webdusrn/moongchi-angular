@@ -47,7 +47,7 @@ export default function routes($stateProvider, $urlRouterProvider) {
             }
         })
         .state('diary', {
-            url: '/diary',
+            url: '/diary?diaryType&petId',
             views: {
                 contents: {
                     templateUrl: templatePath + 'main/views/contents/diary.html'
